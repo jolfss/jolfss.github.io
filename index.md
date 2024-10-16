@@ -12,8 +12,8 @@ title: My Projects
 
 .project {
   display: grid;
-  grid-template-columns: 35% 60%; 
-  grid-column-gap: 20px; 
+  grid-template-columns: 40% 55%; 
+  grid-column-gap: 0px; 
   margin-bottom: 30px;
   width: 100%;
 }

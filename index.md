@@ -66,7 +66,8 @@ title: My Projects
   <!-- Visual Navigation Project -->
   <div class="project">
     <div class="image-container">
-      <img src="assets/anymal_construction.gif" alt="TODO">
+      <!--<img src="assets/anymal_construction.gif" alt="TODO">-->
+      <img src="assets/anymal_site.gif" alt="TODO">
       <img src="assets/spliced.png" alt="TODO">
     </div>
     <div class="project-text">
@@ -90,19 +91,6 @@ title: My Projects
     </div>
   </div>
 
-  <!-- QCLL Project -->
-  <div class="project">
-    <div class="image-container">
-      <img src="assets/qcll.png" alt="TODO">
-    </div>
-    <div class="project-text">
-      <h2>Quantitative-Competitive Language Learning</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson</p>
-      <p><strong>Description:</strong> A hobby project attempting to use LLMs as a model of language to score humans on their ability to write natural-sounding text. Evaluation is designed in an efficient way to reuse prior embeddings as users edit their text since predictions are made causally and generally people push and pop from the end of their current phrase. Multi-token characters are not supported yet. Works decently for relative comparison of completions but no globally stable metric has been derived yet. There is no look-back so frequent tokens (like individual letters, components of longer words) are not punished when out of context; failure modes are also often very predictable (e.g. repeating words does not get punished).</p>
-      <a href="https://github.com/jolfss/qcll">GitHub</a>
-    </div>
-  </div>
-
   <!-- Compositional Splatting Project -->
   <div class="project">
     <div class="image-container">
@@ -113,6 +101,31 @@ title: My Projects
       <p><strong>Credits:</strong> Sean Brynjólfsson, Evan Zhang, Natalie Leung, Danish Qureshi, Dyllan Hofflich</p>
       <p><strong>Description:</strong> We demonstrate that gaussian splats are easy to compose and current optimizers can robustly preserve existing (hidden) geometry when new geometry is naively added on top. This is a scenario common in construction sites where components such as ducts are exposed before insulation and drywall are installed. This allows incremental updates instead of the constant overhead incurred by routine scans of an entire site. In the end, we envision a complete digital twin with the entire development history condensed into a complete, look-inside model.</p>
       <a href="files/SplatConstruction.pdf">View PDF</a>
+    </div>
+  </div>
+
+  <!-- Fractal Raytracer -->
+  <div class="project">
+    <div class="image-container">
+      <img src="assets/fractals.jpg" alt="TODO">
+    </div>
+    <div class="project-text">
+      <h2>Fractal Raytracer</h2>
+      <p><strong>Credits:</strong> Sean Brynjólfsson, Jack Otto</p>
+      <p><strong>Description:</strong> This project was the second creative project for CS 4620--computer graphics. We implemented constructive solid geometry with a reentrance primitive to allow the scene to contain nested copies of itself.</p>
+    </div>
+  </div>
+
+  <!-- QCLL Project -->
+  <div class="project">
+    <div class="image-container">
+      <img src="assets/qcll.png" alt="TODO">
+    </div>
+    <div class="project-text">
+      <h2>Quantitative-Competitive Language Learning</h2>
+      <p><strong>Credits:</strong> Sean Brynjólfsson</p>
+      <p><strong>Description:</strong> A hobby project attempting to use LLMs as a model of language to score humans on their ability to write natural-sounding text. Evaluation is designed in an efficient way to reuse prior embeddings as users edit their text since predictions are made causally and generally people push and pop from the end of their current phrase. Multi-token characters are not supported yet. Works decently for relative comparison of completions but no globally stable metric has been derived yet. There is no look-back so frequent tokens (like individual letters, components of longer words) are not punished when out of context; failure modes are also often very predictable (e.g. repeating words does not get punished).</p>
+      <a href="https://github.com/jolfss/qcll">GitHub</a>
     </div>
   </div>
 

@@ -11,32 +11,31 @@ title: My Projects
 }
 
 .project {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40% 55%; /* 40% for the image, 55% for the text */
+  grid-column-gap: 20px; /* Creates a gap between image and text */
   margin-bottom: 30px;
   width: 100%;
-  flex-direction: column; /* Always stack items vertically */
 }
 
 .project img {
-  width: 100%; /* Make the images take full width */
-  margin-bottom: 20px; /* Add space between stacked images */
+  width: 100%; /* Ensures image takes full width of its column */
 }
 
 .project .project-text {
-  width: 100%; /* Make the project text take full width */
+  width: 100%; /* Ensures text takes full width of its column */
 }
-
 
 @media (max-width: 800px) {
   .project {
-    flex-direction: column;
+    grid-template-columns: 100%; /* Stacks images and text vertically */
   }
 
   .project img, .project .project-text {
-    width: 100%;
-    margin: 0;
+    margin: 0; /* Removes margin when stacked */
   }
 }
+
 </style>
 
 <div class="projects-container">

@@ -59,7 +59,7 @@ title: My Projects
       <h2>Auto-Riggable Gaussian Characters</h2>
       <p><strong>Credits:</strong> Sean Brynjólfsson, Evan Zhang, Justin Tien</p>
       <p><strong>Description:</strong> <i>(Current project)</i> Recent work has shown optimizing gaussian splats to satisfy local rigidity constraints can provide consistent tracking and orientation of regions of space throughout time. Given this, we aim to take such a representation of any actor in motion and decompose it into the rigid regions and eventually predict a joint structure. This would allow for easy production and animation of gaussian splat character models.</p>
-      <a href="https://github.com/jolfss/grig">GitHub Repo</a>
+      <a href="https://github.com/jolfss/grig">GitHub</a>
     </div>
   </div>
 
@@ -99,7 +99,7 @@ title: My Projects
       <h2>Quantitative-Competitive Language Learning</h2>
       <p><strong>Credits:</strong> Sean Brynjólfsson</p>
       <p><strong>Description:</strong> A hobby project attempting to use LLMs as a model of language to score humans on their ability to write natural-sounding text. Evaluation is designed in an efficient way to reuse prior embeddings as users edit their text since predictions are made causally and generally people push and pop from the end of their current phrase. Multi-token characters are not supported yet. Works decently for relative comparison of completions but no globally stable metric has been derived yet. There is no look-back so frequent tokens (like individual letters, components of longer words) are not punished when out of context; failure modes are also often very predictable (e.g. repeating words does not get punished).</p>
-      <a href="https://github.com/jolfss/qcll">GitHub Repo</a>
+      <a href="https://github.com/jolfss/qcll">GitHub</a>
     </div>
   </div>
 

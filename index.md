@@ -21,7 +21,6 @@ title: My Projects
 .project .image-container {
   display: flex;
   flex-direction: column; 
-  padding-bottom: 20px;
 }
 
 .project img {
@@ -32,7 +31,6 @@ title: My Projects
 }
 
 .project .project-text {
-  padding-top: 10px;
   width: 100%; 
 }
 

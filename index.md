@@ -14,16 +14,18 @@ title: My Projects
   display: flex;
   margin-bottom: 30px;
   width: 100%;
+  flex-direction: column; /* Always stack items vertically */
 }
 
 .project img {
-  width: 40%;
-  margin-right: 20px;
+  width: 100%; /* Make the images take full width */
+  margin-bottom: 20px; /* Add space between stacked images */
 }
 
 .project .project-text {
-  width: 55%;
+  width: 100%; /* Make the project text take full width */
 }
+
 
 @media (max-width: 800px) {
   .project {

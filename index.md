@@ -46,7 +46,6 @@ title: My Projects
     <div class="project-text">
       <h2>Auto-Riggable Gaussian Characters</h2>
       <p><strong>Description:</strong> Current project.</p>
-      <p><strong>Tech Stack:</strong> Python, PyTorch, Dynamic3DGaussians</p>
       <a href="https://github.com/jolfss/grig">GitHub Repo</a>
     </div>
   </div>
@@ -57,7 +56,6 @@ title: My Projects
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
       <p><strong>Description:</strong> TODO</p>
-      <p><strong>Tech Stack:</strong> Omniverse, Isaac Sim/Orbit, ANYmal C/D</p>
       <a href="files/VisualNavTravPriors.pdf">View or Download PDF</a>
     </div>
   </div>
@@ -68,7 +66,6 @@ title: My Projects
     <div class="project-text">
       <h2>Let it SIMmer</h2>
       <p><strong>Description:</strong> TODO</p>
-      <p><strong>Tech Stack:</strong> Omniverse, Isaac Sim/Orbit, ANYmal C</p>
       <a href="https://github.com/jolfss/qcll">GitHub Repo</a> | <a href="files/LetItSIMmer.pdf">View or Download PDF</a>
     </div>
   </div>
@@ -79,7 +76,6 @@ title: My Projects
     <div class="project-text">
       <h2>Quantitative-Competitive Language Learning</h2>
       <p><strong>Description:</strong> A hobby project attempting to use language models as a model of language to score humans on their ability to write in a foreign language.</p>
-      <p><strong>Tech Stack:</strong> Python, PyTorch, HuggingFace</p>
       <a href="https://github.com/jolfss/qcll">GitHub Repo</a>
     </div>
   </div>
@@ -90,7 +86,6 @@ title: My Projects
     <div class="project-text">
       <h2>Compositional Splatting for Construction Sites</h2>
       <p><strong>Description:</strong> TODO</p>
-      <p><strong>Tech Stack:</strong> Python, PyTorch, Omniverse, Isaac Sim</p>
       <a href="https://github.com/jolfss/grig">GitHub Repo</a> | <a href="files/SplatConstruction.pdf">View or Download PDF</a>
     </div>
   </div>
@@ -101,7 +96,6 @@ title: My Projects
     <div class="project-text">
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
       <p><strong>Description:</strong> Description pending.</p>
-      <p><strong>Tech Stack:</strong> Python, OpenAI API</p>
       <a href="files/LLMímir.pdf">View or Download PDF</a>
     </div>
   </div>

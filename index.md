@@ -12,29 +12,31 @@ title: My Projects
 
 .project {
   display: grid;
-  grid-template-columns: 40% 55%; /* 40% for the images, 55% for the text */
-  grid-column-gap: 20px; /* Gap between image and text */
+  grid-template-columns: 30% 65%; 
+  grid-column-gap: 20px; 
   margin-bottom: 30px;
   width: 100%;
 }
 
 .project .image-container {
   display: flex;
-  flex-direction: column; /* Stack the images vertically */
+  flex-direction: column; 
 }
 
 .project img {
-  width: 100%; /* Ensure the images take the full width of the left column */
-  margin-bottom: 10px; /* Space between stacked images */
+  width: 100%; 
+  max-height: 300px; 
+  object-fit: cover; 
+  margin-bottom: 10px; 
 }
 
 .project .project-text {
-  width: 100%; /* Ensure text takes the full width of the right column */
+  width: 100%; 
 }
 
 @media (max-width: 800px) {
   .project {
-    grid-template-columns: 100%; /* Stacks images and text vertically on small screens */
+    grid-template-columns: 100%; 
   }
 
   .project img, .project .project-text {

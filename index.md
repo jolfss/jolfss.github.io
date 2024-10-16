@@ -42,7 +42,6 @@ title: My Projects
   <!-- GRIG Project -->
   <div class="project">
     <img src="assets/grig1.gif" alt="TODO">
-    <img src="assets/grig2.gif" alt="TODO">
     <div class="project-text">
       <h2>Auto-Riggable Gaussian Characters</h2>
       <p><strong>Description:</strong> Current project.</p>
@@ -52,7 +51,8 @@ title: My Projects
 
   <!-- Visual Navigation Project -->
   <div class="project">
-    <img src="assets/visual-navigation-image.jpg" alt="Visual Navigation with Traversability Priors">
+    <img src="assets/anymal_construction.gif" alt="TODO">
+    <img src="assets/spliced.png" alt="TODO">
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -66,7 +66,7 @@ title: My Projects
     <div class="project-text">
       <h2>Let it SIMmer</h2>
       <p><strong>Description:</strong> TODO</p>
-      <a href="https://github.com/jolfss/qcll">GitHub Repo</a> | <a href="files/LetItSIMmer.pdf">View or Download PDF</a>
+      <a href="files/LetItSIMmer.pdf">View or Download PDF</a>
     </div>
   </div>
 

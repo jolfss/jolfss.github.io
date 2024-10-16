@@ -42,6 +42,8 @@ title: My Projects
   <!-- GRIG Project -->
   <div class="project">
     <img src="assets/grig1.gif" alt="TODO">
+    <br>
+    <img src="assets/grig2.gif" alt="TODO>
     <div class="project-text">
       <h2>Auto-Riggable Gaussian Characters</h2>
       <p><strong>Description:</strong> Current project.</p>
@@ -52,6 +54,7 @@ title: My Projects
   <!-- Visual Navigation Project -->
   <div class="project">
     <img src="assets/anymal_construction.gif" alt="TODO">
+    <br>
     <img src="assets/spliced.png" alt="TODO">
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
@@ -62,7 +65,7 @@ title: My Projects
 
   <!-- Let it SIMmer Project -->
   <div class="project">
-    <img src="assets/let-it-simmer-image.jpg" alt="Let it SIMmer">
+    <img src="assets/ovseg.png" alt="Let it SIMmer">
     <div class="project-text">
       <h2>Let it SIMmer</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -72,7 +75,7 @@ title: My Projects
 
   <!-- QCLL Project -->
   <div class="project">
-    <img src="assets/qcll-image.jpg" alt="QCLL: Quantitative-Competitive Language Learning">
+    <img src="assets/qcll.png" alt="TODO">
     <div class="project-text">
       <h2>Quantitative-Competitive Language Learning</h2>
       <p><strong>Description:</strong> A hobby project attempting to use language models as a model of language to score humans on their ability to write in a foreign language.</p>
@@ -82,20 +85,21 @@ title: My Projects
 
   <!-- Compositional Splatting Project -->
   <div class="project">
-    <img src="assets/compositional-splatting-image.jpg" alt="Compositional Splatting for Construction Sites">
+    <img src="assets/gaussian_seg.png" alt="TODO">
     <div class="project-text">
       <h2>Compositional Splatting for Construction Sites</h2>
-      <p><strong>Description:</strong> TODO</p>
+      <p><strong>Description:</strong>TODO</p>
       <a href="https://github.com/jolfss/grig">GitHub Repo</a> | <a href="files/SplatConstruction.pdf">View or Download PDF</a>
     </div>
   </div>
 
   <!-- LLMímir Project -->
   <div class="project">
-    <img src="assets/llmimir-image.jpg" alt="LLMímir: Evaluating GPT-4 on Old Norse Verbs">
+    <img src="assets/llmimir_voices.png" alt="TODO">
+    <img src="assets/llmimir_inflection.png" alt="TODO">
     <div class="project-text">
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
-      <p><strong>Description:</strong> Description pending.</p>
+      <p><strong>Description:</strong>TODO</p>
       <a href="files/LLMímir.pdf">View or Download PDF</a>
     </div>
   </div>

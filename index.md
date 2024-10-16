@@ -41,7 +41,7 @@ title: My Projects
 
   <!-- GRIG Project -->
   <div class="project">
-    <img src="path-to-image/grig-image.jpg" alt="GRIG Project">
+    <img src="assets/grig.gif" alt="GRIG Project">
     <div class="project-text">
       <h2>GRIG: Auto-riggable Gaussian Characters</h2>
       <p><strong>Description:</strong> Current project.</p>
@@ -52,7 +52,7 @@ title: My Projects
 
   <!-- Visual Navigation Project -->
   <div class="project">
-    <img src="path-to-image/visual-navigation-image.jpg" alt="Visual Navigation with Traversability Priors">
+    <img src="assets/visual-navigation-image.jpg" alt="Visual Navigation with Traversability Priors">
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -63,7 +63,7 @@ title: My Projects
 
   <!-- Let it SIMmer Project -->
   <div class="project">
-    <img src="path-to-image/let-it-simmer-image.jpg" alt="Let it SIMmer">
+    <img src="assets/let-it-simmer-image.jpg" alt="Let it SIMmer">
     <div class="project-text">
       <h2>Let it SIMmer</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -74,7 +74,7 @@ title: My Projects
 
   <!-- QCLL Project -->
   <div class="project">
-    <img src="path-to-image/qcll-image.jpg" alt="QCLL: Quantitative-Competitive Language Learning">
+    <img src="assets/qcll-image.jpg" alt="QCLL: Quantitative-Competitive Language Learning">
     <div class="project-text">
       <h2>QCLL: Quantitative-Competitive Language Learning</h2>
       <p><strong>Description:</strong> A hobby project attempting to use language models as a model of language to score humans on their ability to write in a foreign language.</p>
@@ -85,7 +85,7 @@ title: My Projects
 
   <!-- Compositional Splatting Project -->
   <div class="project">
-    <img src="path-to-image/compositional-splatting-image.jpg" alt="Compositional Splatting for Construction Sites">
+    <img src="assets/compositional-splatting-image.jpg" alt="Compositional Splatting for Construction Sites">
     <div class="project-text">
       <h2>Compositional Splatting for Construction Sites</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -96,7 +96,7 @@ title: My Projects
 
   <!-- LLMímir Project -->
   <div class="project">
-    <img src="path-to-image/llmimir-image.jpg" alt="LLMímir: Evaluating GPT-4 on Old Norse Verbs">
+    <img src="assets/llmimir-image.jpg" alt="LLMímir: Evaluating GPT-4 on Old Norse Verbs">
     <div class="project-text">
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
       <p><strong>Description:</strong> Description pending.</p>

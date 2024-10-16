@@ -25,7 +25,7 @@ title: My Projects
 
 .project img {
   width: 100%; 
-  max-height: 50px; 
+  max-height: 100px; 
   object-fit: cover; 
   margin-bottom: 10px; 
 }

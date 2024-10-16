@@ -13,7 +13,7 @@ title: My Projects
 .project {
   display: grid;
   grid-template-columns: 40% 55%; 
-  grid-column-gap: 0px; 
+  grid-column-gap: 20px; 
   margin-bottom: 30px;
   width: 100%;
 }
@@ -27,7 +27,7 @@ title: My Projects
   width: 100%; 
   max-height: 400px; 
   object-fit: cover; 
-  margin-bottom: 10px; 
+  margin-bottom: 0px; 
 }
 
 .project .project-text {

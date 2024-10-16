@@ -12,29 +12,36 @@ title: My Projects
 
 .project {
   display: grid;
-  grid-template-columns: 40% 55%; /* 40% for the image, 55% for the text */
-  grid-column-gap: 20px; /* Creates a gap between image and text */
+  grid-template-columns: 40% 55%; /* 40% for the images, 55% for the text */
+  grid-column-gap: 20px; /* Gap between image and text */
   margin-bottom: 30px;
   width: 100%;
 }
 
+.project .image-container {
+  display: flex;
+  flex-direction: column; /* Stack the images vertically */
+}
+
 .project img {
-  width: 100%; /* Ensures image takes full width of its column */
+  width: 100%; /* Ensure the images take the full width of the left column */
+  margin-bottom: 10px; /* Space between stacked images */
 }
 
 .project .project-text {
-  width: 100%; /* Ensures text takes full width of its column */
+  width: 100%; /* Ensure text takes the full width of the right column */
 }
 
 @media (max-width: 800px) {
   .project {
-    grid-template-columns: 100%; /* Stacks images and text vertically */
+    grid-template-columns: 100%; /* Stacks images and text vertically on small screens */
   }
 
   .project img, .project .project-text {
-    margin: 0; /* Removes margin when stacked */
+    margin: 0;
   }
 }
+
 
 </style>
 
@@ -42,7 +49,7 @@ title: My Projects
 
   <!-- GRIG Project -->
   <div class="project">
-    <div style="display: flex; flex-direction: column;">
+    <div class="image-container">
         <img src="assets/grig1.gif" alt="TODO" />
         <img src="assets/grig2.gif" alt="TODO" />
     </div>
@@ -55,7 +62,7 @@ title: My Projects
 
   <!-- Visual Navigation Project -->
   <div class="project">
-    <div style="display: flex; flex-direction: column;">
+    <div class="image-container">
       <img src="assets/anymal_construction.gif" alt="TODO">
       <img src="assets/spliced.png" alt="TODO">
     </div>
@@ -68,7 +75,9 @@ title: My Projects
 
   <!-- Let it SIMmer Project -->
   <div class="project">
-    <img src="assets/ovseg.png" alt="Let it SIMmer">
+    <div class="image-container">
+      <img src="assets/ovseg.png" alt="Let it SIMmer">
+    </div>
     <div class="project-text">
       <h2>Let it SIMmer</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -78,7 +87,9 @@ title: My Projects
 
   <!-- QCLL Project -->
   <div class="project">
-    <img src="assets/qcll.png" alt="TODO">
+    <div class="image-container">
+      <img src="assets/qcll.png" alt="TODO">
+    </div>
     <div class="project-text">
       <h2>Quantitative-Competitive Language Learning</h2>
       <p><strong>Description:</strong> A hobby project attempting to use language models as a model of language to score humans on their ability to write in a foreign language.</p>
@@ -88,7 +99,9 @@ title: My Projects
 
   <!-- Compositional Splatting Project -->
   <div class="project">
-    <img src="assets/gaussian_seg.png" alt="TODO">
+    <div class="image-container">
+      <img src="assets/gaussian_seg.png" alt="TODO">
+    </div>
     <div class="project-text">
       <h2>Compositional Splatting for Construction Sites</h2>
       <p><strong>Description:</strong>TODO</p>
@@ -98,11 +111,10 @@ title: My Projects
 
   <!-- LLMímir Project -->
   <div class="project">
-    <div style="display: flex; flex-direction: column;">
+    <div class="image-container">
       <img src="assets/llmimir_voices.png" alt="TODO">
       <img src="assets/llmimir_inflection.png" alt="TODO">
     </div>
-    <div class="project-text">
     <div class="project-text">
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
       <p><strong>Description:</strong>TODO</p>

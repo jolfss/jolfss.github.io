@@ -41,9 +41,10 @@ title: My Projects
 
   <!-- GRIG Project -->
   <div class="project">
-    <img src="assets/grig.gif" alt="GRIG Project">
+    <img src="assets/grig1.gif" alt="TODO">
+    <img src="assets/grig2.gif" alt="TODO">
     <div class="project-text">
-      <h2>GRIG: Auto-riggable Gaussian Characters</h2>
+      <h2>Auto-Riggable Gaussian Characters</h2>
       <p><strong>Description:</strong> Current project.</p>
       <p><strong>Tech Stack:</strong> Python, PyTorch, Dynamic3DGaussians</p>
       <a href="https://github.com/jolfss/grig">GitHub Repo</a>
@@ -76,7 +77,7 @@ title: My Projects
   <div class="project">
     <img src="assets/qcll-image.jpg" alt="QCLL: Quantitative-Competitive Language Learning">
     <div class="project-text">
-      <h2>QCLL: Quantitative-Competitive Language Learning</h2>
+      <h2>Quantitative-Competitive Language Learning</h2>
       <p><strong>Description:</strong> A hobby project attempting to use language models as a model of language to score humans on their ability to write in a foreign language.</p>
       <p><strong>Tech Stack:</strong> Python, PyTorch, HuggingFace</p>
       <a href="https://github.com/jolfss/qcll">GitHub Repo</a>

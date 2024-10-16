@@ -41,9 +41,10 @@ title: My Projects
 
   <!-- GRIG Project -->
   <div class="project">
-    <img src="assets/grig1.gif" alt="TODO">
-    <br>
-    <img src="assets/grig2.gif" alt="TODO>
+    <div style="display: flex; flex-direction: column;">
+        <img src="assets/grig1.gif" alt="TODO" />
+        <img src="assets/grig2.gif" alt="TODO" />
+    </div>
     <div class="project-text">
       <h2>Auto-Riggable Gaussian Characters</h2>
       <p><strong>Description:</strong> Current project.</p>
@@ -53,9 +54,10 @@ title: My Projects
 
   <!-- Visual Navigation Project -->
   <div class="project">
-    <img src="assets/anymal_construction.gif" alt="TODO">
-    <br>
-    <img src="assets/spliced.png" alt="TODO">
+    <div style="display: flex; flex-direction: column;">
+      <img src="assets/anymal_construction.gif" alt="TODO">
+      <img src="assets/spliced.png" alt="TODO">
+    </div>
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
       <p><strong>Description:</strong> TODO</p>
@@ -95,8 +97,11 @@ title: My Projects
 
   <!-- LLMímir Project -->
   <div class="project">
-    <img src="assets/llmimir_voices.png" alt="TODO">
-    <img src="assets/llmimir_inflection.png" alt="TODO">
+    <div style="display: flex; flex-direction: column;">
+      <img src="assets/llmimir_voices.png" alt="TODO">
+      <img src="assets/llmimir_inflection.png" alt="TODO">
+    </div>
+    <div class="project-text">
     <div class="project-text">
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
       <p><strong>Description:</strong>TODO</p>

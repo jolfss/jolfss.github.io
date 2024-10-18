@@ -108,6 +108,7 @@ title: My Projects
   <div class="project">
     <div class="image-container">
       <img src="assets/fractals.jpg" alt="TODO">
+      <img src="assets/fractals2.png" alt="TODO">
     </div>
     <div class="project-text">
       <h2>Fractal Raytracer</h2>

@@ -7,8 +7,8 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 # This will help ensure the proper Jekyll version is running.
-# Happy Jekylling!
-gem "jekyll", "~> 3.8.6"
+# Happy Jekylling! (formerly 3.8.6)
+gem "jekyll", "~> 4.3"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
@@ -32,3 +32,5 @@ end
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.0", :install_if => Gem.win_platform?
 
+# trusting GPT to fix my localhost
+gem 'rexml'

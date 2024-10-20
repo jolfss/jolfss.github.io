@@ -12,7 +12,7 @@ title: My Projects
 
 .project {
   display: grid;
-  grid-template-columns: 40% 55%; 
+  grid-template-columns: 38% 57%; 
   grid-column-gap: 20px; 
   margin-bottom: 30px;
   width: 100%;
@@ -34,18 +34,40 @@ title: My Projects
   width: 100%; 
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   .project {
-    grid-template-columns: 100%; 
+    display: flex; /* Change the project to flex */
+    flex-direction: column; /* Stack project components vertically */
+    margin-bottom: 0; /* Remove bottom margin */
   }
 
-  .project img, .project .project-text {
-    margin: 0;
+  .project .image-container {
+    display: flex; /* Keep as flex */
+    flex-direction: column; /* Stack images vertically */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    width: 100%; /* Ensure the image container takes full width */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+  }
+
+  .project img {
+    height: auto; /* Maintain aspect ratio */
+    width: 100%; /* Set width to 100% to fill the container */
+    /*max-height: 200px; /* Set a maximum height */
+    object-fit: cover; /* Keep cover to fill the area */
+    margin: 0; /* Remove margin around images */
+    display: block; /* Ensure images are treated as block elements */
+  }
+
+  .project .project-text {
+    padding-top: 20px; /* Adjust the value as needed */
   }
 }
-
-
 </style>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
 
 <div class="projects-container">
 
@@ -57,9 +79,32 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Auto-Riggable Gaussian Characters</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson, Evan Zhang, Justin Tien</p>
-      <p><strong>Description:</strong> <i>(Current project)</i> Recent work has shown optimizing gaussian splats to satisfy local rigidity constraints can provide consistent tracking and orientation of regions of space throughout time. Given this, we aim to take such a representation of any actor in motion and decompose it into the rigid regions and eventually predict a joint structure. This would allow for easy production and animation of gaussian splat character models.</p>
-      <a href="https://github.com/jolfss/grig">GitHub</a>
+      <h3>(Current Project)</h3>
+      <p><b>Credits: </b>Sean Brynjólfsson, Evan Zhang, Justin Tien-Smith</p>
+      <p align=justify><b>Description:</b>
+      Recently, techniques for solving gaussian splats of dynamic scenes (<a href="https://github.com/JonathonLuiten/Dynamic3DGaussians"><i>Dynamic3DGaussians</i></a>, 2024) have found success in using local rigidity constraints to enforce spatial and temporal consistency. These representations allow for highly granular inspection of both orientation and position of a scene and actors in it through time. 
+      <br><br>
+      Our project is to take this detailed representation and decompose it into the rigid parts and joints which describe their movement. This procedure makes no assumptions about the anatomy of the dynamic entities within the scene and therefore should work equally well for all people, animals, machines---anything that moves about a discrete set of joints.
+      <br><br>
+      Our final deliverable will be an animation-ready gaussian rig and a portable format for them. Clustering also massively downsizes the storage requirements because local rigidity means we need to track a mere fraction of the gaussians---certainly not all of them.
+      </p>
+      <h3><a href="https://github.com/jolfss/grig">GitHub</a></h3>
+    </div>
+  </div>
+
+  <!-- Let it SIMmer Project, VoxSeg, OVT -->
+  <div class="project">
+    <div class="image-container">
+      <img src="assets/ovseg.png" alt="Let it SIMmer">
+    </div>
+    <div class="project-text">
+      <h2>Let it SIMmer, Open-Vocabulary Traversability</h2>
+      <p><b>Credits:</b> Sean Brynjólfsson, Will Huey</p>
+      <p><b>Description:</b>
+      TODO. 
+      </p>
+      <h3><a href="https://github.com/willh003/ovt">Github</a> | 
+      <a href="files/LetItSIMmer.pdf">View PDF</a></h3>
     </div>
   </div>
 
@@ -72,24 +117,15 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson, Will Huey</p>
-      <p><strong>Description:</strong> Building on our previous work in Switzerland, my partner and I demonstrated a novel vision-only approach to navigation by distilling a light model capable of running real-time (93x speedup) on an the robot's jetson processor. We showed our method could generalize by rolling it out in a few environments distinct from its training set.</p>
-      <a href="files/VisualNavTravPriors.pdf">View PDF</a>
+      <p><b>Credits:</b> Sean Brynjólfsson, Will Huey</p>
+      <p>
+      <b>Description:</b> 
+      TODO. 
+      </p>
+      <h3><a href="files/VisualNavTravPriors.pdf">View PDF</a></h3>
     </div>
   </div>
 
-  <!-- Let it SIMmer Project -->
-  <div class="project">
-    <div class="image-container">
-      <img src="assets/ovseg.png" alt="Let it SIMmer">
-    </div>
-    <div class="project-text">
-      <h2>Let it SIMmer</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson, Will Huey</p>
-      <p><strong>Description:</strong> While at the ETH, my lab partner and I conducted research on legged robots, namely the ANYbotics ANYmal D. We developed a novel semantic image segmentation model which is able to distinguish between traversable and untraversable terrain zero-shot and deployed it on the live robot. Simultaneously, we made an extension for Nvidia Omniverse which voxelizes the environment as the robot walks around while a GUI interface can synchronously spatially segment it based on a user’s open vocabulary input.</p>
-      <a href="files/LetItSIMmer.pdf">View PDF</a>
-    </div>
-  </div>
 
   <!-- Compositional Splatting Project -->
   <div class="project">
@@ -98,9 +134,11 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Compositional Splatting for Construction Sites</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson, Evan Zhang, Natalie Leung, Danish Qureshi, Dyllan Hofflich</p>
-      <p><strong>Description:</strong> We demonstrate that gaussian splats are easy to compose and current optimizers can robustly preserve existing (hidden) geometry when new geometry is naively added on top. This is a scenario common in construction sites where components such as ducts are exposed before insulation and drywall are installed. This allows incremental updates instead of the constant overhead incurred by routine scans of an entire site. In the end, we envision a complete digital twin with the entire development history condensed into a complete, look-inside model.</p>
-      <a href="files/SplatConstruction.pdf">View PDF</a>
+      <p><b>Credits:</b> Sean Brynjólfsson, Evan Zhang, Natalie Leung, Danish Qureshi, Dyllan Hofflich</p>
+      <p><b>Description:</b> 
+      TODO. 
+      </p>
+      <h3><a href="files/SplatConstruction.pdf">View PDF</a></h3>
     </div>
   </div>
 
@@ -112,8 +150,10 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Fractal Raytracer</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson, Jack Otto</p>
-      <p><strong>Description:</strong> This project was the second creative project for CS 4620--computer graphics. We implemented constructive solid geometry with a reentrance primitive to allow the scene to contain nested copies of itself.</p>
+      <p><b>Credits:</b> Sean Brynjólfsson, Jack Otto</p>
+      <p><b>Description:</b>
+      TODO. 
+      </p>
     </div>
   </div>
 
@@ -124,23 +164,27 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Quantitative-Competitive Language Learning</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson</p>
-      <p><strong>Description:</strong> A hobby project attempting to use LLMs as a model of language to score humans on their ability to write natural-sounding text. Evaluation is designed in an efficient way to reuse prior embeddings as users edit their text since predictions are made causally and generally people push and pop from the end of their current phrase. Multi-token characters are not supported yet. Works decently for relative comparison of completions but no globally stable metric has been derived yet. There is no look-back so frequent tokens (like individual letters, components of longer words) are not punished when out of context; failure modes are also often very predictable (e.g. repeating words does not get punished).</p>
-      <a href="https://github.com/jolfss/qcll">GitHub</a>
+      <p><b>Credits:</b> Sean Brynjólfsson</p>
+      <p><b>Description:</b> 
+      TODO. 
+      </p>
+      <h3><a href="https://github.com/jolfss/qcll">GitHub</a></h3>
     </div>
   </div>
 
   <!-- LLMímir Project -->
   <div class="project">
     <div class="image-container">
-      <img src="assets/llmimir_voices.png" alt="TODO">
       <img src="assets/llmimir_inflection.png" alt="TODO">
+      <img src="assets/llmimir_voices.png" alt="TODO">
     </div>
     <div class="project-text">
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
-      <p><strong>Credits:</strong> Sean Brynjólfsson</p>
-      <p><strong>Description:</strong> I evaluated GPT-4 (at the time) on its zero-shot recall of particular conjugations of verbs in Old Norse out of context at low temperature. I investigated several failure modes of the model and also performance across categories of verbs. The theory would be that GPT-4 would be at least as good at using verbs in context as it would being forced to recite them given terms in English grammar, so this would in some sense establish a lower bound. Many verbs are not even attested in Old Norse literature and the vast majority of forms have extremely sparse attestations, so GPT-4's performance is quite impressive.</p>
-      <a href="files/LLMímir.pdf">View PDF</a>  
+      <p><b>Credits:</b> Sean Brynjólfsson</p>
+      <p><b>Description:</b>
+      TODO. 
+      </p>
+      <h3><a href="files/LLMímir.pdf">View PDF</a></h3>
     </div>
   </div>
 

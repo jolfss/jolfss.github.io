@@ -12,7 +12,7 @@ title: My Projects
 
 .project {
   display: grid;
-  grid-template-columns: 33% 68%; 
+  grid-template-columns: 1fr 2fr; 
   grid-column-gap: 20px; 
   margin-bottom: 30px;
   width: 100%;
@@ -67,6 +67,20 @@ title: My Projects
 
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!--
+    <script>
+    function toggleText(btn) {
+      var moreText = btn.previousElementSibling;
+      if (moreText.style.display === "none" || moreText.style.display === "") {
+        moreText.style.display = "inline";
+        btn.textContent = "Show Less";
+      } else {
+        moreText.style.display = "none";
+        btn.textContent = "Read More";
+      }
+    }
+    </script>
+    -->
 </head>
 
 <div class="projects-container">
@@ -78,8 +92,7 @@ title: My Projects
         <img src="assets/grig2.gif" alt="TODO"/>
     </div>
     <div class="project-text">
-      <h2>Auto-Riggable Gaussian Characters</h2>
-      <h3>(Current Project)</h3>
+      <h2>Auto-Riggable Gaussian Characters (WIP)</h2>
       <p><b>Credits: </b>Sean Brynjólfsson, Evan Zhang, Justin Tien-Smith</p>
       <p align=justify><b>Description:</b>
       Recently, techniques for solving gaussian splats of dynamic scenes 
@@ -94,9 +107,9 @@ title: My Projects
       <br><br>
       Our final deliverable will be an animation-ready gaussian rig and a portable format for them. Clustering also 
       massively downsizes the storage requirements because local rigidity means gaussians are predictive of their
-      neighbors, so we don't need to track all of them. We are also developing more visualizations to help understand 
+      neighbors---no need to track all of them. We are also developing more visualizations to help understand 
       the limitations of the representation present. In doing so we have spotted some new failure modes of the 
-      original method which don't seem to be acknowledged yet, like the gradual creep of regions into neighboring regions throughout time.
+      original method, like how some regions gradual creep into neighboring regions over time.
       </p>
       <h3><a href="https://github.com/jolfss/grig"><b>GitHub Repo</b></a>
       </h3>
@@ -147,7 +160,7 @@ title: My Projects
       <i>NOTE: This has <b>not</b> been updated to the latest major version of Isaac Sim/Orbit.</i>
       </p>
       <h3><a href="https://github.com/willh003/ovt"><b>GitHub Repo</b></a> 
-      | <a href="files/LetItSIMmer.pdf"><b>Paper</b></a></h3>
+      | <a href="files/LetItSIMmer.pdf"><b>Project Paper</b></a></h3>
     </div>
   </div>
 
@@ -186,7 +199,7 @@ title: My Projects
       would like to explore further.
       -->
       </p>
-      <h3><a href="files/VisualNavTravPriors.pdf"><b>Paper</b></a></h3>
+      <h3><a href="files/VisualNavTravPriors.pdf"><b>Project Paper</b></a></h3>
     </div>
   </div>
 
@@ -201,9 +214,23 @@ title: My Projects
       <h2>Compositional Splatting for Construction Sites</h2>
       <p><b>Credits:</b> Sean Brynjólfsson, Evan Zhang, Natalie Leung, Danish Qureshi, Dyllan Hofflich</p>
       <p><b>Description:</b> 
-      TODO. 
+      We investigate the potential applications of gaussian splatting on construction sites to capture a holsitic
+      digital twin throughout the construction process via legged robots. This project was our collective introduction
+      to gaussian splatting, so a large portion of it is dedicated to a review of currently existing methods.       <br><br>
+      We used NVIDIA Omniverse to model our simulated environment and an ANYmal-D equipped with a RGBD camera.
+      One part of our team worked with the Blender-to-Omniverse connector to try and get realistic construction 
+      environs for us to simulate. Another subteam worked on image segmentation, settling on Kimera to track and 
+      segment out dynamic objects so they wouldn't confuse the gaussian splatter (which requires static scenes). 
+      My part of the project was compositing different versions of the same scene together. After considering several
+      implementations, we settled on SplaTAM because we figured we could modify its "silhouette masking" feature with
+      our own segmentations in order to adapt it to dynamic scenes and remove clutter which we did not want
+      incorporated into the final model.
+      <br><br>
+      I learned a great amount through the failures and compromises I had to make my end of the project. By the end, we
+      had dissected SplaTAM so completely that the -TAM (Tracking-and-Mapping) was unused---it may as well have been
+      any generic gaussian splatter. If I were to do this again, I would leave the splatting as a post-run task.
       </p>
-      <h3><a href="files/SplatConstruction.pdf">View PDF</a></h3>
+      <h3><a href="files/SplatConstruction.pdf"><b>Project Paper</b></a></h3>
     </div>
   </div>
 
@@ -260,7 +287,7 @@ title: My Projects
       temperature of 0 (since I could not afford to sample multiple responses per form) and with a blank context.
       This scenario should be nearly deterministic and yield low variance responses.
       </p>
-      <h3><a href="files/LLMímir.pdf"><b>Paper</b></a></h3>
+      <h3><a href="files/LLMímir.pdf"><b>Project Paper</b></a></h3>
     </div>
   </div>
 

@@ -12,7 +12,7 @@ title: My Projects
 
 .project {
   display: grid;
-  grid-template-columns: 1fr 2fr; 
+  grid-template-columns: 3fr 7fr; 
   grid-column-gap: 20px; 
   margin-bottom: 30px;
   width: 100%;
@@ -199,7 +199,9 @@ title: My Projects
       would like to explore further.
       -->
       </p>
-      <h3><a href="files/VisualNavTravPriors.pdf"><b>Project Paper</b></a></h3>
+      <h3><a href="https://github.com/willh003/ovt"><b>GitHub Repo</b></a> 
+      |   <a href="files/VisualNavTravPriors.pdf"><b>Project Paper</b></a>
+      |   <a href="files/DURE_poster.pdf"><b>Undergrad Research Poster</b></a></h3>
     </div>
   </div>
 

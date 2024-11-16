@@ -90,6 +90,7 @@ title: My Projects
     <div class="image-container">
         <img src="assets/grig1.gif" alt="TODO"/>
         <img src="assets/grig2.gif" alt="TODO"/>
+        <img src="assets/grig3.gif" alt="TODO"/>
     </div>
     <div class="project-text">
       <h2>Auto-Riggable Gaussian Characters (WIP)</h2>
@@ -108,11 +109,52 @@ title: My Projects
       Our final deliverable will be an animation-ready gaussian rig and a portable format for them. Clustering also 
       massively downsizes the storage requirements because local rigidity means gaussians are predictive of their
       neighbors---no need to track all of them. We are also developing more visualizations to help understand 
-      the limitations of the representation present. In doing so we have spotted some new failure modes of the 
-      original method, like how some regions gradual creep into neighboring regions over time.
+      the limitations of the representation present. In doing so, we have spotted some new failure modes of the 
+      original method, like how some regions gradually creep into neighboring regions over time.
       </p>
       <h3><a href="https://github.com/jolfss/grig"><b>GitHub Repo</b></a>
       </h3>
+    </div>
+  </div>
+
+  <!-- Visual Navigation Project -->
+  <div class="project">
+    <div class="image-container">
+      <!--<img src="assets/anymal_construction.gif" alt="TODO">-->
+      <img src="assets/anymal_site.gif" alt="TODO">
+      <img src="assets/spliced.png" alt="TODO">
+      <img src="assets/visual_trav.jpg" alt="TODO">
+    </div>
+    <div class="project-text">
+      <h2>Visual Navigation with Traversability Priors</h2>
+      <p><b>Credits:</b> Sean Brynjólfsson, Will Huey</p>
+      <p><b>Description:</b> 
+      Continuing our work with open-vocabulary traversability, we were interested in training smaller models on
+      specific traversability scenarios. Our original model was too large to fit on the ANYmal's NVIDIA Jetson 
+      processor and its inference speed was quite slow (~7s). Since we did not experiment with prompts that changed 
+      during rollout, we were wasting a lot of compute by preserving its open-vocabulary capabilities. Thus we chose 
+      to train a smaller model on the bigger model with a fixed prompt. For example, "you are a robot who cannot 
+      climb stairs". Model distillation is not so interesting on its own, but being able to do so over an abstract 
+      description of traversability is quite useful.
+      <br><br>
+      In this paper, we demonstrate that weak traversability priors can be obtained from large open vocabulary image 
+      segmentation models and that they appear to be consistent across environments. We then apply model distillation 
+      techniques to train a smaller traversability prediction network capable of real time inference, and demonstrate 
+      a heuristic that uses this distilled network to perform obstacle avoidance when roaming freely.
+      <!--
+      <br><br>       
+      Based on how the CLIP embedding space is trained, we did not expect traversability to have much signal in the
+      abstract. Traversability is not so much about what's in the scene but how it is configured, the agent in 
+      question, and rules about the environment---cars should not drive on public green spaces. To our surprise, 
+      labels akin to "traversable" and "untraversable" seemed to have a good representation that was consistent with 
+      what the average human might say for a human agent. We <i>briefly</i> investigated parametrized scenarios but 
+      had little success deviating from this "average human traversability" with naïve prompting. This is something we 
+      would like to explore further.
+      -->
+      </p>
+      <h3><a href="https://github.com/willh003/ovt"><b>GitHub Repo</b></a> 
+      |   <a href="files/VisualNavTravPriors.pdf"><b>Project Paper</b></a>
+      |   <a href="files/DURE_poster.pdf"><b>Undergrad Research Poster</b></a></h3>
     </div>
   </div>
 
@@ -161,47 +203,6 @@ title: My Projects
       </p>
       <h3><a href="https://github.com/willh003/ovt"><b>GitHub Repo</b></a> 
       | <a href="files/LetItSIMmer.pdf"><b>Project Paper</b></a></h3>
-    </div>
-  </div>
-
-  <!-- Visual Navigation Project -->
-  <div class="project">
-    <div class="image-container">
-      <!--<img src="assets/anymal_construction.gif" alt="TODO">-->
-      <img src="assets/anymal_site.gif" alt="TODO">
-      <img src="assets/spliced.png" alt="TODO">
-      <img src="assets/visual_trav.jpg" alt="TODO">
-    </div>
-    <div class="project-text">
-      <h2>Visual Navigation with Traversability Priors</h2>
-      <p><b>Credits:</b> Sean Brynjólfsson, Will Huey</p>
-      <p><b>Description:</b> 
-      Continuing our work with open-vocabulary traversability, we were interested in training smaller models on
-      specific traversability scenarios. Our original model was too large to fit on the ANYmal's NVIDIA Jetson 
-      processor and its inference speed was quite slow (~7s). Since we did not experiment with prompts that changed 
-      during rollout, we were wasting a lot of compute by preserving its open-vocabulary capabilities. Thus we chose 
-      to train a smaller model on the bigger model with a fixed prompt. For example, "you are a robot who cannot 
-      climb stairs". Model distillation is not so interesting on its own, but being able to do so over an abstract 
-      description of traversability is quite useful.
-      <br><br>
-      In this paper, we demonstrate that weak traversability priors can be obtained from large open vocabulary image 
-      segmentation models and that they appear to be consistent across environments. We then apply model distillation 
-      techniques to train a smaller traversability prediction network capable of real time inference, and demonstrate 
-      a heuristic that uses this distilled network to perform obstacle avoidance when roaming freely.
-      <!--
-      <br><br>       
-      Based on how the CLIP embedding space is trained, we did not expect traversability to have much signal in the
-      abstract. Traversability is not so much about what's in the scene but how it is configured, the agent in 
-      question, and rules about the environment---cars should not drive on public green spaces. To our surprise, 
-      labels akin to "traversable" and "untraversable" seemed to have a good representation that was consistent with 
-      what the average human might say for a human agent. We <i>briefly</i> investigated parametrized scenarios but 
-      had little success deviating from this "average human traversability" with naïve prompting. This is something we 
-      would like to explore further.
-      -->
-      </p>
-      <h3><a href="https://github.com/willh003/ovt"><b>GitHub Repo</b></a> 
-      |   <a href="files/VisualNavTravPriors.pdf"><b>Project Paper</b></a>
-      |   <a href="files/DURE_poster.pdf"><b>Undergrad Research Poster</b></a></h3>
     </div>
   </div>
 

@@ -95,6 +95,28 @@
   line-height: 1.6;
 }
 
+@media (max-width: 600px) {
+  .about-container {
+    flex-direction: column; /* Stack items vertically */
+    text-align: center; /* Center-align text and image */
+  }
+
+  .about-image-container {
+    margin-bottom: 20px; /* Add spacing between image and text */
+  }
+
+  .about-image {
+    margin: 0 auto; /* Center the image */
+    width: 250px; /* Increase image size for mobile */
+    height: 250px; /* Maintain square aspect ratio */
+    border-radius: 8px; /* Optional: Add some rounding for better aesthetics */
+  }
+
+  .about-text-container p {
+    font-size: 1em; /* Adjust text size for readability */
+  }
+}
+
 
 .projects-container {
   display: flex;

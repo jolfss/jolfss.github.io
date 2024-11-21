@@ -4,6 +4,65 @@ title: My Projects
 ---
 
 <style>
+
+/* General Section Styles */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Quote Styling */
+.quote-container {
+  text-align: center;
+  font-size: 1em;
+  font-style: italic;
+  color: #333;
+  margin: 0 auto;
+  max-width: 700px;
+  border-left: 4px solid #ccc;
+  padding-left: 15px;
+}
+
+/* About Section */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-image-container {
+  flex-shrink: 0;
+}
+
+.about-image {
+  border-radius: 0px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.about-text-container {
+  max-width: 600px;
+}
+
+.about-text-container h1 {
+  margin-top: 0;
+  font-size: 2em;
+  color: #222;
+}
+
+.about-text-container p {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.6;
+}
+
+
 .projects-container {
   display: flex;
   flex-wrap: wrap;
@@ -83,9 +142,37 @@ title: My Projects
     -->
 </head>
 
+<!-- Quote Section -->
+<div class="quote-container">
+  <p class="quote">
+    "Practice any art, music, singing, dancing, acting, drawing, painting, sculpting, poetry, fiction, essays, reportage, 
+    no matter how well or badly, not to get money and fame, but to experience becoming, to find out what's inside you, 
+    to make your soul grow." – Kurt Vonnegut
+  </p>
+</div>
+
+<div class="about-section">
+  <div class="about-container">
+    <div class="about-image-container">
+      <img src="assets/portrait.jpg" alt="A photo of Sean Brynjólfsson in a beautiful lopapeysa standing
+      at Látrabjarg with the westfjords in the background on a clear day." class="about-image">
+    </div>
+    <div class="about-text-container">
+      <p><b>Hi!</b> I'm Sean, I study Computer Science @ Cornell University.
+        This page summarizes my undergraduate work in computer graphics/vision, robotics, and simulation.
+        <br><br>
+        I'm also a pianist/composer, painter, hockey player, fly fisher, Old Norse/Latin poetry enthusiast,
+        graphic designer, and soon-to-be figure skater!
+      </p>
+    </div>
+  </div>
+</div>
+
+
 <div class="projects-container">
 
   <!-- GRIG Project -->
+  <h1>Projects</h1>
   <div class="project">
     <div class="image-container">
         <img src="assets/grig1.gif" alt="TODO"/>
@@ -219,19 +306,22 @@ title: My Projects
       <p><b>Description:</b> 
       We investigate the potential applications of gaussian splatting on construction sites to capture a holsitic
       digital twin throughout the construction process via legged robots. This project was our collective introduction
-      to gaussian splatting, so a large portion of it is dedicated to a review of currently existing methods.       <br><br>
+      to gaussian splatting, so a large portion of it is dedicated to a review of currently existing methods. This was
+      a great experience even though we did not acheive our goals.  
+      <br><br>
       We used NVIDIA Omniverse to model our simulated environment and an ANYmal-D equipped with a RGBD camera.
       One part of our team worked with the Blender-to-Omniverse connector to try and get realistic construction 
-      environs for us to simulate. Another subteam worked on image segmentation, settling on Kimera to track and 
+      environs for us to simulate.
+      <!--Another subteam worked on image segmentation, settling on Kimera to track and 
       segment out dynamic objects so they wouldn't confuse the gaussian splatter (which requires static scenes). 
       My part of the project was compositing different versions of the same scene together. After considering several
       implementations, we settled on SplaTAM because we figured we could modify its "silhouette masking" feature with
       our own segmentations in order to adapt it to dynamic scenes and remove clutter which we did not want
       incorporated into the final model.
       <br><br>
-      I learned a great amount through the failures and compromises I had to make my end of the project. By the end, we
-      had dissected SplaTAM so completely that the -TAM (Tracking-and-Mapping) was unused---it may as well have been
-      any generic gaussian splatter. If I were to do this again, I would leave the splatting as a post-run task.
+      There were a great many failures/compromises I had to make on my end of the project. By the end, I dissected 
+      SplaTAM so completely that the -TAM (Tracking-and-Mapping) was unused---it may as well have been any generic 
+      gaussian splatter. If I were to do this again, I would leave the splatting as a post-run task. -->
       </p>
       <h3><a href="files/SplatConstruction.pdf"><b>Project Paper</b></a></h3>
     </div>
@@ -272,7 +362,8 @@ title: My Projects
       <h2>LLMímir: Evaluating GPT-4 on Old Norse Verbs</h2>
       <p><b>Credits:</b> Sean Brynjólfsson</p>
       <p><b>Description:</b>
-      Most people aren't aware that <i>Icelandic</i> is GPT-4's second language; but it is. 
+      Most people aren't aware that <i>Icelandic</i> is GPT-4's second language; but it is. What could this portend
+      for its related, low-resource ancestor Old Norse? 
       <br><br>
       Old Norse (often called Old Icelandic) is a language which is incredibly similar to modern Icelandic. 
       For that reason, I was interested in investigating how trustworthy it might be for questions on Old Norse 
@@ -310,18 +401,19 @@ title: My Projects
       soft estimate for whether or not the model regards the next token as one of the possible continuations of the
       context preceding it. For example, if the branching factor is 40 but the token's probability is much less than 
       1/40 there's probably something weird going on. 
+      <!--
       <br><br>
       The implementation makes use of the HuggingFace API and cached previous states to take advantage of the fact 
       hat people generally push and pop from the end of their text when they write. This makes append/delete 
       constant-time, which can be crucial for interactivity. I also implemented a handy Tokenstring class which keeps
-      the token representation up to date with the string as it gets mutated, should be mostly model agnostic.
+      the token representation up to date with the string as it gets mutated, should be mostly model agnostic. -->
       <br><br>
       What's so competitive about this? Well, my vision is to be able to place users on a distribution that spans from
-      noise to language-learners to natives to the model itself. The key is to derive a stable metric which 
-      corresponds to "yeah, this sentence is plausibly written by a native"; something I think <i>is</i> possible if
-      enough care is taken to normalize over the relative probability of equally-viable but not equally-likely tokens.
-      With that, users could get empirical feedback and track their progress as they learn a foreign language and even 
-      compete with each other to produce the most or highest quality text.
+      noise, then to language-learners, then natives, then to the model itself. The key is to derive a stable metric 
+      which  corresponds to "yeah, this sentence is plausibly written by a native"; something I think <i>is</i> 
+      possible if enough care is taken to normalize over the relative probability of equally-viable but not 
+      equally-likely tokens. With that, users could get empirical feedback and track their progress as they learn a 
+      foreign language and even compete with each other to produce the most or "highest quality" text.
       </p>
       <h3><a href="https://github.com/jolfss/qcll"><b>GitHub Repo</b></a></h3>
     </div>

@@ -176,10 +176,10 @@ title: My Projects
 <div class="about-section">
   <div class="about-container">
     <div class="about-image-container">
-      <img src="assets/portraitcornellbox2.jpg" alt="A portrait of Sean Brynjólfsson framed by the original Cornell box." 
-      class="about-image">
-      <!-- <img src="assets/portrait.jpg" alt="A photo of Sean Brynjólfsson in a beautiful lopapeysa standing
-      at Látrabjarg with the westfjords in the background on a clear day." class="about-image"> -->
+      <!-- <img src="assets/portraitcornellbox2.jpg" alt="A portrait of Sean Brynjólfsson framed by the original Cornell box." 
+      class="about-image"> -->
+      <img src="assets/portrait.jpg" alt="A photo of Sean Brynjólfsson in a beautiful lopapeysa standing
+      at Látrabjarg with the westfjords in the background on a clear day." class="about-image">
     </div>
     <div class="about-text-container">
       <p><b>Hi!</b> I'm Sean, I study Computer Science @ Cornell University.

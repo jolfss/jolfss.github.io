@@ -238,7 +238,7 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Visual Navigation with Traversability Priors</h2>
-      <p><b>Credits:</b> Sean Brynjólfsson, Will Huey</p>
+      <p><b>Credits:</b> Sean Brynjólfsson, <a href="https://www.willhuey.com">Will Huey</a></p>
       <p><b>Description:</b> 
       Continuing our work with open-vocabulary traversability, we were interested in training smaller models on
       specific traversability scenarios. Our original model was too large to fit on the ANYmal's NVIDIA Jetson 
@@ -283,7 +283,7 @@ title: My Projects
     </div>
     <div class="project-text">
       <h2>Let it SIMmer / Open-Vocabulary Traversability</h2>
-      <p><b>Credits:</b> Sean Brynjólfsson, Will Huey</p>
+      <p><b>Credits:</b> Sean Brynjólfsson,  <a href="https://www.willhuey.com">Will Huey</a></p>
       <p><b>Description:</b>
       Generalizing to new and dynamic environments is a significant challenge in mobile robotics. Nowadays, 
       vision-aware models are more prevalent and significantly powerful. These models are capable of producing robust,

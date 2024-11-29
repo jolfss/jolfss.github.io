@@ -234,6 +234,7 @@ title: My Projects
       <!--<img src="assets/anymal_construction.gif" alt="TODO">-->
       <img src="assets/anymal_site.gif" alt="TODO">
       <img src="assets/spliced.png" alt="TODO">
+      <img src="assets/mapping.png" alt="TODO">
       <img src="assets/visual_trav.jpg" alt="TODO">
     </div>
     <div class="project-text">

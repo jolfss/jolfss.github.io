@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sean Brynjólfsson",
+        "url": "https://jolfss.github.io",
+        "sameAs": [
+            "https://twitter.com/jolfss",
+            "https://github.com/jolfss",
+            "https://linkedin.com/in/sean-brynjolfsson"
+        ],
+        "email": "smb459@cornell.edu",
+        "jobTitle": "Senior Computer Science Student",
+        "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "Cornell University"
+        }
+    }
+</script>
+
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ page.title }}</title>
+        <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+        <!-- Minima theme's stylesheets -->
+        <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+        <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print">
+        <!-- SEO -->
+        {% seo %}
+    {%- include head.html -%}
+
+    <body>
+        {%- include header.html -%}
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                {{ content }}
+            </div>
+        </main>
+    </body>
+
+    {%- include footer.html -%}
+
+</html>
+
+<!DOCTYPE html>

@@ -12,6 +12,21 @@ GEM
     eventmachine (1.2.7)
     ffi (1.17.0)
     forwardable-extended (2.6.0)
+    google-protobuf (4.28.2)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.28.2-aarch64-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.28.2-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.28.2-x86-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.28.2-x86_64-darwin)
+      bigdecimal
+      rake (>= 13)
     google-protobuf (4.28.2-x86_64-linux)
       bigdecimal
       rake (>= 13)
@@ -40,6 +55,8 @@ GEM
       sass-embedded (~> 1.54)
     jekyll-seo-tag (2.8.0)
       jekyll (>= 3.8, < 5.0)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (2.4.0)
@@ -95,7 +112,9 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 4.3)
   jekyll-feed (~> 0.6)
-  minima (~> 2.0)
+  jekyll-seo-tag
+  jekyll-sitemap
+  minima (~> 2.5.2)
   rexml
   tzinfo (~> 1.2)
   tzinfo-data

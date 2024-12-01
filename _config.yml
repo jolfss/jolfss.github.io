@@ -13,20 +13,32 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+
 title: Sean Brynjólfsson
 email: smb459@cornell.edu
-description: >- # this means to ignore newlines until "baseurl:"
-  I'll fill this out later [_config.yml]
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jolfss
-github_username:  jolfss
+description: >-
+  Sean Brynjólfsson is a senior at Cornell University, College of Engineering '25.
+  These are his undergraduate research projects in graphics, computer vision, robotics, and digital twins.
+baseurl: ""
+url: "https://jolfss.github.io"
+twitter_username: "jolfss"
+github_username: "jolfss"
+linkedin_username: "jolfss"
 
-# Build settings
-markdown: kramdown
-theme: minima
+#SEO
+meta_keywords: "computer graphics, robotics, simulation, Cornell University, AI, autonomous systems, digital twins, computer vision"
+
+author:
+  name: "Sean Brynjólfsson"
+  email: "smb459@cornell.edu"
+  url: "https://jolfss.github.io"
+
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  
+theme: minima
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

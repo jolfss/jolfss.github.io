@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Sean&#39;s Personal Website</title>
+    <link>http://localhost:1313/projects/</link>
+    <description>Recent content in Projects on Sean&#39;s Personal Website</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatically-Rigged Gaussian Characters</title>
+      <link>http://localhost:1313/projects/grig/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/grig/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Compositional Gaussian Splatting for Construction Sites</title>
+      <link>http://localhost:1313/projects/splat-construction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/splat-construction/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fractal Raytracer</title>
+      <link>http://localhost:1313/projects/fractal-tracer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/fractal-tracer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Let it SIMmer / Open-Vocabulary Traversability</title>
+      <link>http://localhost:1313/projects/ovt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/ovt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLMímir: So, GPT-4, how well do you speak Old Norse?</title>
+      <link>http://localhost:1313/projects/llmimir/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/llmimir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pixel-Swapping Masked Autoencoders for Remote Sensing Pretraining</title>
+      <link>http://localhost:1313/projects/pixel-swapping-mae/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/pixel-swapping-mae/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quantitative-Competitive Language Learning</title>
+      <link>http://localhost:1313/projects/qcll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/qcll/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rigiditree</title>
+      <link>http://localhost:1313/projects/rigiditree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/rigiditree/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Visual Navigation with Traversability Priors</title>
+      <link>http://localhost:1313/projects/visual-nav-trav/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/visual-nav-trav/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

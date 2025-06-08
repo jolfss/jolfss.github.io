@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-06-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+  </url><url>
+    <loc>http://localhost:1313/pebbles/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/grig/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/splat-construction/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/fractal-tracer/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/ovt/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/llmimir/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/pixel-swapping-mae/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/qcll/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/rigiditree/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/visual-nav-trav/</loc>
+  </url>
+</urlset>

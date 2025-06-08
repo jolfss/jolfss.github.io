@@ -1,0 +1,68 @@
+<!--
+The Homepage
+-->
+<!DOCTYPE html>
+
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ .Description }}">
+        <title>{{ .Title }} | My Site</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+
+<body>
+    {{ partial "header.html" }}
+
+    <!-- MAIN -->
+    <main>
+        <h2>{{ .Params.quote }}</h2>
+        <p>{{ .Params.quote_author }}</p>
+
+        <hr> <!--------------------------------------------------------->
+
+        <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
+
+        <hr> <!--------------------------------------------------------->
+
+        <div class="welcome-text">
+            {{ .Content }}
+        </div>
+        
+        <hr> <!--------------------------------------------------------->
+
+        <h2>Select Projects</h2>
+        <ul>
+            {{ range first 5 
+                (where 
+                    (where .Site.Pages "Section" "projects") 
+                ".Params.featured" true) 
+            }}
+                <li style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
+                    {{ $page := . }}
+                    {{ range .Params.media }}
+                        <img 
+                            src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
+                            alt='{{ index . "alt_text" }}'
+                            style="width: 150px; height: auto; margin-right: 1rem; object-fit: cover;"
+                        >
+                    {{ end }}
+                    <div>
+                        <h3>{{ .Title }}</h3>
+                        <p>{{ delimit .Params.authors ", " }}</p>
+                        <p>{{ .Params.description }}</p>
+                        {{ range .Params.links }}
+                            <a href="{{ .url }}">{{ .text }}</a>
+                        {{ end }}
+                    </div>
+                </li>
+            {{ end }}
+        </ul>
+    </main>
+
+    {{ partial "footer.html" }}
+</body>
+
+</html>

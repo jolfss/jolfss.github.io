@@ -1,6 +1,6 @@
 ---
-date: '{{ .Date }}'
 featured: true
+date: '{{ .Date.Format "2006-01-02" }}'
 title: '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 authors: 
   - name: "Author Name"

@@ -1,5 +1,6 @@
 ---
 featured: false
+date: "2025-05-17"
 title: "Pixel-Swapping Masked Autoencoders for Remote Sensing Pretraining"
 authors: 
   - name: "Sean Brynjólfsson"

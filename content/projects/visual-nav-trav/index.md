@@ -1,5 +1,6 @@
 ---
 featured: true
+date: "2023-12-15"
 title: "Visual Navigation with Traversability Priors"
 authors: 
   - name: "Sean Brynjólfsson"

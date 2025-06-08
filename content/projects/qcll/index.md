@@ -1,5 +1,6 @@
 ---
 featured: false
+date: "2024-08-16"
 title: "Quantitative-Competitive Language Learning"
 authors: 
   - name: "Sean Brynjólfsson"

@@ -1,5 +1,6 @@
 ---
 featured: true
+date: "2024-12-15"
 title: "Automatically-Rigged Gaussian Characters"
 authors: 
   - name: "Sean Brynjólfsson"

@@ -1,5 +1,6 @@
 ---
 featured: true
+date: "2022-10-15"
 title: "Fractal Raytracer"
 authors: 
   - name: "Sean Brynjólfsson"

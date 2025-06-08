@@ -5,11 +5,12 @@ authors:
   - "Sean Brynjólfsson"
   - "William Pinstrup Huey"
   - "Avery Avila"
-description: ""
+description: |
+  TODO: Description
 media: 
   - content: ""
     alt_text: "..."
 links:
-  - url: ""
-    text: "Github"
+  # - url: ""
+  #   text: "Github"
 ---

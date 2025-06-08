@@ -1,0 +1,19 @@
+---
+date: '{{ .Date }}'
+featured: true
+title: '{{ replace .File.ContentBaseName `-` ` ` | title }}'
+authors: 
+  - "Author Name"
+description: |
+  Brief description of the project.
+media: 
+  - content: "example1.png"
+    alt_text: "Descriptive alt text for example1.png"
+  - content: "example2.png"
+    alt_text: "Descriptive alt text for example2.png"
+links:
+  - url: "https://github.com/example/project"
+    text: "GitHub"
+  - url: "https://example.com/demo"
+    text: "Live Demo"
+---

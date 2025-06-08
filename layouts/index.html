@@ -3,7 +3,6 @@ The Homepage
 -->
 <!DOCTYPE html>
 
-
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -16,22 +15,13 @@ The Homepage
 <body>
     {{ partial "header.html" }}
 
-    <!-- MAIN -->
     <main>
         <h2>{{ .Params.quote }}</h2>
         <p>{{ .Params.quote_author }}</p>
 
-        <hr> <!--------------------------------------------------------->
-
         <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
 
-        <hr> <!--------------------------------------------------------->
-
-        <div class="welcome-text">
-            {{ .Content }}
-        </div>
-        
-        <hr> <!--------------------------------------------------------->
+        {{ .Content }}
 
         <h2>Select Projects</h2>
         <ul>
@@ -42,13 +32,15 @@ The Homepage
             }}
                 <li style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
                     {{ $page := . }}
-                    {{ range .Params.media }}
-                        <img 
-                            src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
-                            alt='{{ index . "alt_text" }}'
-                            style="width: 150px; height: auto; margin-right: 1rem; object-fit: cover;"
-                        >
-                    {{ end }}
+                    <div>
+                        {{ range .Params.media }}
+                            <img 
+                                src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
+                                alt='{{ index . "alt_text" }}'
+                                style="width: 200px; height: auto; object-fit: cover; display: block; margin-right: 1rem;"
+                            >
+                        {{ end }}
+                    </div>
                     <div>
                         <h3>{{ .Title }}</h3>
                         <p>{{ delimit .Params.authors ", " }}</p>

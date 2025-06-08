@@ -4,7 +4,8 @@ title: "Let it SIMmer / Open-Vocabulary Traversability"
 authors: 
   - "Sean Brynjólfsson"
   - "William Pinstrup Huey"
-description: ""
+description: |
+  TODO: Description
 media: 
   - content: "ovt.png"
     alt_text: "..."
@@ -13,6 +14,6 @@ media:
   - content: "labels.png"
     alt_text: "..."
 links:
-  - url: ""
-    text: "Github"
+  # - url: ""
+  #   text: "Github"
 ---

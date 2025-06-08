@@ -3,11 +3,12 @@ featured: false
 title: "Rigiditree"
 authors: 
   - "Sean Brynjólfsson"
-description: ""
+description: |
+  TODO: Description
 media: 
   - content: ""    
     alt_text: "..."
 links:
-  - url: ""
-    text: "Github"
+  # - url: ""
+  #   text: "Github"
 ---

@@ -7,11 +7,12 @@ authors:
   - "Evan Zhang"
   - "Daniel Qureshi"
   - "Natalie Leung"
-description: ""
+description: |
+  TODO: Description
 media: 
   - content: "gaussian_seg.png"
     alt_text: "..."
 links: 
-  - url: ""
-    text: "Github"
+  # - url: ""
+  #   text: "Github"
 ---

@@ -5,13 +5,14 @@ authors:
   - "Sean Brynjólfsson"
   - "Justin Tien-Smith"
   - "Evan Zhang"
-description: ""
+description: |
+  TODO: Description
 media: 
   - content: "grig.gif"
     alt_text: "..."
   - content: "grig2.gif"
     alt_text: "..."
 links:
-  - url: ""
-    text: "Github"
+  # - url: ""
+  #   text: "Github"
 ---

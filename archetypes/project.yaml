@@ -3,7 +3,8 @@ date: '{{ .Date }}'
 featured: true
 title: '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 authors: 
-  - "Author Name"
+  - name: "Author Name"
+    #url: "Optional Url"
 description: |
   Brief description of the project.
 media: 

@@ -2,7 +2,7 @@
 featured: false
 title: "Rigiditree"
 authors: 
-  - "Sean Brynjólfsson"
+  - name: "Sean Brynjólfsson"
 description: |
   TODO: Description
 media: 

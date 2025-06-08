@@ -2,9 +2,9 @@
 featured: true
 title: "Automatically-Rigged Gaussian Characters"
 authors: 
-  - "Sean Brynjólfsson"
-  - "Justin Tien-Smith"
-  - "Evan Zhang"
+  - name: "Sean Brynjólfsson"
+  - name: "Justin Tien-Smith"
+  - name: "Evan Zhang"
 description: |
   TODO: Description
 media: 

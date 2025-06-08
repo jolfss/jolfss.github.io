@@ -2,7 +2,7 @@
 featured: false
 title: "Quantitative-Competitive Language Learning"
 authors: 
-  - "Sean Brynjólfsson"
+  - name: "Sean Brynjólfsson"
 description: |
   TODO: Description
 media: 

@@ -2,8 +2,8 @@
 featured: true
 title: "Fractal Raytracer"
 authors: 
-  - "Sean Brynjólfsson"
-  - "Jack Otto"
+  - name: "Sean Brynjólfsson"
+  - name: "Jack Otto"
 description: |
   TODO: Description
 media: 

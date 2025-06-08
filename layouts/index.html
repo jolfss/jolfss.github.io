@@ -43,7 +43,22 @@ The Homepage
                     </div>
                     <div>
                         <h3>{{ .Title }}</h3>
-                        <p>{{ delimit .Params.authors ", " }}</p>
+
+                        <!-- This template creates hyperlinks for all authors which have a url: key. -->
+                        <p> 
+                            {{ $authors_maybelink := slice }}
+                            {{ range .Params.authors }}
+                                {{ if .url }}
+                                    {{ $authors_maybelink = $authors_maybelink | append (printf "<a href=\"%s\">%s</a>" .url .name) }}
+                                {{ else }}
+                                    {{ $authors_maybelink = $authors_maybelink | append .name }}
+                                {{ end }}
+                            {{ end }}
+                            {{ delimit $authors_maybelink ", " | safeHTML }}
+                            
+                            {{/* delimit .Params.authors ", " <!-- Old version without hyperlinks, just list of author. -->*/}}
+                        </p>
+                        
                         <p>{{ .Params.description }}</p>
                         {{ range .Params.links }}
                             <a href="{{ .url }}">{{ .text }}</a>

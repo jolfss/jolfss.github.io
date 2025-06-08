@@ -2,9 +2,10 @@
 featured: false
 title: "Pixel-Swapping Masked Autoencoders for Remote Sensing Pretraining"
 authors: 
-  - "Sean Brynjólfsson"
-  - "William Pinstrup Huey"
-  - "Avery Avila"
+  - name: "Sean Brynjólfsson"
+  - name: "William Pinstrup Huey"
+    url: "https://willhuey.com/"
+  - name: "Avery Avila"
 description: |
   TODO: Description
 media: 

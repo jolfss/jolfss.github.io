@@ -2,11 +2,11 @@
 featured: false
 title: "Compositional Gaussian Splatting for Construction Sites"
 authors: 
-  - "Sean Brynjólfsson"
-  - "Dyllan Hofflich"
-  - "Evan Zhang"
-  - "Daniel Qureshi"
-  - "Natalie Leung"
+  - name: "Sean Brynjólfsson"
+  - name: "Dyllan Hofflich"
+  - name: "Evan Zhang"
+  - name: "Daniel Qureshi"
+  - name: "Natalie Leung"
 description: |
   TODO: Description
 media: 

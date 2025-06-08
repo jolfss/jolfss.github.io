@@ -2,7 +2,7 @@
 featured: true
 title: "LLMímir: So, GPT-4, how well do you speak Old Norse?"
 authors: 
-  - "Sean Brynjólfsson"
+  - name: "Sean Brynjólfsson"
 description: |
   TODO: Description
 media: 

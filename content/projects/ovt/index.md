@@ -2,8 +2,9 @@
 featured: true
 title: "Let it SIMmer / Open-Vocabulary Traversability"
 authors: 
-  - "Sean Brynjólfsson"
-  - "William Pinstrup Huey"
+  - name: "Sean Brynjólfsson"
+  - name: "William Pinstrup Huey"
+    url: "https://willhuey.com/"
 description: |
   TODO: Description
 media: 

@@ -17,7 +17,7 @@ The Homepage
 
     <main>
         <h2>{{ .Params.quote }}</h2>
-        <p>{{ .Params.quote_author }}</p>
+        <p>--{{ .Params.quote_author }}</p>
 
         <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
 
@@ -27,7 +27,7 @@ The Homepage
         <ul>
             {{ range first 5 
                 (where 
-                    (where .Site.Pages "Section" "projects") 
+                    (where .Site.Pages.ByDate.Reverse "Section" "projects") 
                 ".Params.featured" true) 
             }}
                 <li style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
@@ -37,7 +37,7 @@ The Homepage
                             <img 
                                 src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
                                 alt='{{ index . "alt_text" }}'
-                                style="width: 200px; height: auto; object-fit: cover; display: block; margin-right: 1rem;"
+                                style="width: 192px; height: auto; object-fit: cover; display: block; margin-right: 1rem;"
                             >
                         {{ end }}
                     </div>

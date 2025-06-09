@@ -3,10 +3,15 @@ $font-atkinson-hyperlegible-next
 */
 
 // Colors
+$color-cornflower: #6677ff;
+$color-cornflower-dark: #4455cc;
+
 $page-bg: #eef2f7;
+$highlight-color-active: $color-cornflower;
+$highlight-color-inactive: $color-cornflower-dark;
 
 body {
-    font-family: $font-tilt-warp;
+    font-family: $font-outfit;
     background-color: $page-bg;
     color: #000;
     margin: 0;
@@ -32,33 +37,45 @@ p {
   align-items: stretch;
   gap: 1rem; 
   margin-bottom: 1rem;
+  border-radius: 1rem;
   background-color: #d6e3f3;
+  padding: 1rem;
 
-  // The direct child designated for the image
   > .images {
     flex: 0 0 $image-proportion;
+    border-radius: 0.75rem;
+    overflow: hidden;
   }
 
-  // The direct child designated for the text
   > .text {
     flex: 1;
-    min-width: 250px; // Prevents the text from getting too squished
+    min-width: 250px;
   }
 }
 
 .images img {
-    min-width: 250px;
+    // min-width: 250px;
     width: 100%;
     display: block;
 }
 
 .portrait { @include images-by-text(30%); }
 .project { @include images-by-text(20%); }
+
+.quote {
+    color: #000000;
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 1rem;
+    border-left: 4px solid $highlight-color-inactive;
+    margin: 1rem 0;
+    background-color: rgba($highlight-color-inactive, 0.1);
+}
+
 //----------------
 
-// a {
-//     color:#fff;
-//     &:hover {
-//         color: #000;
-//     }    
-// }
+a {
+    color: $highlight-color-inactive;
+    &:hover {
+        color: $highlight-color-active;
+    }    
+}

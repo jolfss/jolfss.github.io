@@ -9,7 +9,9 @@ authors:
   - name: "Daniel Qureshi"
   - name: "Natalie Leung"
 description: |
-  TODO: Description
+  We investigate the potential applications of gaussian splatting on construction sites to capture a holsitic digital twin throughout the construction process via legged robots. This project was our collective introduction to gaussian splatting, so a large portion of it is dedicated to a review of currently existing methods. This was a great experience even though we did not acheive our goals.
+
+  We used NVIDIA Omniverse to model our simulated environment and an ANYmal-D equipped with a RGBD camera. One part of our team worked with the Blender-to-Omniverse connector to try and get realistic construction environs for us to simulate.   
 media: 
   - content: "gaussian_seg.png"
     alt_text: "..."

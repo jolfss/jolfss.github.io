@@ -1,10 +1,11 @@
 {{/* This content will be injected into the baseof.html template */}}
 {{ define "main" }}
-    <h2>{{ .Params.quote }}</h2>
-    <p>--{{ .Params.quote_author }}</p>
-    
+    <div class="quote">
+        <h2>{{ .Params.quote }}</h2>
+        <p>--{{ .Params.quote_author }}</p>
+    </div>
     <div class="portrait">
-        <div class="image">
+        <div class="images">
             <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
         </div>
         <div class="text">

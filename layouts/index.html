@@ -1,75 +1,57 @@
-<!--
-The Homepage
--->
-<!DOCTYPE html>
+{{/* This content will be injected into the baseof.html template */}}
+{{ define "main" }}
+    <h2>{{ .Params.quote }}</h2>
+    <p>--{{ .Params.quote_author }}</p>
+    
+    <div class="portrait">
+        <div class="image">
+            <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
+        </div>
+        <div class="text">
+            <p>{{ .Params.welcome_text }}</p>
+        </div>
+    </div>
 
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="{{ .Description }}">
-        <title>{{ .Title }} | My Site</title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
+    {{ .Content }}
 
-<body>
-    {{ partial "header.html" }}
+    <h2>Select Projects</h2>
+    <div> 
+        {{ range first 5 
+            (where 
+                (where .Site.Pages.ByDate.Reverse "Section" "projects") 
+            ".Params.featured" true) 
+        }}
+            <div class="project">
+                {{ $page := . }}
+                <div class="images">
+                    {{ range .Params.media }}
+                        <img 
+                            src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
+                            alt='{{ index . "alt_text" }}'
+                        >
+                    {{ end }}
+                </div>
+                <div class="text">
+                    <h3>{{ .Title }}</h3>
 
-    <main>
-        <h2>{{ .Params.quote }}</h2>
-        <p>--{{ .Params.quote_author }}</p>
-
-        <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
-
-        {{ .Content }}
-
-        <h2>Select Projects</h2>
-        <ul>
-            {{ range first 5 
-                (where 
-                    (where .Site.Pages.ByDate.Reverse "Section" "projects") 
-                ".Params.featured" true) 
-            }}
-                <li style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
-                    {{ $page := . }}
-                    <div>
-                        {{ range .Params.media }}
-                            <img 
-                                src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
-                                alt='{{ index . "alt_text" }}'
-                                style="width: 192px; height: auto; object-fit: cover; display: block; margin-right: 1rem;"
-                            >
-                        {{ end }}
-                    </div>
-                    <div>
-                        <h3>{{ .Title }}</h3>
-
-                        <!-- This template creates hyperlinks for all authors which have a url: key. -->
-                        <p> 
-                            {{ $authors_maybelink := slice }}
-                            {{ range .Params.authors }}
-                                {{ if .url }}
-                                    {{ $authors_maybelink = $authors_maybelink | append (printf "<a href=\"%s\">%s</a>" .url .name) }}
-                                {{ else }}
-                                    {{ $authors_maybelink = $authors_maybelink | append .name }}
-                                {{ end }}
+                    <p> 
+                        {{ $authors_maybelink := slice }}
+                        {{ range .Params.authors }}
+                            {{ if .url }}
+                                {{ $authors_maybelink = $authors_maybelink | append (printf "<a href=\"%s\">%s</a>" .url .name) }}
+                            {{ else }}
+                                {{ $authors_maybelink = $authors_maybelink | append .name }}
                             {{ end }}
-                            {{ delimit $authors_maybelink ", " | safeHTML }}
-
-                            {{/* delimit .Params.authors ", " <!-- Old version without hyperlinks, just list of author. -->*/}}
-                        </p>
-                        
-                        <p>{{ .Params.description }}</p>
-                        {{ range .Params.links }}
-                            <a href="{{ .url }}">{{ .text }}</a>
                         {{ end }}
-                    </div>
-                </li>
-            {{ end }}
-        </ul>
-    </main>
-
-    {{ partial "footer.html" }}
-</body>
-
-</html>
+                        {{ delimit $authors_maybelink ", " | safeHTML }}
+                    </p>
+                    
+                    <p>{{ .Params.description }}</p>
+                    {{ range .Params.links }}
+                        <a href="{{ .url }}">{{ .text }}</a>
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
+    </div>
+{{ end }}

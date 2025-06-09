@@ -1,0 +1,64 @@
+@import "fonts";/* 
+$font-atkinson-hyperlegible-next
+*/
+
+// Colors
+$page-bg: #eef2f7;
+
+body {
+    font-family: $font-tilt-warp;
+    background-color: $page-bg;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: $font-atkinson-hyperlegible-next;
+}
+
+//----------------
+/* assets/scss/main.scss */
+
+// A mixin for creating a 2-column grid with an image and text.
+// It accepts the proportion of width the image should take.
+//
+// @param $image-proportion - A percentage (e.g., 40%) or other unit
+//                           that defines the width of the image column.
+
+@mixin images-by-text($image-proportion) {
+  display: flex;
+  flex-wrap: wrap; // Allows columns to stack on small screens
+  align-items: stretch;
+  gap: 1rem; 
+  margin-bottom: 1rem;
+  background-color: #d6e3f3;
+
+  // The direct child designated for the image
+  > .images {
+    flex: 0 0 $image-proportion;
+  }
+
+  // The direct child designated for the text
+  > .text {
+    flex: 1;
+    min-width: 250px; // Prevents the text from getting too squished
+  }
+}
+
+.images img {
+    min-width: 250px;
+    width: 100%;
+    display: block;
+}
+
+.portrait { @include images-by-text(30%); }
+.project { @include images-by-text(20%); }
+//----------------
+
+// a {
+//     color:#fff;
+//     &:hover {
+//         color: #000;
+//     }    
+// }

@@ -1,9 +1,25 @@
-<body>
-  {{ partial "header.html" . }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ .Description }}">
+        <title>{{ .Title }} | My Site</title>
 
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
+        <!-- <link rel="stylesheet" href="/css/style.css"> -->
+        {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    </head>
+    <body>
+        <div style="max-width: 960px; margin: 2rem auto; padding: 0 1rem;">
+          {{ partial "header.html" . }}
 
-  {{ partial "footer.html" . }}
-</body>
+          <main>
+              {{/* The content from other templates will be rendered here */}}
+              {{ block "main" . }}{{ end }}
+          </main>
+
+          {{ partial "footer.html" . }}
+        </div>
+    </body>
+</html>

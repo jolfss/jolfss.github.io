@@ -1,11 +1,15 @@
 {{/* This content will be injected into the baseof.html template */}}
 {{ define "main" }}
+
+    <!-- quote -->
     <div class="quote">
-        <h2>{{ .Params.quote }}</h2>
+        <p>{{ .Params.quote }}</p>
         <p>--{{ .Params.quote_author }}</p>
     </div>
-    <div class="portrait">
-        <div class="images">
+
+    <!-- welcome text and portrait -->
+    <div class="welcome">
+        <div class="portrait">
             <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
         </div>
         <div class="text">
@@ -13,18 +17,19 @@
         </div>
     </div>
 
-    {{ .Content }}
+    <!-- {{ .Content }} -->
 
-    <h2>Select Projects</h2>
+    <!-- some projects -->
     <div> 
+        <!-- enumerate some projects which are allowed as 'featured', sorted by date -->
         {{ range first 5 
             (where 
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 
         }}
-            <div class="project">
+            <div class="projects">
                 {{ $page := . }}
-                <div class="images">
+                <div class="content">
                     {{ range .Params.media }}
                         <img 
                             src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
@@ -32,20 +37,19 @@
                         >
                     {{ end }}
                 </div>
-                <div class="text">
-                    <h3>{{ .Title }}</h3>
+                <div class="markdown">
+					<h2>{{ .Title }}</h2>
 
-                    <h4> 
-                        {{ $authors_maybelink := slice }}
-                        {{ range .Params.authors }}
-                            {{ if .url }}
-                                {{ $authors_maybelink = $authors_maybelink | append (printf "<a href=\"%s\">%s</a>" .url .name) }}
-                            {{ else }}
-                                {{ $authors_maybelink = $authors_maybelink | append .name }}
-                            {{ end }}
-                        {{ end }}
-                        {{ delimit $authors_maybelink ", " | safeHTML }}
-                    </h4>
+					<!-- attaches hyperlinks to authors with urls -->
+					{{ $authors_maybelink := slice }}
+					{{ range .Params.authors }}
+						{{ if .url }}
+							{{ $authors_maybelink = $authors_maybelink | append (printf "<a href=\"%s\">%s</a>" .url .name) }}
+						{{ else }}
+							{{ $authors_maybelink = $authors_maybelink | append .name }}
+						{{ end }}
+					{{ end }}
+					<h3>{{ delimit $authors_maybelink ", " | safeHTML }}</h3>
                     
                     <p>{{ .Params.description }}</p>
                     {{ range .Params.links }}

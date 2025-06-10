@@ -10,16 +10,15 @@
         {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
         <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
     </head>
-    <body>
+    <body class="{{ if .IsHome }}page-home{{ else }}page-{{ .Section }}{{ end }}">
         <div style="max-width: 960px; margin: 2rem auto; padding: 0 1rem;">
-          {{ partial "header.html" . }}
+            {{ partial "header.html" . }}
 
-          <main>
-              {{/* The content from other templates will be rendered here */}}
-              {{ block "main" . }}{{ end }}
-          </main>
+            <main>
+                {{ block "main" . }}{{ end }}
+            </main>
 
-          {{ partial "footer.html" . }}
+            {{ partial "footer.html" . }}
         </div>
     </body>
 </html>

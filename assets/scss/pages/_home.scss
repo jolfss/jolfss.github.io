@@ -1,3 +1,46 @@
 /* 
     Formatting for the main/home page.
 */
+@import "../base/typography";
+
+.page-home {
+  .quote {
+    background-color: rgb(204, 234, 255);
+    .text {
+
+    }
+    .author {
+
+    }
+
+  }
+
+  .welcome {
+    display: flex;
+    background-color: #FCC;
+    .portrait {
+      flex: 0;
+    }
+    .text {
+      flex: 1;
+    }
+  }
+
+  .projects {
+    background-color: #CFC;
+    display: flex;
+    .content {
+      flex: 0 0 30%;;
+      flex-wrap: wrap;
+      flex-direction: row;
+      & > img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+    .markdown {
+      flex: 1;
+    }
+  }
+}

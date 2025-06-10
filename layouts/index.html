@@ -35,7 +35,7 @@
                 <div class="text">
                     <h3>{{ .Title }}</h3>
 
-                    <p> 
+                    <h4> 
                         {{ $authors_maybelink := slice }}
                         {{ range .Params.authors }}
                             {{ if .url }}
@@ -45,7 +45,7 @@
                             {{ end }}
                         {{ end }}
                         {{ delimit $authors_maybelink ", " | safeHTML }}
-                    </p>
+                    </h4>
                     
                     <p>{{ .Params.description }}</p>
                     {{ range .Params.links }}

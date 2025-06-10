@@ -1,6 +1,16 @@
-@import "fonts";/* 
-$font-atkinson-hyperlegible-next
-*/
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'base/reset';
+@import 'base/typography';
+
+@import 'layout/header';
+@import 'layout/footer';
+
+@import 'components/cards';
+
+@import 'pages/home';
+
 
 // Colors
 $color-cornflower: #6677ff;
@@ -60,7 +70,7 @@ p {
 }
 
 .portrait { @include images-by-text(30%); }
-.project { @include images-by-text(20%); }
+.project { @include images-by-text(30%); }
 
 .quote {
     color: #000000;

@@ -1,0 +1,15 @@
+/* 
+    Base rules for formatting elements.
+*/
+
+// makes sure padding is included when content widths are established
+*::before,
+*::after {
+  box-sizing: border-box; /* 1 */
+}
+
+// Set a max-width on images to prevent them from overflowing their containers
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}

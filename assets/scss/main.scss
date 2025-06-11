@@ -11,3 +11,13 @@
 @import 'components/cards';
 
 @import 'pages/home';
+
+// Grid paper background
+body {
+    background-color: #ffffff;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.05) 0.1rem, transparent 0.1rem),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0.1rem, transparent 0.1rem);
+    background-size: 2rem 2rem;
+    background-position: center center;
+}

@@ -4,7 +4,7 @@ date: "2024-12-15"
 description: |
   ### Automatically-Rigged Gaussian Characters
   ##### Sean Brynjólfsson\*, Justin Tien-Smith\*, Evan Zhang\*
-  Recently, techniques for solving gaussian splats of dynamic scenes (Dynamic3DGaussians, 2024) have found success in using local rigidity constraints to enforce spatial and temporal consistency.
+  Recently, techniques for solving gaussian splats of dynamic scenes ([Dynamic3DGaussians](https://github.com/JonathonLuiten/Dynamic3DGaussians), 2024) have found success in using local rigidity constraints to enforce spatial and temporal consistency.
 
   We use this detailed representation and decompose it into the rigid parts and joints which describe their movement. This procedure makes no assumptions about the anatomy of the dynamic entities within the scene and therefore should work equally well for all people, animals, machines---anything that moves about a discrete set of joints. We're currently implementing the joint solver after getting promising results for our clustering algorithm to find the bones.
 

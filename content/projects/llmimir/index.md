@@ -1,10 +1,10 @@
 ---
 featured: true
 date: "2023-11-23"
-title: "LLMímir: So, GPT-4, how well do you speak Old Norse?"
-authors: 
-  - name: "Sean Brynjólfsson"
 description: |
+  ### LLMímir: So, GPT-4, how well do you speak Old Norse?
+  #### Sean Brynjólfsson
+
   Most people aren't aware that Icelandic is GPT-4's second language; but it is. What could this mean for its related, low-resource ancestor Old Norse?
 
   Old Norse (often called Old Icelandic) is a language which is incredibly similar to modern Icelandic. For that reason, I was interested in investigating how trustworthy it might be for questions on Old Norse grammar and potentially for creative and academic/self-study uses. Would GPT-4 benefit from more exposure to Icelandic or would that bleed into its understanding of Old Norse?

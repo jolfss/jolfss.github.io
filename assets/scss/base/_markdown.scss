@@ -1,0 +1,17 @@
+/*
+    Formatting for markdown content.
+*/
+
+.markdown {
+  li {
+    font-size:0.9rem;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+}

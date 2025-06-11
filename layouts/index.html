@@ -8,12 +8,12 @@
     </div>
 
     <!-- welcome text and portrait -->
-    <div class="welcome">
-        <div class="portrait">
+    <div class="card">
+        <div class="content">
             <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
         </div>
-        <div class="text">
-            <p>{{ .Params.welcome_text }}</p>
+        <div class="markdown">
+            {{ .Params.welcome_text | .RenderString (dict "display" "block") }}
         </div>
     </div>
 
@@ -27,7 +27,7 @@
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 
         }}
-            <div class="projects">
+            <div class="card">
                 {{ $page := . }}
                 <div class="content">
                     {{ range .Params.media }}
@@ -38,23 +38,7 @@
                     {{ end }}
                 </div>
                 <div class="markdown">
-					<h3>{{ .Title }}</h3>
-
-					<!-- attaches hyperlinks to authors with urls -->
-					{{ $authors_maybelink := slice }}
-					{{ range .Params.authors }}
-						{{ if .url }}
-							{{ $authors_maybelink = $authors_maybelink | append (printf "<a href=\"%s\">%s</a>" .url .name) }}
-						{{ else }}
-							{{ $authors_maybelink = $authors_maybelink | append .name }}
-						{{ end }}
-					{{ end }}
-					<h4>{{ delimit $authors_maybelink ", " | safeHTML }}</h4>
-                    
-                    <p>{{ .Params.description }}</p>
-                    {{ range .Params.links }}
-                        <a href="{{ .url }}">{{ .text }}</a>
-                    {{ end }}
+                    {{ .Params.description | .RenderString (dict "display" "block") }}
                 </div>
             </div>
         {{ end }}

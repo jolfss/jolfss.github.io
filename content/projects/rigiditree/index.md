@@ -1,10 +1,10 @@
 ---
 featured: false
 date: "2025-01-25"
-title: "Rigiditree"
-authors: 
-  - name: "Sean Brynjólfsson"
 description: |
+  ### Rigiditree
+  #### Sean Brynjólfsson
+
   TODO: Description
 media: 
   - content: ""    

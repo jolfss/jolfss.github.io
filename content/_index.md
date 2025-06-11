@@ -7,7 +7,7 @@ description: "Sean's heap of projects & ramblings in Computer Science, with spec
 # end meta
 
 welcome_text: |
-    Hi! I'm Sean, I study Computer Science @ Cornell University. This page summarizes my undergraduate work in computer graphics/vision, robotics, and simulation.
+    **Hi! I'm Sean**, I study Computer Science @ Cornell University. This page summarizes my undergraduate work in computer graphics/vision, robotics, and simulation.
     
     I'm also a pianist/composer, painter, hockey player, fly fisher, Old Norse/Latin poetry enthusiast, graphic designer, and soon-to-be figure skater!
 

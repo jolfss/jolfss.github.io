@@ -1,5 +1,6 @@
 ---
 title: '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 date: '{{ .Date.Format "2006-01-02" }}'
-description: "" # NOTE: This is a meta description.
+description: |
+  Brief description of the project in Markdown.
 ---

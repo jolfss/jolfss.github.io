@@ -3,7 +3,7 @@ featured: false
 date: "2025-01-25"
 description: |
   ### Rigiditree
-  #### Sean Brynjólfsson
+  ##### Sean Brynjólfsson
 
   TODO: Description
 media: 

@@ -8,7 +8,7 @@
     </div>
 
     <!-- welcome text and portrait -->
-    <div class="card">
+    <div class="welcome-card">
         <div class="content">
             <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
         </div>
@@ -17,7 +17,9 @@
         </div>
     </div>
 
-    <!-- {{ .Content }} -->
+    <div class="markdown">
+        {{ .Content }}
+    </div>
 
     <!-- some projects -->
     <div> 

@@ -3,7 +3,7 @@ featured: true
 date: "2023-12-15"
 description: |
   ### Visual Navigation with Traversability Priors
-  #### Sean Brynjólfsson, [William Pinstrup Huey](https://willhuey.com/)
+  ##### Sean Brynjólfsson\*, [William Pinstrup Huey\*](https://willhuey.com/)
 
   Continuing our work with open-vocabulary traversability, we were interested in training smaller models on specific traversability scenarios. Our original model was too large to fit on the ANYmal's NVIDIA Jetson processor and its inference speed was quite slow (~7s). Since we did not experiment with prompts that changed during rollout, we were wasting a lot of compute by preserving its open-vocabulary capabilities. Thus we chose to train a smaller model on the bigger model with a fixed prompt. For example, "you are a robot who cannot climb stairs". Model distillation is not so interesting on its own, but being able to do so over an abstract description of traversability is quite useful.
 

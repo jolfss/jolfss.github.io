@@ -3,7 +3,7 @@ featured: true
 date: "2023-11-23"
 description: |
   ### LLMímir: So, GPT-4, how well do you speak Old Norse?
-  #### Sean Brynjólfsson
+  ##### Sean Brynjólfsson
 
   Most people aren't aware that Icelandic is GPT-4's second language; but it is. What could this mean for its related, low-resource ancestor Old Norse?
 

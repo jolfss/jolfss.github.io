@@ -3,7 +3,7 @@ featured: true
 date: "2023-08-23"
 description: |
   ### Let it SIMmer / Open-Vocabulary Traversability
-  #### Sean Brynjólfsson, [William Pinstrup Huey](https://willhuey.com/)
+  ##### Sean Brynjólfsson\*, [William Pinstrup Huey\*](https://willhuey.com/)
   Generalizing to new and dynamic environments is a significant challenge in mobile robotics. Nowadays, vision-aware models are more prevalent and significantly powerful. These models are capable of producing robust, semantic features that make downstream tasks like navigation significantly easier. Images are rich enough to characterize many cues that geometric information alone does not provide.
 
   Three implementations comprise our overall method. In total, our system allows for streaming from a robot to a compute node which then answers classification requests from users in either Isaac Sim or Rviz.

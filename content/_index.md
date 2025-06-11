@@ -17,3 +17,4 @@ quote_author: "Kurt Vonnegut"
 portrait: "latrabjarg.jpg"
 portrait_alt_text: "Sean in a blue and black Icelandic lopapeysa at Látrabjarg."
 ---
+## Select Projects

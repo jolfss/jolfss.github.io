@@ -3,7 +3,7 @@ featured: false
 date: "2024-05-06"
 description: |
   ### Compositional Gaussian Splatting for Construction Sites
-  #### Sean Brynjólfsson, Dyllan Hofflich, Evan Zhang, Daniel Qureshi, Natalie Leung
+  ##### Sean Brynjólfsson\*, Dyllan Hofflich\*, Evan Zhang\*, Daniel Qureshi\*, Natalie Leung\*
 
   We investigate the potential applications of gaussian splatting on construction sites to capture a holsitic digital twin throughout the construction process via legged robots. This project was our collective introduction to gaussian splatting, so a large portion of it is dedicated to a review of currently existing methods. This was a great experience even though we did not acheive our goals.
 

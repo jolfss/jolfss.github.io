@@ -1,20 +1,11 @@
 ---
 featured: true
 date: '{{ .Date.Format "2006-01-02" }}'
-title: '{{ replace .File.ContentBaseName `-` ` ` | title }}'
-authors: 
-  - name: "Author Name"
-    #url: "Optional Url"
 description: |
-  Brief description of the project.
+  Brief description of the project in Markdown.
 media: 
   - content: "example1.png"
     alt_text: "Descriptive alt text for example1.png"
   - content: "example2.png"
     alt_text: "Descriptive alt text for example2.png"
-links:
-  - url: "https://github.com/example/project"
-    text: "GitHub"
-  - url: "https://example.com/demo"
-    text: "Live Demo"
 ---

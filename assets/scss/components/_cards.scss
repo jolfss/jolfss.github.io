@@ -16,12 +16,15 @@
     *____________|______________________*
 */
 
+@import '../abstracts/mixins';
+
 .card {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.25);
     display: flex;
     border-radius: 2rem;
     margin: 1rem 0 1rem 0;
+    width: 60rem;
 
     & > * {
       margin: 1rem;
@@ -32,9 +35,8 @@
       border-radius: 1rem;
       overflow: hidden;
       display: block;
-      flex: 0 1 20%;
-      flex-wrap: wrap;
       height: fit-content;
+      max-height: 100%;
 
       & > img {
         height: auto;
@@ -45,7 +47,28 @@
     }
     .markdown {
       margin-left: 0.5rem;
-      flex: 1;
       padding-right: 1rem;
     }
-  }
+}
+
+// Card variants
+.card-third {
+  @extend .card;
+  @include card-content-width(3);
+}
+
+.card-quarter {
+  @extend .card;
+  @include card-content-width(4);
+}
+
+.card-fifth { 
+  @extend .card;
+  @include card-content-width(5);
+}
+
+.card-sixth {
+  @extend .card;
+  @include card-content-width(6);
+}
+

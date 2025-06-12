@@ -1,5 +1,5 @@
 /* 
-    Base rules for formatting elements.
+    Base rules for formatting elements which are true for all pages.
 */
 
 // makes sure padding is included when content widths are established
@@ -14,3 +14,16 @@ img, picture, video, canvas, svg {
   height: auto;
 }
 
+body {
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    //grid paper background
+    background-color: #ffffff;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.05) .1rem, transparent .1rem),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) .1rem, transparent .1rem);
+    background-size: 2rem 2rem;
+    background-position: center center;
+}

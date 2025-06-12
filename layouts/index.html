@@ -1,14 +1,8 @@
 {{/* This content will be injected into the baseof.html template */}}
 {{ define "main" }}
 
-    <!-- quote -->
-    <div class="quote">
-        <p>{{ .Params.quote }}</p>
-        <p>--{{ .Params.quote_author }}</p>
-    </div>
-
     <!-- welcome text and portrait -->
-    <div class="welcome-card">
+    <div class="card-third welcome-card">
         <div class="content">
             <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
         </div>
@@ -17,10 +11,8 @@
         </div>
     </div>
 
-    <div class="markdown">
-        {{ .Content }}
-    </div>
-
+    {{ .Content }}
+    
     <!-- some projects -->
     <div> 
         <!-- enumerate some projects which are allowed as 'featured', sorted by date -->
@@ -29,7 +21,7 @@
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 
         }}
-            <div class="card">
+            <div class="card-fifth">
                 {{ $page := . }}
                 <div class="content">
                     {{ range .Params.media }}

@@ -1,0 +1,8 @@
+@mixin card-content-width($divisor) {
+  .content {
+    flex: 0 1 calc(100% / #{$divisor});
+  }
+  .markdown {
+    flex: 0 1 calc(100% - (100% / #{$divisor}) - 2rem);
+  }
+}

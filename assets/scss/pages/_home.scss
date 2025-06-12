@@ -4,29 +4,10 @@
 @import "../base/typography";
 
 .page-home {
-  .quote {
-    background-color: rgb(204, 234, 255);
-    .text {
-
-    }
-    .author {
-
-    }
-
-  }
-
-  @import "../components/_cards.scss";
   .welcome-card {
-    @extend .card;
-    .content {
-      flex: 0 1 25%;
-    }
     .markdown {
-      font-size: $font-size-h4;
-      text-align: left;
-      height: 100%;
-      width: 100%;
+      line-height: 2.0rem;
+      font-size: 1.5rem;
     }
-    margin-bottom: 3rem;
   }
 }

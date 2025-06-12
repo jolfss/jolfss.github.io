@@ -19,6 +19,12 @@
             </main>
 
             {{ partial "footer.html" . }}
+
+            <!-- Add the resizing script here; NOTE I don't know what js.Build does -->
+            {{ $remResizeScript := resources.Get "js/rem-resize-container.js" | js.Build }}
+            {{ if $remResizeScript }}
+                <script src="{{ $remResizeScript.RelPermalink }}"></script>
+            {{ end }}
         </div>
     </body>
 </html>

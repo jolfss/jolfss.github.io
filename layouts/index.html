@@ -2,15 +2,16 @@
 {{ define "main" }}
 
     <!-- welcome text and portrait -->
-    <div class="card-third welcome-card">
-        <div class="content">
-            <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
-        </div>
-        <div class="markdown">
-            {{ .Params.welcome_text | .RenderString (dict "display" "block") }}
+    <div class="rem-resize-container">
+        <div class="card-third welcome-card">
+            <div class="content">
+                <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
+            </div>
+            <div class="markdown">
+                {{ .Params.welcome_text | .RenderString (dict "display" "block") }}
+            </div>
         </div>
     </div>
-
     {{ .Content }}
     
     <!-- some projects -->
@@ -21,6 +22,7 @@
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 
         }}
+        <div class="rem-resize-container" style="margin: 2rem 0 2rem 0;">
             <div class="card-fifth">
                 {{ $page := . }}
                 <div class="content">
@@ -35,6 +37,7 @@
                     {{ .Params.description | .RenderString (dict "display" "block") }}
                 </div>
             </div>
+        </div>
         {{ end }}
     </div>
 {{ end }}

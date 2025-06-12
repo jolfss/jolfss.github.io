@@ -16,18 +16,16 @@
     *____________|______________________*
 */
 
-@import '../abstracts/mixins';
-
 .card {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.25);
     display: flex;
-    border-radius: 2rem;
-    margin: 1rem 0 1rem 0;
-    width: 60rem;
+    border-radius: 3rem;
+    margin: 2rem 0 2rem 0;
+    height: 100%;
 
     & > * {
-      margin: 1rem;
+      margin: 2rem;
     }
 
     .content {
@@ -37,6 +35,8 @@
       display: block;
       height: fit-content;
       max-height: 100%;
+      margin-right:0rem;
+      transition: transform 0.3s ease;
 
       & > img {
         height: auto;
@@ -45,30 +45,35 @@
         display: block;
       }
     }
+
+    &:hover .content {
+      transform: rotate(-2deg) translate(-5px, -5px);
+    }
+
     .markdown {
-      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
       padding-right: 1rem;
     }
 }
 
 // Card variants
 .card-third {
-  @extend .card;
-  @include card-content-width(3);
+    @include card-content-width(3);
+    @extend .card;
 }
 
 .card-quarter {
-  @extend .card;
-  @include card-content-width(4);
+    @include card-content-width(4);
+    @extend .card;
 }
 
 .card-fifth { 
-  @extend .card;
-  @include card-content-width(5);
+    @include card-content-width(5);
+    @extend .card;
 }
 
 .card-sixth {
-  @extend .card;
-  @include card-content-width(6);
+    @include card-content-width(6);
+    @extend .card;
 }
 

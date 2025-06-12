@@ -1,6 +1,7 @@
 ---
 featured: true
 date: "2024-12-15"
+title: "Automatically-Rigged Gaussian Characters"
 description: |
   ### Automatically-Rigged Gaussian Characters
   ##### Sean Brynjólfsson\*, Justin Tien-Smith\*, Evan Zhang\*

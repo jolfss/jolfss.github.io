@@ -20,11 +20,11 @@ body {
     margin-right: auto;
 
     //grid paper background
-    background-color: #f0f0f0;
+    background-color: $color-light;
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.1) .1rem, transparent .1rem),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.1) .1rem, transparent .1rem);
+        linear-gradient(rgba($color-dark, $grid-opacity) $grid-thickness, transparent .1rem),
+        linear-gradient(90deg, rgba($color-dark, $grid-opacity) $grid-thickness, transparent .1rem);
     background-size: 2rem 2rem;
-    background-position: calc(50% - 0.05rem) -0.05rem;
+    background-position: calc(50% - 0.05rem) calc(50% -0.05rem);
 
 }

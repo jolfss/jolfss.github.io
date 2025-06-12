@@ -1,6 +1,7 @@
 ---
 featured: false
 date: "2024-05-06"
+title: "Compositional Gaussian Splatting for Construction Sites"
 description: |
   ### Compositional Gaussian Splatting for Construction Sites
   ##### Sean Brynjólfsson\*, Dyllan Hofflich\*, Evan Zhang\*, Daniel Qureshi\*, Natalie Leung\*

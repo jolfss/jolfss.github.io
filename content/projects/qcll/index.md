@@ -1,6 +1,7 @@
 ---
 featured: false
 date: "2024-08-16"
+title: "Quantitative-Competitive Language Learning"
 description: |
   ### Quantitative-Competitive Language Learning
   ##### Sean Brynjólfsson

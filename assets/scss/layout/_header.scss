@@ -1,3 +1,36 @@
 /*
     Formatting for the header bar.
 */
+
+.site-header {
+
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 2rem 0 2rem 0;
+    padding-bottom: 0;
+
+    .name {
+        font-size: $font-size-h2;
+        line-height: $font-size-h2;
+        font-family: $font-tilt-warp;
+    }
+
+    .nav-links {
+        font-size: $font-size-h6;
+
+    }
+
+    // .name {
+    //     font-size: $font-size-h2;
+    //     line-height: $font-size-h2;
+    //     font-family: $font-tilt-warp;
+    //     padding-top: 1rem;
+    //     margin-bottom: 0.5rem;
+    // }
+
+    // .nav-links {
+    //     margin-top: 0.5rem;
+    // }
+}

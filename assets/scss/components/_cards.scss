@@ -17,19 +17,30 @@
 */
 
 .card {
-    background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.25);
-    display: flex;
+    background-color: rgba($color-light, 0.5);
+    box-shadow: 0 0 0.5rem 0 rgba($color-dark, 0.25);
     border-radius: 3rem;
+    box-sizing: border-box;
+    
     margin: 2rem 0 2rem 0;
     height: 100%;
+    
+    & > * {
+      margin: 2rem;
+    }
+  }
+  
+  .card-split {
+    @extend .card;
+    display: flex;
 
     & > * {
       margin: 2rem;
     }
 
+
     .content {
-      box-shadow: 0 0rem 0.5rem 0 rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0rem 0.5rem 0 rgba($color-dark, 0.25);
       border-radius: 1rem;
       overflow: hidden;
       display: block;
@@ -59,21 +70,21 @@
 // Card variants
 .card-third {
     @include card-content-width(3);
-    @extend .card;
+    @extend .card-split;
 }
 
 .card-quarter {
     @include card-content-width(4);
-    @extend .card;
+    @extend .card-split;
 }
 
 .card-fifth { 
     @include card-content-width(5);
-    @extend .card;
+    @extend .card-split;
 }
 
 .card-sixth {
     @include card-content-width(6);
-    @extend .card;
+    @extend .card-split;
 }
 

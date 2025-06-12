@@ -1,6 +1,7 @@
 ---
 featured: true
 date: "2023-11-23"
+title: "LLMímir"
 description: |
   ### LLMímir: So, GPT-4, how well do you speak Old Norse?
   ##### Sean Brynjólfsson

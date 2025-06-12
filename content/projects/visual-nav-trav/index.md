@@ -1,6 +1,7 @@
 ---
 featured: true
 date: "2023-12-15"
+title: "Visual Navigation with Traversability Priors"
 description: |
   ### Visual Navigation with Traversability Priors
   ##### Sean Brynjólfsson\*, [William Pinstrup Huey\*](https://willhuey.com/)

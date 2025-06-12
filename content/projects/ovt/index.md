@@ -1,6 +1,7 @@
 ---
 featured: true
 date: "2023-08-23"
+title: "Open-Vocabulary Traversability"
 description: |
   ### Let it SIMmer / Open-Vocabulary Traversability
   ##### Sean Brynjólfsson\*, [William Pinstrup Huey\*](https://willhuey.com/)

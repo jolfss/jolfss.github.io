@@ -1,6 +1,7 @@
 ---
 featured: true
 date: "2022-10-15"
+title: "Fractal Raytracer"
 description: |
   ### Fractal Raytracer
   ##### Sean Brynjólfsson\*, Jack Otto\*

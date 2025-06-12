@@ -1,6 +1,7 @@
 ---
 featured: false
 date: "2025-01-25"
+title: "Rigiditree"
 description: |
   ### Rigiditree
   ##### Sean Brynjólfsson

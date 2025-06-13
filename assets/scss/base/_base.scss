@@ -25,6 +25,6 @@ body {
         linear-gradient(rgba($color-dark, $grid-opacity) $grid-thickness, transparent .1rem),
         linear-gradient(90deg, rgba($color-dark, $grid-opacity) $grid-thickness, transparent .1rem);
     background-size: 2rem 2rem;
-    background-position: calc(50% - 0.05rem) calc(50% -0.05rem);
+    background-position: calc(50% - #{$grid-thickness}/2) calc(-#{$grid-thickness}/2);
 
 }

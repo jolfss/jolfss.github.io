@@ -1,8 +1,8 @@
-@mixin card-content-width($divisor) {
-  .content {
+@mixin split-lr($divisor) {
+  .left {
     flex: 0 1 calc(100% / #{$divisor});
   }
-  .markdown {
+  .right {
     flex: 0 1 calc(100% - (100% / #{$divisor}) - 2rem);
   }
 }

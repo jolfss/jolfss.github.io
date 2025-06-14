@@ -12,3 +12,12 @@
 @import 'components/cards';
 
 @import 'pages/home';
+
+.test-page {
+    .split-lr {
+        display: flex;
+        @include split-lr(3);
+        .left {background-color: red;}
+        .right {background-color: blue;}
+    }
+}

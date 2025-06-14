@@ -1,90 +1,59 @@
-/*
-    The card component.
-     .----------------------------------.
-    |.content    |.markdown             |
-    |   ._____.  |                      |        
-    |  | Img. |  |  Text.               |
-    |  |      |  |                      |
-    |  |------|  |                      |
-    |  | Img. |  |                      |
-    |  |      |  |                      |
-    |  |------|  |                      |
-    |  | etc. |  |                      |
-    |  *______*  |                      |
-    |            |                      |
-    |            |                      |
-    *____________|______________________*
-*/
 
 .card {
-    background-color: rgba($color-light, 0.5);
+    background-color: rgba($color-light, 0.75);
     box-shadow: 0 0 0.5rem 0 rgba($color-dark, 0.25);
     border-radius: 3rem;
     box-sizing: border-box;
     
     margin: 2rem 0 2rem 0;
     height: 100%;
-    
-    & > * {
-      margin: 2rem;
-    }
+    padding: 2rem;
   }
   
-  .card-split {
+.card-split {
     @extend .card;
     display: flex;
 
-    & > * {
-      margin: 2rem;
+    .left {
+        box-shadow: 0 0rem 0.5rem 0 rgba($color-dark, 0.25);
+        border-radius: 1rem;
+        overflow: hidden;
+        height: fit-content;
+        transition: transform 0.3s ease;
+
+        & > img {
+            width: 100%;
+            display: block;
+        }
     }
 
-
-    .content {
-      box-shadow: 0 0rem 0.5rem 0 rgba($color-dark, 0.25);
-      border-radius: 1rem;
-      overflow: hidden;
-      display: block;
-      height: fit-content;
-      max-height: 100%;
-      margin-right:0rem;
-      transition: transform 0.3s ease;
-
-      & > img {
-        height: auto;
-        width: 100%;
-        object-fit: cover;
-        display: block;
-      }
+    &:hover .left {
+        transform: rotate(-2deg) translate(-5px, -5px);
     }
 
-    &:hover .content {
-      transform: rotate(-2deg) translate(-5px, -5px);
-    }
-
-    .markdown {
-      transition: transform 0.3s ease;
-      padding-right: 1rem;
+    .right {
+        padding: 0 0 0 2rem;
     }
 }
 
 // Card variants
 .card-third {
-    @include card-content-width(3);
+    @include split-lr(3);
     @extend .card-split;
 }
 
-.card-quarter {
-    @include card-content-width(4);
+.card-fourth {
+    @include split-lr(4);
     @extend .card-split;
 }
 
 .card-fifth { 
-    @include card-content-width(5);
+    @include split-lr(5);
     @extend .card-split;
 }
 
 .card-sixth {
-    @include card-content-width(6);
+    @include split-lr(6);
     @extend .card-split;
 }
 

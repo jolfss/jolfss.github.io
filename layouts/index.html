@@ -1,15 +1,24 @@
 {{/* This content will be injected into the baseof.html template */}}
 {{ define "main" }}
     <!-- welcome text and portrait -->
-    <div class="home-welcome rem-height-ceil-js">
-        <div class="container-box">
+    <div class="home-welcome">
+        <div class="container-card rem-height-ceil-js">
             <h1>{{ .Params.title }}</h1>
+            <!-- enumerate the web pages in the site -->
+            <div class="box" style="padding: 0; margin-bottom: 2rem;">
+                <nav style="display: flex; gap: 1rem; justify-content: left;">
+                    <a href="/" class="tag">Home</a>
+                    <a href="/projects" class="tag">Projects</a>
+                    <a href="/blog" class="tag">Blog</a>
+                    <a href="/pebbles" class="tag">Pebbles</a>
+                </nav>
+            </div>
             <div class="split-lr-3">    
-                <div class="left container-squircle live-nudge">
+                <div class="container-squircle live-nudge">
                     <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
                 </div>
-                <div class="right container-box">
-                    {{ .Params.welcome_text | .RenderString (dict "display" "block") }}
+                <div class="container-box">
+                    <h5>{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
                 </div>
             </div>
         </div>
@@ -28,7 +37,7 @@
         <div class="home-projects rem-height-ceil-js">
             {{ $page := . }}
             <div class="container-card split-lr-5">
-                <div class="left container-squircle live-nudge">
+                <div class="container-squircle live-nudge">
                     {{ range .Params.media }}
                         <img 
                             src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
@@ -36,10 +45,10 @@
                         >
                     {{ end }}
                 </div>
-                <div class="right container-box">
+                <div class="container-box">
                     {{ .Params.description | .RenderString (dict "display" "block") }}
                     <div style="text-align: right;">
-                        <h6 style="margin: 0; line-height: 0"><em>{{ .Params.Date | time.Format "2/1/2006" }}</em></h6>
+                        <h6 style="margin: 0; line-height: 0"><em>{{ .Params.Date | time.Format "2006/1/2" }}</em></h6>
                     </div>
                 </div>
             </div>

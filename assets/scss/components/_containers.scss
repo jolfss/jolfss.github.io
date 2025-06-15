@@ -2,8 +2,24 @@
     Formatting for containers.
 */
 
+.tag {
+    color: $color-dark;
+    background: $color-light; 
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0.5rem 0 rgba($color-dark, 0.25);
+    font-weight: bold;
+
+    &:hover {
+        color: $color-light;    
+        background: $color-dark;
+        text-decoration: none;
+        padding: 0.5rem 2rem;
+    }
+}
+
 .box {
-    height: 100%;
     padding: 2rem;
     box-sizing: border-box;
 }
@@ -13,6 +29,7 @@
     background-color: rgba($color-light, 0.75);
     box-shadow: 0 0 0.5rem 0 rgba($color-dark, 0.25);
     border-radius: 3rem;
+    margin: 2rem 0;
   }
 
 .container-squircle {

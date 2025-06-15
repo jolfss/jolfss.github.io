@@ -2,7 +2,7 @@
 date: 2025-06-07
 
 # meta
-title: "Sean Brynjolfsson's Home Page"
+title: "Sean Brynjólfsson"
 description: "Sean's heap of projects & ramblings in Computer Science, with special affinity for Vision, Graphics, Robotics, and Agricultural Technology."  
 # end meta    
 

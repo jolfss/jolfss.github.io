@@ -2,10 +2,10 @@
     Formatting for containers.
 */
 
-.tag {
+.container-tag {
     color: $color-dark;
     background: $color-light; 
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
     box-shadow: 0 0 0.5rem 0 rgba($color-dark, 0.25);
@@ -15,7 +15,7 @@
         color: $color-light;    
         background: $color-dark;
         text-decoration: none;
-        padding: 0.5rem 2rem;
+        padding: 0.25rem 2rem;
     }
 }
 

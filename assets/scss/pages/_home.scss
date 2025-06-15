@@ -3,5 +3,24 @@
 */
 
 .page-home {
-    //
+
+    .home-welcome-text-p {
+        @extend h5;
+
+        p {
+            margin-bottom: 2rem;
+        }
+    
+        p:last-child {
+            margin-bottom: 0rem;
+        }
+    }
+
+    
+    .home-welcome-text-strong {
+        * > strong {
+            font-size: 2rem;
+        }
+    }
+
 }

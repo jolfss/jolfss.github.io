@@ -10,7 +10,7 @@ quote: “Practice any art ... no matter how well or badly, not to get money and
 quote_author: "Kurt Vonnegut"
 
 welcome_text: |
-    **Hi! I'm Sean**, I study Computer Science @ Cornell University. This page summarizes my undergraduate work in computer graphics/vision, robotics, and simulation.
+    **Hi! I'm Sean,** I study Computer Science @ Cornell University. This page summarizes my undergraduate work in computer graphics/vision, robotics, and simulation.
 
     I'm also a pianist/composer, painter, hockey player, fly fisher, Old Norse/Latin poetry enthusiast, graphic designer, and soon-to-be figure skater!
 

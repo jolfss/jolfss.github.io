@@ -5,21 +5,19 @@
         <div class="container-card rem-height-ceil-js">
             <h1>{{ .Params.title }}</h1>
             <!-- enumerate the web pages in the site -->
-            <div class="box" style="padding: 0; margin-bottom: 2rem;">
+            <div class="box" style="padding: 0; margin-bottom: 1.25rem;">
                 <nav style="display: flex; gap: 1rem; justify-content: left;">
-                    <a href="/" class="tag">Home</a>
-                    <a href="/projects" class="tag">Projects</a>
-                    <a href="/blog" class="tag">Blog</a>
-                    <a href="/pebbles" class="tag">Pebbles</a>
+                    <a href="/" class="container-tag">Home</a>
+                    <a href="/projects" class="container-tag">Projects</a>
+                    <a href="/blog" class="container-tag">Blog</a>
+                    <a href="/pebbles" class="container-tag">Pebbles</a>
                 </nav>
             </div>
             <div class="split-lr-3">    
                 <div class="container-squircle live-nudge">
                     <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
                 </div>
-                <div class="container-box">
-                    <h5>{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
-                </div>
+                <h5 class="home-welcome-text-p home-welcome-text-strong">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
             </div>
         </div>
     </div>
@@ -45,7 +43,7 @@
                         >
                     {{ end }}
                 </div>
-                <div class="container-box">
+                <div>
                     {{ .Params.description | .RenderString (dict "display" "block") }}
                     <div style="text-align: right;">
                         <h6 style="margin: 0; line-height: 0"><em>{{ .Params.Date | time.Format "2006/1/2" }}</em></h6>

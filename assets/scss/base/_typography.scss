@@ -1,51 +1,56 @@
 /*
     Harmonize fonts/text-formatting across the site.
 */
+$font-weight-black:     800;
+$font-weight-bold:      700;
+$font-weight-semibold:  600;
+$font-weight-normal:    400;
+$font-weight-light:     300;
 
-$font-weight-normal: 400;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
+$font-size-h1:  3rem;
+$font-height-h1:2rem;
+$font-weight-h1:$font-weight-black;
+$font-family-h1:$font-tilt-warp;
 
-// Use a modular scale for font sizes
-$font-size-h1: 3.0rem;
-$font-size-h2: 2.5rem;
-$font-size-h3: 2.0rem;
-$font-size-h4: 1.8rem;
-$font-size-h5: 1.6rem;
-$font-size-h6: 1.4rem;
-$font-size-p: 1.2rem;
+$font-size-h2:  2.5rem;
+$font-height-h2:2rem;
+$font-weight-h2:$font-weight-bold;
 
+$font-size-h3:  2.0rem;
+$font-height-h3:2rem;
+$font-weight-h3:$font-weight-bold;
+
+$font-size-h4:  1.75rem;
+$font-height-h4:2rem;
+$font-weight-h4:$font-weight-semibold;
+
+$font-size-h5:  1.5rem;
+$font-height-h5:2rem;
+$font-weight-h5:$font-weight-semibold;
+
+$font-size-h6:  1.25rem;
+$font-height-h6:2rem;
+$font-weight-h6:$font-weight-semibold;
+
+// Set default font settings
 * {
-  font-size: $font-size-p;
-  line-height: $font-size-p + 0.1rem;
   font-family: $font-atkinson-hyperlegible-next;
+  font-size: 1rem;
   color: $color-dark;
 }
 
-p {
-  text-align: justify;
+// Enumerate the fonts h1-h6
+$font-sizes: (1: $font-size-h1, 2: $font-size-h2, 3: $font-size-h3, 4: $font-size-h4, 5: $font-size-h5, 6: $font-size-h6);
+$font-heights: (1: $font-height-h1,2: $font-height-h2,3: $font-height-h3,4: $font-height-h4,5: $font-height-h5,6: $font-height-h6);
+$font-weights: (1: $font-weight-h1,2: $font-weight-h2,3: $font-weight-h3,4: $font-weight-h4,5: $font-weight-h5,6: $font-weight-h6);
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: map-get($font-sizes, $i);
+    line-height: map-get($font-heights, $i);
+    font-weight: map-get($font-weights, $i);
+  }
 }
 
-h1,h2,h3,h4,h5,h6,p {
-  margin-bottom: 1rem;
-}
-
-h1, h2, h3        { 
-  margin-top: 0.2rem;
-  font-family: $font-tilt-warp;
-  font-weight: $font-weight-bold;
-}
-h4, h5, h6 { 
-  font-family: $font-plus-jakarta;
-  font-weight: $font-weight-semibold;
-}
-
-h1 { font-size: $font-size-h1; line-height: $font-size-h1 + 0.1rem; }
-h2 { font-size: $font-size-h2; line-height: $font-size-h2 + 0.1rem; }
-h3 { font-size: $font-size-h3; line-height: $font-size-h3 + 0.1rem; }
-h4 { font-size: $font-size-h4; line-height: $font-size-h4 + 0.1rem; }
-h5 { font-size: $font-size-h5; line-height: $font-size-h5 + 0.1rem; }
-h6 { font-size: $font-size-h6; line-height: $font-size-h6 + 0.1rem; }
 
 em {
   font-style: italic;

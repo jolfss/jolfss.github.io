@@ -1,14 +1,16 @@
 {{/* This content will be injected into the baseof.html template */}}
 {{ define "main" }}
-
     <!-- welcome text and portrait -->
-    <div class="rem-resize-container">
-        <div class="card-third welcome-card">
-            <div class="left">
-                <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
-            </div>
-            <div class="right">
-                {{ .Params.welcome_text | .RenderString (dict "display" "block") }}
+    <div class="home-welcome rem-height-ceil-js">
+        <div class="container-box">
+            <h1>{{ .Params.title }}</h1>
+            <div class="split-lr-3">    
+                <div class="left container-squircle live-nudge">
+                    <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
+                </div>
+                <div class="right container-box">
+                    {{ .Params.welcome_text | .RenderString (dict "display" "block") }}
+                </div>
             </div>
         </div>
     </div>
@@ -23,10 +25,10 @@
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 
         }}
-        <div class="rem-resize-container" style="margin: 2rem 0 2rem 0;">
-            <div class="card-fifth">
-                {{ $page := . }}
-                <div class="left">
+        <div class="home-projects rem-height-ceil-js">
+            {{ $page := . }}
+            <div class="container-card split-lr-5">
+                <div class="left container-squircle live-nudge">
                     {{ range .Params.media }}
                         <img 
                             src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
@@ -34,7 +36,7 @@
                         >
                     {{ end }}
                 </div>
-                <div class="right">
+                <div class="right container-box">
                     {{ .Params.description | .RenderString (dict "display" "block") }}
                     <div style="text-align: right;">
                         <h6 style="margin: 0; line-height: 0"><em>{{ .Params.Date | time.Format "2/1/2006" }}</em></h6>

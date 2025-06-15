@@ -12,7 +12,10 @@
     </head>
     <body class="{{ if .IsHome }}page-home{{ else }}page-{{ .Section }}{{ end }}">
         <div>
+            {{ if not .IsHome }}
+            <!-- We use a custom header for the home page which is defined in its main.html -->
             {{ partial "header.html" . }}
+            {{ end }}
 
             <main>
                 {{ block "main" . }}{{ end }}
@@ -21,7 +24,7 @@
             {{ partial "footer.html" . }}
 
             <!-- Add the resizing script here; NOTE I don't know what js.Build does -->
-            {{ $remResizeScript := resources.Get "js/rem-resize-container.js" | js.Build }}
+            {{ $remResizeScript := resources.Get "js/rem-height-ceil.js" | js.Build }}
             {{ if $remResizeScript }}
                 <script src="{{ $remResizeScript.RelPermalink }}"></script>
             {{ end }}

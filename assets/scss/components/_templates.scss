@@ -1,0 +1,10 @@
+/*
+    Formatting for subdividing containers.
+*/
+
+// enumerate some split-lr classes
+@for $i from 2 through 6 {
+    .split-lr-#{$i} {
+        @include split-lr($i);
+    }
+  }

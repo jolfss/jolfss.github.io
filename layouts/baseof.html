@@ -12,10 +12,10 @@
     </head>
     <body class="{{ if .IsHome }}page-home{{ else }}page-{{ .Section }}{{ end }}">
         <div>
-            {{ if not .IsHome }}
+            <!--  if not .IsHome  -->
             <!-- We use a custom header for the home page which is defined in its main.html -->
             {{ partial "header.html" . }}
-            {{ end }}
+             <!-- end  -->
 
             <main>
                 {{ block "main" . }}{{ end }}

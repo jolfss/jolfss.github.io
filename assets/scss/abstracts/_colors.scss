@@ -4,10 +4,12 @@
 
 $grid-opacity: 0.15;
 $grid-thickness: 0.1rem;
-$color-dark: rgb(0, 42, 94);
-$color-light-3: rgb(255, 249, 227);
-$color-light-2: rgb(178, 184, 181);
-$color-light: hsl(0,0,100%)
 
+// Light Theme
+$color-light: hsl(0,0,100%);
+$color-hyperlink: #0b75e6; 
+$color-hyperlink-hover: #df00c9;
+
+$color-dark: rgb(0, 42, 94);
 // $color-light: rgb(26, 30, 44);
 // $color-dark: rgb(176, 174, 166);

@@ -19,33 +19,33 @@ $font-weight-semibold:  600;
 $font-weight-normal:    400;
 $font-weight-light:     300;
 
-$font-size-h1:  3rem;
-$font-height-h1:2rem;
+$font-size-h1:  2.5rem;
+$font-height-h1:2.75rem;
 $font-weight-h1:$font-weight-black;
 $font-family-h1:$font-tilt-warp;
 
-$font-size-h2:  2.5rem;
-$font-height-h2:2rem;
+$font-size-h2:  2rem;
+$font-height-h2:2.25rem;
 $font-weight-h2:$font-weight-bold;
 $font-family-h2:$font-tilt-warp;
 
-$font-size-h3:  2.0rem;
-$font-height-h3:2rem;
+$font-size-h3:  1.6rem;
+$font-height-h3:1.75rem;
 $font-weight-h3:$font-weight-bold;
 $font-family-h3:$font-tilt-warp;
 
-$font-size-h4:    1.75rem;
-$font-height-h4:  1.75rem;
+$font-size-h4:    1.4rem;
+$font-height-h4:  1.5rem;
 $font-weight-h4:$font-weight-semibold;
 $font-family-h4:$font-plus-jakarta;
 
-$font-size-h5:  1.5rem;
-$font-height-h5:1.75rem;
+$font-size-h5:  1.2rem;
+$font-height-h5:1.5rem;
 $font-weight-h5:$font-weight-semibold;
 $font-family-h5: $font-plus-jakarta;
 
-$font-size-h6:  1.25rem; 
-$font-height-h6:1.75rem;
+$font-size-h6:  1.0rem; 
+$font-height-h6:1.25rem;
 $font-weight-h6:$font-weight-semibold;
 $font-family-h6:$font-plus-jakarta;
 
@@ -53,10 +53,10 @@ $font-family-h6:$font-plus-jakarta;
 h1,h2,h3,h4,h5,h6,p,li{
   font-family: $font-atkinson-hyperlegible-next;
   font-weight: $font-weight-normal;
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.4rem;
   color: $color-dark;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 // Enumerate the fonts h1-h6
@@ -70,7 +70,7 @@ $font-families: (1: $font-family-h1,2: $font-family-h2,3: $font-family-h3,4: $fo
     line-height: map-get($font-heights, $i);
     font-weight: map-get($font-weights, $i);
     font-family: map-get($font-families, $i);
-    // margin-bottom: calc(#{map-get($font-heights, $i)}/2) ;
+    margin-bottom: calc(#{map-get($font-heights, $i)}/2) ;
   }
 }
 
@@ -93,12 +93,12 @@ em {
 }
 
 a {
-  color: #0b75e6; 
+  color: $color-hyperlink; 
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
-    color: #df00c9;
+    color: $color-hyperlink-hover;
   }
 }
 

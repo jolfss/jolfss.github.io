@@ -3,4 +3,20 @@
 */
 
 .site-header {
+    margin: 2rem 0 0 0;
+
+    nav {
+        display: flex; 
+        gap: 1rem; 
+        justify-content: left; 
+    }
+
+
+    .container-tag {
+        padding: 0.5rem 1rem;
+        margin:0;
+    }
+    .container-tag:hover {
+        padding: 0.5rem 2rem;
+    }
 }

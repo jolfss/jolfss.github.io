@@ -15,15 +15,26 @@ img, picture, video, canvas, svg {
 }
 
 body {
-    max-width: 62rem;
+    max-width: 58rem;
     margin-left: auto;
     margin-right: auto;
 
     //grid paper background
     background-color: $color-light;
     background-image: 
-        linear-gradient(rgba($color-dark, $grid-opacity) $grid-thickness, transparent .1rem),
-        linear-gradient(90deg, rgba($color-dark, $grid-opacity) $grid-thickness, transparent .1rem);
+        repeating-linear-gradient(
+          to bottom, 
+          rgba($color-dark, $grid-opacity) 0, 
+          rgba($color-dark, $grid-opacity) $grid-thickness, 
+          transparent $grid-thickness, 
+          transparent 2rem 
+        ),
+        repeating-linear-gradient(
+          to right, 
+          rgba($color-dark, $grid-opacity) 0, 
+          rgba($color-dark, $grid-opacity) $grid-thickness, 
+          transparent $grid-thickness, 
+          transparent 2rem);
     background-size: 2rem 2rem;
     background-position: calc(50% - #{$grid-thickness}/2) calc(-#{$grid-thickness}/2);
 

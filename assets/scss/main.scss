@@ -1,6 +1,6 @@
 @import 'base/reset';
 
-@import 'abstracts/variables';
+@import 'abstracts/colors';
 @import 'abstracts/mixins';
 
 @import 'base/base';
@@ -14,12 +14,3 @@
 @import 'components/live';
 
 @import 'pages/home';
-
-.test-page {
-    .split-lr {
-        display: flex;
-        @include split-lr(3);
-        .left {background-color: red;}
-        .right {background-color: blue;}
-    }
-}

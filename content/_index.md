@@ -10,9 +10,9 @@ quote: “Practice any art ... no matter how well or badly, not to get money and
 quote_author: "Kurt Vonnegut"
 
 welcome_text: |
-    **Hi! I'm Sean,** I study Computer Science @ Cornell University. This page summarizes my undergraduate work in computer graphics/vision, robotics, and simulation.
+    **Hi! I'm Sean,** I recently joined [A10 Networks](https://www.a10networks.com/) to work on security, optimization, and red-teaming for Large Language Models! I'll soon be based in San José, happy to get in touch!
 
-    I'm also a pianist/composer, painter, hockey player, fly fisher, Old Norse/Latin poetry enthusiast, graphic designer, and soon-to-be figure skater!
+    I graduated from [Cornell University](https://cis.cornell.edu/) ('25) with a B.S. in Computer Science, where I focused on graphics, computer vision, robotics, and agricultural technology. I was a member of [Prof. Donald Greenberg]()'s lab and also his head TA for his course [*Visual Imaging in the Electronic Age*](https://classes.cornell.edu/browse/roster/FA24/class/CS/1620). I was also a TA for [*Deep Learning*](https://classes.cornell.edu/browse/roster/SP25/class/CS/4782) for Profs. Killian Weinberger and Jennifer Sun.
 
 portrait: "latrabjarg.jpg"
 portrait_alt_text: "Sean in a blue and black Icelandic lopapeysa at Látrabjarg."

@@ -13,10 +13,6 @@ $font-tilt-warp: "Tilt Warp", sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 $font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
 
-// General Sans - Modern geometric sans-serif
-@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@300;400;500;600;700;800&display=swap');
-
-$font-general-sans: "General Sans", sans-serif;
 $font-weight-black:     800;
 $font-weight-bold:      700;
 $font-weight-semibold:  600;
@@ -39,28 +35,28 @@ $font-weight-h3:$font-weight-bold;
 $font-family-h3:$font-tilt-warp;
 
 $font-size-h4:    1.75rem;
-$font-height-h4:  2rem;
+$font-height-h4:  1.75rem;
 $font-weight-h4:$font-weight-semibold;
 $font-family-h4:$font-plus-jakarta;
 
 $font-size-h5:  1.5rem;
-$font-height-h5:2rem;
+$font-height-h5:1.75rem;
 $font-weight-h5:$font-weight-semibold;
 $font-family-h5: $font-plus-jakarta;
 
 $font-size-h6:  1.25rem; 
-$font-height-h6:2rem;
+$font-height-h6:1.75rem;
 $font-weight-h6:$font-weight-semibold;
 $font-family-h6:$font-plus-jakarta;
 
 // Set default font settings
-h1,h2,h3,h4,h5,h6,p,li,a {
+h1,h2,h3,h4,h5,h6,p,li{
   font-family: $font-atkinson-hyperlegible-next;
   font-weight: $font-weight-normal;
   font-size: 1rem;
   line-height: 1.25rem;
   color: $color-dark;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 // Enumerate the fonts h1-h6
@@ -74,17 +70,30 @@ $font-families: (1: $font-family-h1,2: $font-family-h2,3: $font-family-h3,4: $fo
     line-height: map-get($font-heights, $i);
     font-weight: map-get($font-weights, $i);
     font-family: map-get($font-families, $i);
-    margin-bottom: calc(#{map-get($font-sizes, $i)}/2) ;
+    // margin-bottom: calc(#{map-get($font-heights, $i)}/2) ;
   }
 }
 
+p {
+  text-align: justify;
+}
+
+ul, ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+
+}
+
+li {
+  list-style-type: disc;
+}
 
 em {
   font-style: italic;
 }
 
 a {
-  color: #007bff; 
+  color: #0b75e6; 
   text-decoration: none;
 
   &:hover {

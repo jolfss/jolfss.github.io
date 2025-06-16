@@ -6,6 +6,7 @@
     .home-welcome-text {
         p {
             @extend h6;
+            margin-bottom: 1.25rem;
         }
 
         p:last-child {

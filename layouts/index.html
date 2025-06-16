@@ -3,9 +3,14 @@
     <!-- welcome text and portrait -->
     <div class="home-welcome">
         <div class="container-card rem-height-ceil-js">
-            <h1>{{ .Params.title }}</h1>
+            <div style="display:flex; justify-content:space-between;">
+                <h1>{{ .Params.title }}</h1>
+                <div>
+                    <h6>Bismarck, ND <b>→</b> Ithaca, NY <b>→</b> San José, CA</h6>
+                </div>
+            </div>
             <!-- enumerate the web pages in the site -->
-            <div class="box" style="padding: 0; margin-bottom: 0.5rem;">
+            <div class="box" style="padding: 1rem 0">
                 <nav style="display: flex; gap: 1rem; justify-content: left;">
                     <a href="/" class="container-tag">Home</a>
                     <a href="/projects" class="container-tag">Projects</a>
@@ -32,9 +37,9 @@
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 
         }}
-        <div class="home-projects rem-height-ceil-js">
+        <div class="home-projects">
             {{ $page := . }}
-            <div class="container-card split-lr-5">
+            <div class="container-card split-lr-5 rem-height-ceil-js">
                 <div class="container-squircle live-nudge">
                     {{ range .Params.media }}
                         <img 
@@ -45,9 +50,6 @@
                 </div>
                 <div>
                     {{ .Params.description | .RenderString (dict "display" "block") }}
-                    <div style="text-align: right;">
-                        <h6 style="margin: 0; line-height: 0"><em>{{ .Params.Date | time.Format "2006/1/2" }}</em></h6>
-                    </div>
                 </div>
             </div>
         </div>

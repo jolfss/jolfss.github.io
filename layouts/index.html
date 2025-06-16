@@ -5,7 +5,7 @@
         <div class="container-card rem-height-ceil-js">
             <h1>{{ .Params.title }}</h1>
             <!-- enumerate the web pages in the site -->
-            <div class="box" style="padding: 0; margin-bottom: 1.25rem;">
+            <div class="box" style="padding: 0; margin-bottom: 0.5rem;">
                 <nav style="display: flex; gap: 1rem; justify-content: left;">
                     <a href="/" class="container-tag">Home</a>
                     <a href="/projects" class="container-tag">Projects</a>
@@ -17,7 +17,7 @@
                 <div class="container-squircle live-nudge">
                     <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
                 </div>
-                <h5 class="home-welcome-text-p home-welcome-text-strong">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
+                <h6 class="home-welcome-text">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
             </div>
         </div>
     </div>

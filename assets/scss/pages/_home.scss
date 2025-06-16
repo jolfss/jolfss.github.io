@@ -2,24 +2,19 @@
     Formatting for the main/home page.
 */
 
-.page-home {
-
-    .home-welcome-text-p {
-        @extend h5;
-
+.page-home {   
+    .home-welcome-text {
         p {
-            margin-bottom: 2rem;
+            @extend h6;
         }
-    
-        p:last-child {
-            margin-bottom: 0rem;
-        }
-    }
 
-    
-    .home-welcome-text-strong {
-        * > strong {
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
             font-size: 2rem;
+            font-weight: $font-weight-black;
         }
     }
 

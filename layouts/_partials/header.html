@@ -1,11 +1,13 @@
 <header>
   <div class="site-header rem-height-ceil-js">
     <div class="header-content">
-      <nav>
-        <a href="{{ .Site.BaseURL }}">Home</a> /
-        <a href="{{ .Site.BaseURL }}projects">Projects</a> /
-        <a href="{{ .Site.BaseURL }}pebbles">Pebbles</a> /
-        <a href="{{ .Site.BaseURL }}test_page">Test_Page</a>
-      </nav>
+      <div class="box" style="padding: 0; margin: 1.25rem 0;">
+        <nav style="display: flex; gap: 1rem; justify-content: left;">
+            <a href="/" class="container-tag">Home</a>
+            <a href="/projects" class="container-tag">Projects</a>
+            <a href="/blog" class="container-tag">Blog</a>
+            <a href="/pebbles" class="container-tag">Pebbles</a>
+        </nav>
+    </div>
   </div>
 </header>

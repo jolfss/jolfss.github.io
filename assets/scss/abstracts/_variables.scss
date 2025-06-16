@@ -2,29 +2,6 @@
     Define global variables {fonts, colors, etc.} for the site.
 */
 
-/*
-    Font Options:
-    - Atkinson Hyperlegible Next
-    - Tilt Warp
-    - Plus Jakarta Sans
-    - General Sans
-*/
-
-// Atkinson Hyperlegible Next
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&display=swap');
-$font-atkinson-hyperlegible-next: "Atkinson Hyperlegible Next", sans-serif;
-
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&family=Yeseva+One&display=swap');
-$font-tilt-warp: "Tilt Warp", sans-serif;
-
-// Plus Jakarta Sans - Clean modern sans-serif
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-$font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
-
-// General Sans - Modern geometric sans-serif
-@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@300;400;500;600;700&display=swap');
-$font-general-sans: "General Sans", sans-serif;
-
 $grid-opacity: 0.15;
 $grid-thickness: 0.1rem;
 $color-dark: rgb(0, 42, 94);

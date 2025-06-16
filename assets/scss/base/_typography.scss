@@ -1,6 +1,22 @@
 /*
     Harmonize fonts/text-formatting across the site.
 */
+
+// Atkinson Hyperlegible Next
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&display=swap');
+$font-atkinson-hyperlegible-next: "Atkinson Hyperlegible Next", sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp:wght@300;400;500;600;700;800&display=swap');
+$font-tilt-warp: "Tilt Warp", sans-serif;
+
+// Plus Jakarta Sans - Clean modern sans-serif
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+$font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
+
+// General Sans - Modern geometric sans-serif
+@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@300;400;500;600;700;800&display=swap');
+
+$font-general-sans: "General Sans", sans-serif;
 $font-weight-black:     800;
 $font-weight-bold:      700;
 $font-weight-semibold:  600;
@@ -15,39 +31,50 @@ $font-family-h1:$font-tilt-warp;
 $font-size-h2:  2.5rem;
 $font-height-h2:2rem;
 $font-weight-h2:$font-weight-bold;
+$font-family-h2:$font-tilt-warp;
 
 $font-size-h3:  2.0rem;
 $font-height-h3:2rem;
 $font-weight-h3:$font-weight-bold;
+$font-family-h3:$font-tilt-warp;
 
-$font-size-h4:  1.75rem;
-$font-height-h4:2rem;
+$font-size-h4:    1.75rem;
+$font-height-h4:  2rem;
 $font-weight-h4:$font-weight-semibold;
+$font-family-h4:$font-plus-jakarta;
 
 $font-size-h5:  1.5rem;
 $font-height-h5:2rem;
 $font-weight-h5:$font-weight-semibold;
+$font-family-h5: $font-plus-jakarta;
 
-$font-size-h6:  1.25rem;
+$font-size-h6:  1.25rem; 
 $font-height-h6:2rem;
 $font-weight-h6:$font-weight-semibold;
+$font-family-h6:$font-plus-jakarta;
 
 // Set default font settings
-* {
+h1,h2,h3,h4,h5,h6,p,li,a {
   font-family: $font-atkinson-hyperlegible-next;
+  font-weight: $font-weight-normal;
   font-size: 1rem;
+  line-height: 1.25rem;
   color: $color-dark;
+  margin-bottom: 1rem;
 }
 
 // Enumerate the fonts h1-h6
 $font-sizes: (1: $font-size-h1, 2: $font-size-h2, 3: $font-size-h3, 4: $font-size-h4, 5: $font-size-h5, 6: $font-size-h6);
 $font-heights: (1: $font-height-h1,2: $font-height-h2,3: $font-height-h3,4: $font-height-h4,5: $font-height-h5,6: $font-height-h6);
 $font-weights: (1: $font-weight-h1,2: $font-weight-h2,3: $font-weight-h3,4: $font-weight-h4,5: $font-weight-h5,6: $font-weight-h6);
+$font-families: (1: $font-family-h1,2: $font-family-h2,3: $font-family-h3,4: $font-family-h4,5: $font-family-h5,6: $font-family-h6);
 @for $i from 1 through 6 {
   h#{$i} {
     font-size: map-get($font-sizes, $i);
     line-height: map-get($font-heights, $i);
     font-weight: map-get($font-weights, $i);
+    font-family: map-get($font-families, $i);
+    margin-bottom: calc(#{map-get($font-sizes, $i)}/2) ;
   }
 }
 
@@ -64,15 +91,6 @@ a {
     text-decoration: underline;
     color: #df00c9;
   }
-}
-
-ul, ol {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
-
-li {
-  list-style-type: disc;
 }
 
 strong, b {

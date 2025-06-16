@@ -22,7 +22,9 @@
                 <div class="container-squircle live-nudge">
                     <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
                 </div>
-                <h6 class="home-welcome-text">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
+                <div class="subtext-gradient">
+                    <h6 class="home-welcome-text">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
+                </div>
             </div>
         </div>
     </div>
@@ -48,7 +50,7 @@
                         >
                     {{ end }}
                 </div>
-                <div>
+                <div class="subtext-gradient">
                     {{ .Params.description | .RenderString (dict "display" "block") }}
                 </div>
             </div>

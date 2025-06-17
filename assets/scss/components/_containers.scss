@@ -55,4 +55,41 @@
         width: 100%;
         display: block;
     }
+
+    // On mobile, if multiple images, lay them out horizontally and match height
+    @media (max-width: 7000px) {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        align-self: center;
+        width: fit-content;
+        gap: 0rem;
+        > img {
+            width: auto;
+            height: 100%;
+            flex: 0 0 auto;
+            object-fit: contain;
+        }
+    }
+}
+
+// Home projects image stacking
+.home-projects-images {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+// Responsive: on mobile, images stack horizontally and sit above text
+@media (max-width: 7000px) {
+  .split-lr-5 {
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+  .home-projects-images {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 }

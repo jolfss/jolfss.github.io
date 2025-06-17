@@ -28,6 +28,12 @@
             {{ if $remResizeScript }}
                 <script src="{{ $remResizeScript.RelPermalink }}"></script>
             {{ end }}
+
+            <!-- Add the image preview script -->
+            {{ $imagePreviewScript := resources.Get "js/image-preview.js" | js.Build }}
+            {{ if $imagePreviewScript }}
+                <script src="{{ $imagePreviewScript.RelPermalink }}"></script>
+            {{ end }}
         </div>
     </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-featured: false
+featured: true
 date: "2024-05-06"
 title: "Compositional Gaussian Splatting for Construction Sites"
 description: |
@@ -11,6 +11,8 @@ description: |
   We used NVIDIA Omniverse to model our simulated environment and an ANYmal-D equipped with a RGBD camera. One part of our team worked with the Blender-to-Omniverse connector to try and get realistic construction environs for us to simulate.   
 media: 
   - content: "gaussian_seg.png"
+    alt_text: "..."
+  - content: "clickbait.png"
     alt_text: "..."
 links: 
   # - url: ""

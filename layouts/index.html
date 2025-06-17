@@ -39,12 +39,14 @@
         </div>
     </div>
         
-    {{ .Content }}
+    <div class="rem-height-ceil-js">
+        {{ .Content }}
+    </div>
     
     <!-- some projects -->
     <div> 
         <!-- enumerate some projects which are allowed as 'featured', sorted by date -->
-        {{ range first 5 
+        {{ range first 10
             (where 
                 (where .Site.Pages.ByDate.Reverse "Section" "projects") 
             ".Params.featured" true) 

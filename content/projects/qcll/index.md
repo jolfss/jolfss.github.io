@@ -1,5 +1,5 @@
 ---
-featured: false
+featured: true
 date: "2024-08-16"
 title: "Quantitative-Competitive Language Learning"
 description: |

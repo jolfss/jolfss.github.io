@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sean Brynjólfsson on Sean&#39;s Personal Website</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Sean Brynjólfsson on Sean&#39;s Personal Website</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pixel-Swapping Masked Autoencoders</title>
+      <link>http://localhost:1313/projects/pixel-swapping-mae/</link>
+      <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/pixel-swapping-mae/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rigiditree</title>
+      <link>http://localhost:1313/projects/rigiditree/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/rigiditree/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Automatically-Rigged Gaussian Characters</title>
+      <link>http://localhost:1313/projects/grig/</link>
+      <pubDate>Sun, 15 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/grig/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quantitative-Competitive Language Learning</title>
+      <link>http://localhost:1313/projects/qcll/</link>
+      <pubDate>Fri, 16 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/qcll/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Compositional Gaussian Splatting for Construction Sites</title>
+      <link>http://localhost:1313/projects/splat-construction/</link>
+      <pubDate>Mon, 06 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/splat-construction/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Visual Navigation with Traversability Priors</title>
+      <link>http://localhost:1313/projects/visual-nav-trav/</link>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/visual-nav-trav/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLMímir</title>
+      <link>http://localhost:1313/projects/llmimir/</link>
+      <pubDate>Thu, 23 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/llmimir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Open-Vocabulary Traversability</title>
+      <link>http://localhost:1313/projects/ovt/</link>
+      <pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/ovt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fractal Raytracer</title>
+      <link>http://localhost:1313/projects/fractal-tracer/</link>
+      <pubDate>Sat, 15 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/fractal-tracer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test Page</title>
+      <link>http://localhost:1313/test_page/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/test_page/</guid>
+      <description>&lt;h1 id=&#34;test1-test1-test1-test1&#34;&gt;Test1 &lt;em&gt;Test1&lt;/em&gt; &lt;strong&gt;Test1&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Test1&lt;/strong&gt;&lt;/em&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;test2-test2-test2-test2&#34;&gt;Test2 &lt;em&gt;Test2&lt;/em&gt; &lt;strong&gt;Test2&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Test2&lt;/strong&gt;&lt;/em&gt;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;test3-test3-test3-test3&#34;&gt;Test3 &lt;em&gt;Test3&lt;/em&gt; &lt;strong&gt;Test3&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Test3&lt;/strong&gt;&lt;/em&gt;&lt;/h3&gt;&#xA;&lt;h4 id=&#34;test4-test4-test4-test4&#34;&gt;Test4 &lt;em&gt;Test4&lt;/em&gt; &lt;strong&gt;Test4&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Test4&lt;/strong&gt;&lt;/em&gt;&lt;/h4&gt;&#xA;&lt;h5 id=&#34;test5-test5-test5-test5&#34;&gt;Test5 &lt;em&gt;Test5&lt;/em&gt; &lt;strong&gt;Test5&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Test5&lt;/strong&gt;&lt;/em&gt;&lt;/h5&gt;&#xA;&lt;h6 id=&#34;test6-test6-test6-test6&#34;&gt;Test6 &lt;em&gt;Test6&lt;/em&gt; &lt;strong&gt;Test6&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Test6&lt;/strong&gt;&lt;/em&gt;&lt;/h6&gt;&#xA;&lt;p&gt;Testp &lt;em&gt;Testp&lt;/em&gt; &lt;strong&gt;Testp&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;Testp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;&#34;&gt;Citation&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;Code&lt;/code&gt;&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Code Block&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;$LaTeX_{inline}$&lt;/p&gt;&#xA;&lt;p&gt;$$ LaTeX_{Block} $$&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Bullet List&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Sub item&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Sub sub item&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Ordered List 1&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Hello&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Hello&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta name="generator" content="Hugo 0.147.8"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Sean&#39;s heap of projects &amp; ramblings in Computer Science, with special affinity for Vision, Graphics, Robotics, and Agricultural Technology.">
+        <title>Sean Brynjólfsson | My Site</title>
+
+        
+        
+        <link rel="stylesheet" href="/scss/main.min.354cd4569443a2ed0fe4f75a017ce0db66829f8c992c6c9465347d8ff7f3e4e6.css" integrity="sha256-NUzUVpRDou0P5PdaAXzg22aCn4yZLGyUZTR9j/fz5OY=">
+    </head>
+    <body class="page-home">
+        <div>
+            
+            
+            <header>
+    <div class="site-header rem-height-ceil-js">
+        <nav>
+            <a href="/" class="container-tag">Home</a>
+            NOTE: site under construction...
+            
+        </nav>
+    </div>
+</header>
+
+             
+
+            <main>
+                
+    <div class="home-welcome">
+
+        
+        <div class="quote box subtext-gradient rem-height-ceil-js" style="margin:1rem 0;">
+            <p><em>
+                <b>"</b> . . . Practice any art, music, singing, dancing, acting, drawing, painting, sculpting, poetry, 
+                fiction, essays, reportage, no matter how well or badly, not to get money and fame, 
+                but to experience becoming, to find out what's inside you, to make your soul grow. <b>"</b>
+            — Kurt Vonnegut
+            </em></p> 
+        </div>
+
+        
+        <div class="container-card rem-height-ceil-js" style="margin-top:1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center">
+                <h1>Sean Brynjólfsson</h1>
+                <h6>Bismarck, ND <b>→</b> Ithaca, NY <b>→</b> San José, CA</h6>
+            </div>
+            
+            
+            <div class="split-lr-3">    
+                <div class="container-squircle live-nudge">
+                    <img src="latrabjarg.jpg" alt="Sean wearing a blue and black hand-knit lopapeysa on a sunny summer day at Látrabjarg.">
+                </div>
+                <div class="subtext-gradient">
+                    <h6 class="home-welcome-text"><p><strong>Hi! I&rsquo;m Sean,</strong> I recently joined <a href="https://www.a10networks.com/">A10 Networks</a> to work on security, optimization, and red-teaming for Large Language Models! I&rsquo;ll soon be based in San José, happy to get in touch!</p>
+<p>I&rsquo;m also a pianist/composer, hockey player, painter, graphic designer, fly-fisherman, Old Norse/Classical Latin poetry enthusiast, and soon-to-be figure skater.</p>
+<p>I graduated from <a href="https://cis.cornell.edu/">Cornell University</a> (&lsquo;25) with a B.S. in Computer Science, where I focused on graphics, computer vision, robotics, and agricultural technology. I was a member of <a href="">Prof. Donald Greenberg</a>&rsquo;s lab and also his head TA for his course <a href="https://classes.cornell.edu/browse/roster/FA24/class/CS/1620"><em>Visual Imaging in the Electronic Age</em></a>. I was also a TA for <a href="https://www.cs.cornell.edu/courses/cs4782/2025sp/"><em>Deep Learning</em></a> for Profs. Killian Weinberger and Jennifer Sun.</p>
+</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="rem-height-ceil-js">
+        <h2 id="select-projects">Select Projects</h2>
+
+    </div>
+    
+    
+    <div> 
+        
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/grig/grig.gif#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/grig/grig2.gif#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="automatically-rigged-gaussian-characters">Automatically-Rigged Gaussian Characters</h3>
+<h5 id="sean-brynjólfsson-justin-tien-smith-evan-zhang">Sean Brynjólfsson*, Justin Tien-Smith*, Evan Zhang*</h5>
+<p>Recently, techniques for solving gaussian splats of dynamic scenes (<a href="https://github.com/JonathonLuiten/Dynamic3DGaussians">Dynamic3DGaussians</a>, 2024) have found success in using local rigidity constraints to enforce spatial and temporal consistency.</p>
+<p>We use this detailed representation and decompose it into the rigid parts and joints which describe their movement. This procedure makes no assumptions about the anatomy of the dynamic entities within the scene and therefore should work equally well for all people, animals, machines&mdash;anything that moves about a discrete set of joints. We&rsquo;re currently implementing the joint solver after getting promising results for our clustering algorithm to find the bones.</p>
+<p>Our final deliverable will be an animation-ready gaussian rig and a portable format for them. Clustering also massively downsizes the storage requirements because local rigidity means gaussians are predictive of their neighbors&mdash;no need to track all of them. We are also developing more visualizations to help understand the limitations of the representation present. In doing so, we have spotted some new failure modes of the original method, like how some regions gradually creep into neighboring regions over time.</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/qcll/qcll.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="quantitative-competitive-language-learning">Quantitative-Competitive Language Learning</h3>
+<h5 id="sean-brynjólfsson">Sean Brynjólfsson</h5>
+<p>This is a toy project aiming to use a LLM as a model-of-language. That might seem redundant, but what I mean by that is I care about the actual distribution over tokens, not the sampling/generative procedure that LLMs are typically synonymous with. Given a distribution of tokens, I compute an approximate branching factor using the perplexity of the distribution and compare it with the user-supplied token probability; this gives a soft estimate for whether or not the model regards the next token as one of the possible continuations of the context preceding it. For example, if the branching factor is 40 but the token&rsquo;s probability is much less than 1/40 there&rsquo;s probably something weird going on.</p>
+<p>What&rsquo;s so competitive about this? Well, my vision is to be able to place users on a distribution that spans from noise, then to language-learners, then natives, then to the model itself. The key is to derive a stable metric which corresponds to &ldquo;yeah, this sentence is plausibly written by a native&rdquo;; something I think is possible if enough care is taken to normalize over the relative probability of equally-viable but not equally-likely tokens. With that, users could get empirical feedback and track their progress as they learn a foreign language and even compete with each other to produce the most or &ldquo;highest quality&rdquo; text.</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/splat-construction/gaussian_seg.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/splat-construction/clickbait.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="compositional-gaussian-splatting-for-construction-sites">Compositional Gaussian Splatting for Construction Sites</h3>
+<h5 id="sean-brynjólfsson-dyllan-hofflich-evan-zhang-daniel-qureshi-natalie-leung">Sean Brynjólfsson*, Dyllan Hofflich*, Evan Zhang*, Daniel Qureshi*, Natalie Leung*</h5>
+<p>We investigate the potential applications of gaussian splatting on construction sites to capture a holsitic digital twin throughout the construction process via legged robots. This project was our collective introduction to gaussian splatting, so a large portion of it is dedicated to a review of currently existing methods. This was a great experience even though we did not acheive our goals.</p>
+<p>We used NVIDIA Omniverse to model our simulated environment and an ANYmal-D equipped with a RGBD camera. One part of our team worked with the Blender-to-Omniverse connector to try and get realistic construction environs for us to simulate.</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/visual-nav-trav/anymal_site.gif#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/visual-nav-trav/mapping.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/visual-nav-trav/visual_trav.jpg#ZgotmplZ'
+                            alt=''
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="visual-navigation-with-traversability-priors">Visual Navigation with Traversability Priors</h3>
+<h5 id="sean-brynjólfsson-william-pinstrup-huey">Sean Brynjólfsson*, <a href="https://willhuey.com/">William Pinstrup Huey*</a></h5>
+<p>Continuing our work with open-vocabulary traversability, we were interested in training smaller models on specific traversability scenarios. Our original model was too large to fit on the ANYmal&rsquo;s NVIDIA Jetson processor and its inference speed was quite slow (~7s). Since we did not experiment with prompts that changed during rollout, we were wasting a lot of compute by preserving its open-vocabulary capabilities. Thus we chose to train a smaller model on the bigger model with a fixed prompt. For example, &ldquo;you are a robot who cannot climb stairs&rdquo;. Model distillation is not so interesting on its own, but being able to do so over an abstract description of traversability is quite useful.</p>
+<p>In this paper, we demonstrate that weak traversability priors can be obtained from large open vocabulary image segmentation models and that they appear to be consistent across environments. We then apply model distillation techniques to train a smaller traversability prediction network capable of real time inference, and demonstrate a heuristic that uses this distilled network to perform obstacle avoidance when roaming freely.</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/llmimir/llmimir_inflection.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/llmimir/llmimir_voices.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="llmímir-so-gpt-4-how-well-do-you-speak-old-norse">LLMímir: So, GPT-4, how well do you speak Old Norse?</h3>
+<h5 id="sean-brynjólfsson">Sean Brynjólfsson</h5>
+<p>Most people aren&rsquo;t aware that Icelandic is GPT-4&rsquo;s second language; but it is. What could this mean for its related, low-resource ancestor Old Norse?</p>
+<p>Old Norse (often called Old Icelandic) is a language which is incredibly similar to modern Icelandic. For that reason, I was interested in investigating how trustworthy it might be for questions on Old Norse grammar and potentially for creative and academic/self-study uses. Would GPT-4 benefit from more exposure to Icelandic or would that bleed into its understanding of Old Norse?</p>
+<p>This paper examines GPT-4 on all Old Norse verbs and their verb forms. The experiment was conducted at a temperature of 0 (since I could not afford to sample multiple responses per form) and with a blank context. This scenario should be nearly deterministic and yield low variance responses.</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/ovt/ovt.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/ovt/ovt_seg.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/ovt/labels.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="let-it-simmer--open-vocabulary-traversability">Let it SIMmer / Open-Vocabulary Traversability</h3>
+<h5 id="sean-brynjólfsson-william-pinstrup-huey">Sean Brynjólfsson*, <a href="https://willhuey.com/">William Pinstrup Huey*</a></h5>
+<p>Generalizing to new and dynamic environments is a significant challenge in mobile robotics. Nowadays, vision-aware models are more prevalent and significantly powerful. These models are capable of producing robust, semantic features that make downstream tasks like navigation significantly easier. Images are rich enough to characterize many cues that geometric information alone does not provide.</p>
+<p>Three implementations comprise our overall method. In total, our system allows for streaming from a robot to a compute node which then answers classification requests from users in either Isaac Sim or Rviz.</p>
+<ul>
+<li><strong>Voxvis</strong>: An extension for NVIDIA Omniverse&rsquo;s Isaac Sim to interface with the voxel segmentations; we also provide a similar accompanying Rviz visualization. Communication between the modules is implemented in ROS, making it suitable for both live, simulated, and replay data.</li>
+<li><strong>OVT</strong>: An open-vocabulary traversability segmentation framework. This is a ros node that processes incoming RGB-D images and extracts embeddings for each pixel and then bundles it with odometry and pose data from the robot. (We don&rsquo;t collapse the embeddings into a classification yet, we let it SIMmer)</li>
+<li><strong>Voxseg</strong>: A bridge between OVT and Voxvis, Voxseg simultaneously updates the internal voxelized embeddings and handles requests from Voxvis for a particular user-specified, open-vocabulary classification over them.</li>
+</ul>
+<p>We also implemented other helpful tools to generate environments in Omniverse, such as construction sites and forested scenes, (Isaac Stage GitHub). NOTE: This has not been updated to the latest major version of Isaac Sim/Orbit.</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-projects">
+            
+            <div class="container-card split-lr-5 rem-height-ceil-js">
+                <div class="container-squircle live-nudge">
+                    
+                        <img 
+                            src='/projects/fractal-tracer/fractals.jpg#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                        <img 
+                            src='/projects/fractal-tracer/fractals2.png#ZgotmplZ'
+                            alt='...'
+                        >
+                    
+                </div>
+                <div class="subtext-gradient">
+                    <h3 id="fractal-raytracer">Fractal Raytracer</h3>
+<h5 id="sean-brynjólfsson-jack-otto">Sean Brynjólfsson*, Jack Otto*</h5>
+<p>This fractal raytracer was a creative assignment for Cornell&rsquo;s CS4620 graphics course. The premise was simply to take the raytracer we had just completed in a prior assignment and augment it with some new feature. We chose to try generating some constructive solid geometry fractals. The idea is quite simple; our scene is composed of two types of objects: spheres and reentrant spheres. Rays which hit spheres bounce as they would ordinarily for solid geometry, rays which hit a reentrant sphere descend recursively into copies of the scene. We also treat the reentrant spheres as subtractive of the solid spheres they intersect, so rays that leave a subscene won&rsquo;t end up inside solid geometry. If a ray passes through the subscene and doesn&rsquo;t hit either a solid or reentrant primitive, it decrements its recursive depth until it has popped off all the layers it has descended.</p>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+            </main>
+
+            <footer>
+  <div class="site-footer rem-height-ceil-js subtext-gradient">
+      <p style="padding-top:0.5rem">&copy; 2025 Sean Brynjolfsson. All rights reserved. Feel free to copy the theme; 
+        I'll eventually release it as a theme for Hugo after I finish all of the features I want; LaTeX support, 
+      citation generation, blog/project pages,etc..</p>
+  </div>
+</footer>
+
+
+            
+            
+            
+                <script src="/js/rem-height-ceil.js"></script>
+            
+
+            
+            
+            
+                <script src="/js/image-preview.js"></script>
+            
+        </div>
+    </body>
+</html>

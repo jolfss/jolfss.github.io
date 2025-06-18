@@ -2,6 +2,10 @@
     Base rules for formatting elements which are true for all pages.
 */
 
+$grid-opacity: 0.15;
+$grid-thickness: 0.1rem;
+$grid-spacing: 2rem;
+
 // makes sure padding is included when content widths are established
 *::before,
 *::after {
@@ -18,24 +22,32 @@ body {
     max-width: 58rem;
     margin-left: auto;
     margin-right: auto;
-
+    
     //grid paper background
-    background-color: $color-light;
-    background-image: 
+    background-color: white;
+    background-size: $grid-spacing $grid-spacing;
+    background-image:
+        //horizontal
         repeating-linear-gradient(
-          to bottom, 
-          rgba($color-dark, $grid-opacity) 0, 
-          rgba($color-dark, $grid-opacity) $grid-thickness, 
-          transparent $grid-thickness, 
-          transparent 2rem 
+            to bottom,
+            rgba(var(--_color-grid), $grid-opacity) 0,
+            rgba(var(--_color-grid), $grid-opacity) $grid-thickness,
+            transparent $grid-thickness,
+            transparent $grid-spacing
         ),
+        //vertical
         repeating-linear-gradient(
-          to right, 
-          rgba($color-dark, $grid-opacity) 0, 
-          rgba($color-dark, $grid-opacity) $grid-thickness, 
-          transparent $grid-thickness, 
-          transparent 2rem);
-    background-size: 2rem 2rem;
-    background-position: calc(50% - #{$grid-thickness}/2) calc(-#{$grid-thickness}/2);
+            to right,
+            rgba(var(--_color-grid), $grid-opacity) 0,
+            rgba(var(--_color-grid), $grid-opacity) $grid-thickness,
+            transparent $grid-thickness,
+            transparent $grid-spacing
+        );
+    background-position:
+        0 0, //horizontal
+        calc(50% - #{$grid-thickness} / 2) 0; //vertical
+  
+  
+  
 
 }

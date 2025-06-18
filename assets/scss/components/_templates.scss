@@ -2,6 +2,18 @@
     Formatting for subdividing containers.
 */
 
+@mixin split-lr($divisor) {
+    display: flex;
+    flex-direction: row;
+    & > :first-child {
+        flex: 0 1 calc(100% / #{$divisor});
+    }
+    & > :last-child {
+        margin-left: 2rem;
+        flex: 0 1 calc(100% - (100% / #{$divisor}));
+    }
+}
+
 // enumerate some split-lr classes
 @for $i from 2 through 6 {
     .split-lr-#{$i} {

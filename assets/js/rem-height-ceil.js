@@ -17,6 +17,7 @@ const resizeContainers = () => {
     try {
         // Select all the containers that need their height adjusted.
         const containers = document.querySelectorAll('.rem-height-ceil-js');
+        
 
         if (containers.length === 0) {
             // This is not an error, just a state, so a console.log is fine.

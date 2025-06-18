@@ -1,0 +1,73 @@
+/*
+    Panels are UI elements that govern the highest level of the UI; they chunk
+    the page into discrete regions of interest. Panels adapt to the size of the
+    content they contain.
+
+    Invariants: 
+        - Panels are always grid-aligned.
+        - Must guarantee that if the top margin edge is aligned with the grid, 
+        then the bottom margin edge is also aligned with the grid.
+
+    OPTIONS: 
+        - panel-gradient
+        - panel-card
+        - panel-code
+        - panel-math
+*/
+
+/*
+    The panel-base is a base mixin that is used to apply the grid spacing to all panels.
+*/
+@mixin panel-base() {
+    padding: $grid-spacing $grid-spacing 0 $grid-spacing;
+    margin-bottom: $grid-spacing;
+}
+
+/* 
+    The panel-gradient fades from transparent to $bg-color over a vertical distance of $fade-pad
+    and then at the bottom of the panel, fades back out to transparent over the same distance.
+*/
+@mixin panel-gradient($fade-pad, $_bg-color, $bg-opacity:1) {    
+    @include panel-base();
+    background: linear-gradient(
+      to bottom,
+      rgba(#{$_bg-color}, 0) 0%,
+      rgba(#{$_bg-color}, #{$bg-opacity}) $fade-pad,
+      rgba(#{$_bg-color}, #{$bg-opacity}) calc(100% - #{$fade-pad}),
+      rgba(#{$_bg-color}, 0) 100%
+    );
+  }
+
+
+/*
+    The panel-card is a card-like element with a round border and a box-shadow, with an internal
+    padding which matches the grid spacing.
+*/
+@mixin panel-card($bg-color, $shadow-color) {
+    @include panel-base();
+    background-color: $bg-color;
+    box-shadow: 0 0 0.5rem 0 $shadow-color;
+    border-radius: 3rem;
+}
+
+/*
+    The panel-code is a panel that is used to display code.
+    TODO: Style this panel.
+*/
+@mixin panel-code($bg-color, $shadow-color) {
+    @include panel-base();
+    background-color: rgba($bg-color, $bg-opacity);
+    box-shadow: 0 0 0.5rem 0 $shadow-color;
+    border-radius: 3rem;
+}
+
+/*
+The panel-math is a panel that is used to display math.
+TODO: Style this panel.
+*/
+@mixin panel-math($bg-color, $shadow-color) {
+    @include panel-base();
+    background-color: $bg-color;
+    box-shadow: 0 0 0.5rem 0 $shadow-color;
+    border-radius: 3rem;
+}

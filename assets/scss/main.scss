@@ -1,16 +1,17 @@
 @import 'base/reset';
 
-@import 'abstracts/colors';
-@import 'abstracts/mixins';
+@import 'base/themes';
 
 @import 'base/base';
 @import 'base/typography';
 
-@import 'layout/header';
-@import 'layout/footer';
-
 @import 'components/containers';
+@import 'components/panels';
+@import 'components/components';
 @import 'components/templates';
 @import 'components/live';
+
+@import 'layout/header';
+@import 'layout/footer';
 
 @import 'pages/home';

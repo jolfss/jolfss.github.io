@@ -3,7 +3,7 @@
     <div class="home-welcome">
 
         <!-- quote -->
-        <div class="quote box subtext-gradient rem-height-ceil-js" style="margin:1rem 0;">
+        <div class="quote rem-height-ceil-js">
             <p><em>
                 <b>"</b> . . . Practice any art, music, singing, dancing, acting, drawing, painting, sculpting, poetry, 
                 fiction, essays, reportage, no matter how well or badly, not to get money and fame, 
@@ -13,21 +13,11 @@
         </div>
 
         <!-- welcome text and portrait -->
-        <div class="container-card rem-height-ceil-js" style="margin-top:1rem;">
+        <div class="card rem-height-ceil-js">
             <div style="display:flex; justify-content:space-between; align-items:center">
                 <h1>{{ .Params.title }}</h1>
                 <h6>Bismarck, ND <b>→</b> Ithaca, NY <b>→</b> San José, CA</h6>
             </div>
-            <!-- enumerate the web pages in the site -->
-            <!-- <div class="box" style="padding: 0.25rem 0">
-                <nav style="display: flex; gap: 1rem; justify-content: left;">
-                    <a href="/" class="container-tag">Home</a>
-                    <a href="/projects" class="container-tag">Projects</a>
-                    <a href="/blog" class="container-tag">Blog</a>
-                    <a href="/pebbles" class="container-tag">Pebbles</a>
-                    <a href="/test_page" class="container-tag">Test Page</a>
-                </nav>
-            </div> -->
             <div class="split-lr-3">    
                 <div class="container-squircle live-nudge">
                     <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
@@ -53,7 +43,7 @@
         }}
         <div class="home-projects">
             {{ $page := . }}
-            <div class="container-card split-lr-5 rem-height-ceil-js">
+            <div class="card split-lr-5 rem-height-ceil-js">
                 <div class="container-squircle live-nudge">
                     {{ range .Params.media }}
                         <img 

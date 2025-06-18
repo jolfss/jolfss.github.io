@@ -55,7 +55,7 @@ h1,h2,h3,h4,h5,h6,p,li{
   font-weight: $font-weight-normal;
   font-size: 1.05rem;
   line-height: 1.4rem;
-  color: $color-dark;
+  color: var(--color-text);
   margin-bottom: 0.75rem;
 }
 
@@ -93,12 +93,12 @@ em {
 }
 
 a {
-  color: $color-hyperlink; 
+  color: var(--color-link); 
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
-    color: $color-hyperlink-hover;
+    color: var(--color-link-hover);
   }
 }
 

@@ -2,18 +2,7 @@
     Formatting for the main/home page.
 */
 
-.page-home {   
-    .quote {
-        p {
-            line-height: 1.5rem;
-            font-size: 1.2rem;
-            margin-bottom:0;
-        }
-        margin-top: 2rem;
-        border-left: 0.25rem solid $color-hyperlink;
-        padding: 0.75rem;
-    }
-
+.page-home {
     .home-welcome-text {
         p:last-child {
             margin-bottom: 0;

@@ -1,0 +1,17 @@
+/*
+    Components are UI elements that are used to build the page.
+*/
+
+.quote {
+    @include panel-gradient(1rem, var(--_color-bg), var(--a_color-bg));
+    
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    margin: 0 calc(#{$grid-thickness}/2) 2rem calc(#{$grid-thickness}/2);
+    border-left: 0.25rem solid var(--color-link);
+}
+
+.card {
+    @include panel-card(var(--color-card-bg), var(--color-card-drop-shadow));
+}

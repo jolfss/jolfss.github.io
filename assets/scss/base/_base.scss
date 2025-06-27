@@ -27,7 +27,6 @@ body {
     background-color: white;
     background-size: $grid-spacing $grid-spacing;
     background-image:
-        //horizontal
         repeating-linear-gradient(
             to bottom,
             rgba(var(--_color-grid), $grid-opacity) 0,
@@ -35,7 +34,6 @@ body {
             transparent $grid-thickness,
             transparent $grid-spacing
         ),
-        //vertical
         repeating-linear-gradient(
             to right,
             rgba(var(--_color-grid), $grid-opacity) 0,
@@ -44,8 +42,8 @@ body {
             transparent $grid-spacing
         );
     background-position:
-        0 0, //horizontal
-        calc(50% - #{$grid-thickness} / 2) 0; //vertical
+        0 calc(-#{$grid-thickness}/2),
+        calc(50% - #{$grid-thickness} / 2) 0;
   
   
   

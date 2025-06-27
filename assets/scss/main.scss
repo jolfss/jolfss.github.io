@@ -5,11 +5,11 @@
 @import 'base/base';
 @import 'base/typography';
 
-@import 'components/containers';
-@import 'components/panels';
-@import 'components/components';
-@import 'components/templates';
-@import 'components/live';
+@import 'ui/containers';
+@import 'ui/panels';
+@import 'ui/components';
+@import 'ui/templates';
+@import 'ui/animate';
 
 @import 'layout/header';
 @import 'layout/footer';

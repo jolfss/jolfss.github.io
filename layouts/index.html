@@ -3,7 +3,7 @@
     <div class="home-welcome">
 
         <!-- quote -->
-        <div class="quote rem-height-ceil-js">
+        <div class="p-quote rem-height-ceil-js">
             <p><em>
                 <b>"</b> . . . Practice any art, music, singing, dancing, acting, drawing, painting, sculpting, poetry, 
                 fiction, essays, reportage, no matter how well or badly, not to get money and fame, 
@@ -13,16 +13,16 @@
         </div>
 
         <!-- welcome text and portrait -->
-        <div class="card rem-height-ceil-js">
-            <div style="display:flex; justify-content:space-between; align-items:center">
-                <h1>{{ .Params.title }}</h1>
+        <div class="p-card rem-height-ceil-js">
+            <div class="t-minor-stack home-name-travel">
+                <h2>{{ .Params.title }}</h2>
                 <h6>Bismarck, ND <b>→</b> Ithaca, NY <b>→</b> San José, CA</h6>
             </div>
-            <div class="split-lr-3">    
-                <div class="container-squircle live-nudge">
+            <div class="t-split-first-3">    
+                <div class="c-squircle t-minor-stack hover-nudge home-portrait">
                     <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
                 </div>
-                <div class="subtext-gradient">
+                <div class="home-text-gradient">
                     <h6 class="home-welcome-text">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
                 </div>
             </div>
@@ -43,8 +43,8 @@
         }}
         <div class="home-projects">
             {{ $page := . }}
-            <div class="card split-lr-5 rem-height-ceil-js">
-                <div class="container-squircle live-nudge">
+            <div class="p-card t-split-first-5 rem-height-ceil-js">
+                <div class="c-squircle t-major-stack hover-nudge">
                     {{ range .Params.media }}
                         <img 
                             src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
@@ -52,7 +52,7 @@
                         >
                     {{ end }}
                 </div>
-                <div class="subtext-gradient">
+                <div class="home-text-gradient">
                     {{ .Params.description | .RenderString (dict "display" "block") }}
                 </div>
             </div>

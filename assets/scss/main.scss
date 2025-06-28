@@ -5,10 +5,10 @@
 @import 'base/base';
 @import 'base/typography';
 
-@import 'ui/containers';
+@import 'ui/mixins';
 @import 'ui/panels';
-@import 'ui/components';
 @import 'ui/templates';
+@import 'ui/components';
 @import 'ui/animate';
 
 @import 'layout/header';

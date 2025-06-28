@@ -2,6 +2,9 @@
     Base rules for formatting elements which are true for all pages.
 */
 
+$max-width: 58rem;
+$mobile-breakpoint: 812px;
+
 $grid-opacity: 0.15;
 $grid-thickness: 0.1rem;
 $grid-spacing: 2rem;
@@ -12,16 +15,12 @@ $grid-spacing: 2rem;
   box-sizing: border-box; /* 1 */
 }
 
-// Set a max-width on images to prevent them from overflowing their containers
-img, picture, video, canvas, svg {
-  max-width: 100%;
-  height: auto;
-}
-
 body {
-    max-width: 58rem;
+    max-width: $max-width;
     margin-left: auto;
     margin-right: auto;
+
+    padding: 0 2rem;
     
     //grid paper background
     background-color: white;

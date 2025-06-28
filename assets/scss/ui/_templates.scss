@@ -1,22 +1,63 @@
 /*
-    Formatting for subdividing panels.
+    Templates (t-*) govern the middle level of the UI; they break panels into sections.
 */
 
-@mixin split-lr($divisor) {
+@mixin split-first($divisor) {
     display: flex;
     flex-direction: row;
+
     & > :first-child {
-        flex: 0 1 calc(100% / #{$divisor});
+        flex: 1;
     }
     & > :last-child {
         margin-left: 2rem;
-        flex: 0 1 calc(100% - (100% / #{$divisor}));
+        flex: calc(#{$divisor} - 1);
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+        flex-direction: column;
+        & > :first-child {
+            flex: 1; 
+        }
+        & > :last-child {
+            margin-top: 1rem;
+            margin-left: 0;
+            flex: calc(#{$divisor} - 1);
+            margin-bottom: 2rem;
+        }
     }
 }
 
-// enumerate some split-lr classes
+// enumerate some split classes
 @for $i from 2 through 6 {
-    .split-lr-#{$i} {
-        @include split-lr($i);
+    .t-split-first-#{$i} {
+        @include split-first($i);
+        @media (max-width: $mobile-breakpoint) {
+            @include split-first(calc(#{$i} - 2));
+        }
     }
   }
+
+@mixin vstack() {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin hstack() {
+    display: flex;
+    flex-direction: row;
+}
+
+.t-minor-stack {
+    @include hstack();
+    @media (max-width: $mobile-breakpoint) {
+        @include vstack();
+    }
+}
+
+.t-major-stack {
+    @include vstack();
+    @media (max-width: $mobile-breakpoint) {
+        @include hstack();
+    }
+}

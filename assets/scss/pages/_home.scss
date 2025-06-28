@@ -3,6 +3,21 @@
 */
 
 .page-home {
+    .home-name-travel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media (max-width: $mobile-breakpoint) {
+            :first-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .home-portrait {
+        align-self: center;
+    }
+
     .home-welcome-text {
         p:last-child {
             margin-bottom: 0;
@@ -11,6 +26,13 @@
         strong {
             font-size: 1.5rem;
             font-weight: $font-weight-black;
+        }
+    }
+
+    .home-text-gradient {
+        @include gradient(4rem, var(--_color-bg), calc(var(--a_color-bg) * 0.5));
+        :last-child {
+            margin-bottom: 0;
         }
     }
 

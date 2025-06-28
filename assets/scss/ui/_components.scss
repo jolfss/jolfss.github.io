@@ -1,18 +1,37 @@
-/*
-    Components are UI elements that are used to build the page.
+/* 
+    Containers (c-*) are UI elements that govern the lowest level of the UI; they 
+    are used to create consistent layouts for different types of content.
+
+    Variants: 
+        - c-tag
+        - c-squircle
 */
 
-.quote {
-    @include panel-gradient(1rem, var(--_color-bg), var(--a_color-bg));
+.c-tag {
+    color: var(--color-text);
+    background: var(--color-bg); 
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem 0 rgba(var(--_color-dark), 0.5);
+    font-family: $font-atkinson-hyperlegible-next;
+    font-weight: $font-weight-bold;
     
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    margin: 0 calc(#{$grid-thickness}/4) 2rem calc(#{$grid-thickness}/4);
-    border-left: 0.25rem solid var(--color-link);
+    transition: all 0.3s ease;
+    &:hover {
+        color: var(--color-bg);    
+        background: var(--color-text);
+        text-decoration: none;
+        padding: 0.5rem 2rem;
+    }
 }
 
-.card {
-    @include panel-card(var(--color-card-bg), var(--color-card-drop-shadow));
+.c-squircle {
+    box-shadow: 0 0rem 0.5rem 0 rgba(var(--_color-dark), 0.5);
+    border-radius: 1rem;
+    overflow: hidden;
+    height: fit-content;
+    > img {
+        height: auto;
+        width: 100%;
+    }
 }
-

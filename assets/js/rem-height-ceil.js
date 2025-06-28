@@ -46,7 +46,7 @@ const resizeContainers = () => {
             const newHeightInPixels = Math.ceil(contentHeight / stepHeight) * stepHeight;
 
             // Apply the new height to the container.
-            container.style.height = `${newHeightInPixels}px`;
+            container.style.height = `${newHeightInPixels}px`; //TODO: Enable
 
             // This log is useful for debugging but can be commented out in production.
             // console.log(`Container ${index + 1}: Original height ~${contentHeight}px. Adjusted to ${newHeightInPixels}px.`);

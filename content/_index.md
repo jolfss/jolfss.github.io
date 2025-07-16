@@ -10,7 +10,8 @@ quote: “Practice any art ... no matter how well or badly, not to get money and
 quote_author: "Kurt Vonnegut"
 
 welcome_text: |
-    **Hi! I'm Sean,** I recently joined [A10 Networks](https://www.a10networks.com/) to work on security, optimization, and red-teaming for Large Language Models! I'll soon be based in San José, happy to get in touch!
+    **Hi! I'm Sean,** I recently joined [A10 Networks](https://www.a10networks.com/) to work on scaleable safety mechanisms for multimodal language models (MLLMs)! 🎉 
+
 
     I'm also a pianist/composer, hockey player, painter, graphic designer, fly-fisherman, Old Norse/Classical Latin poetry enthusiast, and soon-to-be figure skater.
 

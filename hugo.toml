@@ -1,4 +1,22 @@
-baseURL = 'https://jolfss.github.io/' # May be jolfss.io or something similar. 
+baseURL = 'https://jolfss.github.io/' # May be jolfss.io or something similar.
 languageCode = 'en-us'
 title = "Sean's Personal Website"
 enableRobotsTXT = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$']]
+          inline = [['$', '$']]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    lineNumbersInTable = false
+    noClasses = true
+    style = 'github'
+    tabWidth = 4

@@ -15,13 +15,19 @@ Testp *Testp* **Testp** ***Testp***
 
 `Code`
 
-```
-Code Block
+
+```python
+from x import SomeType
+
+type MyType[X : SomeType](Protocol):
+    def cast(self, x:X, castval : type[SomeType]) -> SomeType:
+        """Takes an instance of a type and casts it to some type in the `SomeType` universe."""
+        ...
 ```
 
-$LaTeX_{inline}$
+This is the inlined Q-function recurrence relation: $Q^\pi(s,a) = r(s,a) + \gamma\underset{s'\sim P(s'|s,a)}{\mathbb{E}}[Q^\pi(s',\pi(s'))]$. **Wow that's so nice!**
 
-$$ LaTeX_{Block} $$
+$$Q^\pi(s,a) = r(s,a) + \gamma\underset{s'\sim P(s'|s,a)}{\mathbb{E}}[Q^\pi(s',\pi(s'))]$$
 
 * Bullet List
     * Sub item

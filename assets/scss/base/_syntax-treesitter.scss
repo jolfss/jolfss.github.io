@@ -1,0 +1,164 @@
+/**
+ * Tree-sitter Syntax Highlighting Styles
+ *
+ * VS Code-inspired semantic token highlighting.
+ * Uses CSS custom properties for easy theming.
+ *
+ * Color scheme based on VS Code Dark+ / GitHub Dark
+ * Customize by changing the CSS variables in _themes.scss
+ */
+
+// Tree-sitter highlighted code blocks
+.ts-highlight {
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-code-bg);
+    margin-bottom: 1rem;
+
+    code {
+        font-family: $font-jetbrains-mono;
+        font-weight: $font-weight-normal;
+        background-color: transparent;
+        padding: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
+
+// Semantic token color definitions
+// These can be overridden by defining different values in _themes.scss
+
+// Comments - muted gray
+.ts-comment {
+    color: var(--color-syntax-comment);
+    font-style: italic;
+}
+
+// Keywords - control flow, declarations
+.ts-keyword {
+    color: var(--color-syntax-keyword);
+    font-weight: $font-weight-semibold;
+}
+
+// Strings
+.ts-string {
+    color: var(--color-syntax-string);
+}
+
+// String interpolation
+.ts-interpolation {
+    color: var(--color-syntax-interpolation);
+}
+
+// Escape sequences
+.ts-escape {
+    color: var(--color-syntax-escape);
+    font-weight: $font-weight-semibold;
+}
+
+// Numbers
+.ts-number {
+    color: var(--color-syntax-number);
+}
+
+// Booleans
+.ts-boolean {
+    color: var(--color-syntax-boolean);
+    font-weight: $font-weight-semibold;
+}
+
+// Null, None, undefined
+.ts-null {
+    color: var(--color-syntax-null);
+    font-weight: $font-weight-semibold;
+}
+
+// Function definitions
+.ts-function-def,
+.ts-method-def {
+    color: var(--color-syntax-function-def);
+}
+
+// Function calls
+.ts-function-call {
+    color: var(--color-syntax-function-call);
+}
+
+// Function/method names
+.ts-function-name,
+.ts-method-name {
+    color: var(--color-syntax-function-name);
+    font-weight: $font-weight-semibold;
+}
+
+// Types, classes, interfaces
+.ts-type,
+.ts-class,
+.ts-interface {
+    color: var(--color-syntax-type);
+    font-weight: $font-weight-semibold;
+}
+
+// Builtin types (int, str, bool, etc.)
+.ts-builtin-type {
+    color: var(--color-syntax-builtin-type);
+}
+
+// Parameters
+.ts-parameter {
+    color: var(--color-syntax-parameter);
+}
+
+// Variables
+.ts-variable {
+    color: var(--color-syntax-variable);
+}
+
+// Properties, attributes, fields
+.ts-property {
+    color: var(--color-syntax-property);
+}
+
+// Operators
+.ts-operator {
+    color: var(--color-syntax-operator);
+}
+
+// Punctuation (brackets, commas, etc.)
+.ts-punctuation {
+    color: var(--color-syntax-punctuation);
+}
+
+// Decorators (@decorator)
+.ts-decorator {
+    color: var(--color-syntax-decorator);
+    font-style: italic;
+}
+
+// Regular expressions
+.ts-regexp {
+    color: var(--color-syntax-regexp);
+}
+
+// Macros
+.ts-macro {
+    color: var(--color-syntax-macro);
+    font-weight: $font-weight-semibold;
+}
+
+// Namespaces, modules
+.ts-namespace {
+    color: var(--color-syntax-namespace);
+}
+
+// Labels
+.ts-label {
+    color: var(--color-syntax-label);
+}
+
+// Builtin functions/constants
+.ts-builtin {
+    color: var(--color-syntax-builtin);
+    font-weight: $font-weight-semibold;
+}

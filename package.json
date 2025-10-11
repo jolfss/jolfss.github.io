@@ -1,0 +1,20 @@
+{
+  "name": "jolfss-website",
+  "version": "1.0.0",
+  "description": "Sean's personal website with Tree-sitter syntax highlighting",
+  "private": true,
+  "scripts": {
+    "highlight": "node scripts/highlight-treesitter.js",
+    "build": "npm run highlight && hugo --gc --minify"
+  },
+  "dependencies": {
+    "tree-sitter": "^0.21.1",
+    "tree-sitter-python": "^0.21.0",
+    "gray-matter": "^4.0.3",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

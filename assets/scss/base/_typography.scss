@@ -117,7 +117,7 @@ code, pre, kbd {
 }
 
 code {
-  background-color: rgba(var(--_color-dark), 0.05);
+  background-color: var(--color-code-inline-bg);
   padding: 0.1rem 0.3rem;
   border-radius: 0.25rem;
   font-size: 0.9em;
@@ -127,7 +127,7 @@ pre {
   overflow-x: auto;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: rgba(var(--_color-dark), 0.03);
+  background-color: var(--color-code-bg);
   margin-bottom: 1rem;
 
   code {

@@ -5,6 +5,9 @@ enableRobotsTXT = true
 
 [markup]
   [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Allow raw HTML in markdown (needed for Tree-sitter pre-rendered code blocks)
+      unsafe = true
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.passthrough]
         enable = true

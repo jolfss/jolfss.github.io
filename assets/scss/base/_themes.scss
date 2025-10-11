@@ -7,19 +7,75 @@ $color-dark-blue: rgb(0, 42, 94);
 $color-sky-blue: #0b75e6;
 $color-magenta: #df00c9;
 
+// Syntax highlighting colors (VS Code Light+ inspired)
+$syntax-comment: #6A9955;        // Muted green
+$syntax-keyword: #0000FF;        // Classic blue
+$syntax-string: #A31515;         // Dark red
+$syntax-interpolation: #EE0000;  // Bright red
+$syntax-escape: #EE0000;         // Bright red
+$syntax-number: #098658;         // Teal green
+$syntax-boolean: #0000FF;        // Blue (like keywords)
+$syntax-null: #0000FF;           // Blue (like keywords)
+$syntax-function-def: #795E26;   // Brown/gold
+$syntax-function-call: #795E26;  // Brown/gold
+$syntax-function-name: #795E26;  // Brown/gold
+$syntax-type: #267F99;           // Cyan blue
+$syntax-builtin-type: #0000FF;   // Blue
+$syntax-parameter: #001080;      // Dark blue
+$syntax-variable: #001080;       // Dark blue
+$syntax-property: #001080;       // Dark blue
+$syntax-operator: #000000;       // Black
+$syntax-punctuation: #000000;    // Black
+$syntax-decorator: #795E26;      // Brown/gold
+$syntax-regexp: #811F3F;         // Dark magenta
+$syntax-macro: #795E26;          // Brown/gold
+$syntax-namespace: #267F99;      // Cyan blue
+$syntax-label: #000000;          // Black
+$syntax-builtin: #795E26;        // Brown/gold
+
 $theme-light: (
     color-card-bg: rgba(white, 0.75),
     color-card-drop-shadow: rgba($color-dark-blue, 0.5),
-    
+
     color-light: white,
     color-dark: $color-dark-blue,
 
     color-grid: $color-dark-blue,
-    
+
     color-bg: white,
     color-text: $color-dark-blue,
     color-link: $color-sky-blue,
-    color-link-hover: $color-magenta
+    color-link-hover: $color-magenta,
+
+    // Code block backgrounds (separate from syntax colors)
+    color-code-bg: rgba($color-dark-blue, 0.03),
+    color-code-inline-bg: rgba($color-dark-blue, 0.05),
+
+    // Syntax highlighting colors
+    color-syntax-comment: $syntax-comment,
+    color-syntax-keyword: $syntax-keyword,
+    color-syntax-string: $syntax-string,
+    color-syntax-interpolation: $syntax-interpolation,
+    color-syntax-escape: $syntax-escape,
+    color-syntax-number: $syntax-number,
+    color-syntax-boolean: $syntax-boolean,
+    color-syntax-null: $syntax-null,
+    color-syntax-function-def: $syntax-function-def,
+    color-syntax-function-call: $syntax-function-call,
+    color-syntax-function-name: $syntax-function-name,
+    color-syntax-type: $syntax-type,
+    color-syntax-builtin-type: $syntax-builtin-type,
+    color-syntax-parameter: $syntax-parameter,
+    color-syntax-variable: $syntax-variable,
+    color-syntax-property: $syntax-property,
+    color-syntax-operator: $syntax-operator,
+    color-syntax-punctuation: $syntax-punctuation,
+    color-syntax-decorator: $syntax-decorator,
+    color-syntax-regexp: $syntax-regexp,
+    color-syntax-macro: $syntax-macro,
+    color-syntax-namespace: $syntax-namespace,
+    color-syntax-label: $syntax-label,
+    color-syntax-builtin: $syntax-builtin
     );
     
     

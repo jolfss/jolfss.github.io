@@ -43,6 +43,7 @@ const LANGUAGES = {
 
 // Load token mapping
 const TOKEN_MAP = require('./token-map.js');
+const { getSemanticTokenType, getColorForToken } = require('./semantic-token-map.js');
 
 /**
  * Lazily loads a Tree-sitter language parser
@@ -93,98 +94,25 @@ function extractCodeBlocks(content) {
 
 /**
  * Maps Tree-sitter node type to CSS class with semantic context
- * Uses parent node information to determine semantic meaning
+ * Uses VS Code semantic token types from the theme
  */
 function getTokenClass(node) {
     const nodeType = node.type;
-    const parent = node.parent;
-    const grandparent = parent?.parent;
 
-    // Direct mapping from token-map.js
+    // Direct mapping from token-map.js (for non-contextual tokens like keywords, strings, etc.)
     if (TOKEN_MAP[nodeType]) {
         return TOKEN_MAP[nodeType];
     }
 
-    // Enhanced semantic analysis using parent context
-    // Based on tree-sitter-python highlights.scm query patterns
-    if (nodeType === 'identifier') {
-        // Function definition: (function_definition name: (identifier))
-        if (parent?.type === 'function_definition') {
-            const nameNode = parent.childForFieldName('name');
-            if (nameNode && node.startIndex === nameNode.startIndex && node.endIndex === nameNode.endIndex) {
-                return 'ts-function-name';
-            }
-        }
+    // Get semantic token type from theme-aware analysis
+    const semanticType = getSemanticTokenType(node);
 
-        // Class definition: (class_definition name: (identifier))
-        if (parent?.type === 'class_definition') {
-            const nameNode = parent.childForFieldName('name');
-            if (nameNode && node.startIndex === nameNode.startIndex && node.endIndex === nameNode.endIndex) {
-                return 'ts-class';
-            }
-        }
-
-        // Decorated function/class name
-        if (parent?.type === 'decorated_definition') {
-            const defNode = parent.childForFieldName('definition');
-            if (defNode?.type === 'function_definition' || defNode?.type === 'class_definition') {
-                return defNode.type === 'function_definition' ? 'ts-function-name' : 'ts-class';
-            }
-        }
-
-        // Function call: (call function: (identifier))
-        // Maps to tree-sitter query: (call function: (identifier) @function)
-        if (parent?.type === 'call') {
-            const funcNode = parent.childForFieldName('function');
-            if (funcNode && node.startIndex === funcNode.startIndex && node.endIndex === funcNode.endIndex) {
-                return 'ts-function-call';
-            }
-        }
-
-        // Attribute access: (attribute attribute: (identifier))
-        // Maps to tree-sitter query: (attribute attribute: (identifier) @property)
-        if (parent?.type === 'attribute') {
-            const attrNode = parent.childForFieldName('attribute');
-            if (attrNode && node.startIndex === attrNode.startIndex && node.endIndex === attrNode.endIndex) {
-                // If grandparent is a call, it's a method call
-                // Maps to: (call function: (attribute attribute: (identifier) @function.method))
-                const grandFuncNode = grandparent?.childForFieldName('function');
-                if (grandparent?.type === 'call' && grandFuncNode &&
-                    parent.startIndex === grandFuncNode.startIndex && parent.endIndex === grandFuncNode.endIndex) {
-                    return 'ts-method-name';
-                }
-                return 'ts-property';
-            }
-        }
-
-        // Type annotation: name: type or -> type
-        if (parent?.type === 'type') {
-            return 'ts-type';
-        }
-
-        // Parameter in function definition
-        if (parent?.type === 'typed_parameter' || parent?.type === 'default_parameter' ||
-            parent?.type === 'typed_default_parameter' || parent?.type === 'identifier' && grandparent?.type === 'parameters') {
-            return 'ts-parameter';
-        }
-
-        // Check if it's a builtin type or function
-        const builtins = ['int', 'str', 'float', 'bool', 'list', 'dict', 'tuple', 'set',
-                         'print', 'len', 'range', 'enumerate', 'zip', 'map', 'filter',
-                         'isinstance', 'type', 'object', 'super'];
-        if (builtins.includes(node.text)) {
-            return 'ts-builtin';
-        }
-
-        // Check if it's likely a constant (ALL_CAPS)
-        if (node.text === node.text.toUpperCase() && node.text.length > 1) {
-            return 'ts-constant';
-        }
-
-        // Check if it's a magic method or dunder
-        if (node.text.startsWith('__') && node.text.endsWith('__')) {
-            return 'ts-method-name';
-        }
+    if (semanticType) {
+        // Convert semantic token type to CSS class
+        // e.g., 'class.declaration' → 'ts-class-declaration'
+        //       'function' → 'ts-function'
+        //       'magicFunction' → 'ts-magic-function'
+        return `ts-${semanticType.replace(/\./g, '-').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`;
     }
 
     // Fallback: normalize node type to CSS class

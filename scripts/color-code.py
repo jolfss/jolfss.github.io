@@ -161,6 +161,9 @@ def generate_scss(theme):
  * To regenerate: npm run color_code
  */
 
+// Import typography variables for font weights
+@import 'typography';
+
 // Theme: {theme.get('name', 'Custom Theme')}
 // Type: {theme.get('type', 'light')}
 
@@ -213,6 +216,37 @@ $jolly-editor-fg: {editor_foreground};
             scss += f"    {css_var}: #{{{scss_var}}};\n"
 
     scss += '}\n'
+
+    # Generate CSS classes for semantic token types
+    scss += '\n// Semantic token CSS classes (auto-generated from theme)\n'
+    scss += '// These map to VS Code semantic token types\n\n'
+
+    semantic_token_colors = theme.get('semanticTokenColors', {})
+    for token_type, color_value in sorted(semantic_token_colors.items()):
+        # Extract color (could be string or dict with foreground)
+        color = color_value if isinstance(color_value, str) else color_value.get('foreground', editor_foreground)
+
+        # Convert token type to CSS class name
+        # e.g., 'class.declaration' → '.ts-class-declaration'
+        #       'magicFunction' → '.ts-magic-function'
+        css_class = token_type.replace('.', '-').replace('*', 'any')
+        # Convert camelCase to kebab-case
+        import re
+        css_class = re.sub(r'([a-z])([A-Z])', r'\1-\2', css_class).lower()
+
+        scss += f'.ts-{css_class} {{\n'
+        scss += f'    color: {color};\n'
+
+        # Add font-weight for certain token types
+        bold_types = ['function', 'method', 'class', 'type', 'namespace', 'macro']
+        if any(bt in token_type.lower() for bt in bold_types):
+            scss += f'    font-weight: $font-weight-semibold;\n'
+
+        # Add italic for comments and decorators
+        if 'comment' in token_type.lower() or 'decorator' in token_type.lower():
+            scss += f'    font-style: italic;\n'
+
+        scss += '}\n\n'
 
     return scss
 

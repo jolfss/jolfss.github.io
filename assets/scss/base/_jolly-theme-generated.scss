@@ -1,10 +1,13 @@
 /**
  * AUTO-GENERATED FILE - DO NOT EDIT MANUALLY
  * Generated from: jolly-light-color-theme.json
- * Generated at: 2025-10-26T23:37:05.534063
+ * Generated at: 2025-10-27T00:17:40.317648
  *
  * To regenerate: npm run color_code
  */
+
+// Import typography variables for font weights
+@import 'typography';
 
 // Theme: Jolly Light
 // Type: light
@@ -63,3 +66,158 @@ $jolly-syntax-builtin: #002a5e !default;
     --color-syntax-punctuation: #{$jolly-syntax-punctuation};
     --color-syntax-builtin: #{$jolly-syntax-builtin};
 }
+
+// Semantic token CSS classes (auto-generated from theme)
+// These map to VS Code semantic token types
+
+.ts-any-type-hint {
+    color: #0081da;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-builtin-constant {
+    color: #af00db;
+}
+
+.ts-class {
+    color: #0081da;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-class-declaration {
+    color: #cd0030;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-comment {
+    color: #9a91ae;
+    font-style: italic;
+}
+
+.ts-decorator {
+    color: #775F28;
+    font-style: italic;
+}
+
+.ts-enum {
+    color: #0081da;
+}
+
+.ts-enum-declaration {
+    color: #cd0030;
+}
+
+.ts-enum-member {
+    color: #05726b;
+}
+
+.ts-event {
+    color: #cd0030;
+}
+
+.ts-function {
+    color: #b37a0d;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-function-decorator {
+    color: #775F28;
+    font-weight: $font-weight-semibold;
+    font-style: italic;
+}
+
+.ts-interface {
+    color: #0081da;
+}
+
+.ts-interface-declaration {
+    color: #cd0030;
+}
+
+.ts-keyword {
+    color: #af00db;
+}
+
+.ts-label {
+    color: #750eb1;
+}
+
+.ts-macro {
+    color: #750eb1;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-magic-function {
+    color: #980349;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-method {
+    color: #980349;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-module {
+    color: #2e00ff;
+}
+
+.ts-namespace {
+    color: #2e00ff;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-number {
+    color: #768700;
+}
+
+.ts-operator {
+    color: #079672;
+}
+
+.ts-parameter {
+    color: #00569c;
+}
+
+.ts-property {
+    color: #c34f1d;
+}
+
+.ts-regexp {
+    color: #b37a0d;
+}
+
+.ts-string {
+    color: #4F681F;
+}
+
+.ts-struct {
+    color: #0081da;
+}
+
+.ts-struct-declaration {
+    color: #cd0030;
+}
+
+.ts-type {
+    color: #0081da;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-type-parameter {
+    color: #00569c;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-type-parameter-type-hint {
+    color: #00569c;
+    font-weight: $font-weight-semibold;
+}
+
+.ts-variable {
+    color: #002a5e;
+}
+
+.ts-variable-readonly {
+    color: #1715AF;
+}
+

@@ -1,0 +1,65 @@
+/**
+ * AUTO-GENERATED FILE - DO NOT EDIT MANUALLY
+ * Generated from: jolly-light-color-theme.json
+ * Generated at: 2025-10-26T23:37:05.534063
+ *
+ * To regenerate: npm run color_code
+ */
+
+// Theme: Jolly Light
+// Type: light
+
+// Editor colors
+$jolly-editor-bg: #eef2f7;
+$jolly-editor-fg: #002a5e;
+
+// Syntax highlighting colors (mapped from VS Code semantic tokens)
+$jolly-syntax-boolean: #af00db;
+$jolly-syntax-comment: #9a91ae;
+$jolly-syntax-decorator: #775F28;
+$jolly-syntax-function-name: #b37a0d;
+$jolly-syntax-keyword: #af00db;
+$jolly-syntax-label: #750eb1;
+$jolly-syntax-macro: #750eb1;
+$jolly-syntax-method-name: #980349;
+$jolly-syntax-namespace: #2e00ff;
+$jolly-syntax-number: #768700;
+$jolly-syntax-operator: #079672;
+$jolly-syntax-parameter: #00569c;
+$jolly-syntax-property: #05726b;
+$jolly-syntax-regexp: #b37a0d;
+$jolly-syntax-string: #4F681F;
+$jolly-syntax-type: #0081da;
+$jolly-syntax-variable: #1715AF;
+
+// Fallback colors (using editor foreground or sensible defaults)
+$jolly-syntax-null: #002a5e !default;
+$jolly-syntax-punctuation: #002a5e !default;
+$jolly-syntax-builtin: #002a5e !default;
+
+// Export as CSS custom properties
+:root {
+    --color-code-bg: #eef2f7;
+    --color-syntax-foreground: #002a5e;
+
+    --color-syntax-boolean: #{$jolly-syntax-boolean};
+    --color-syntax-comment: #{$jolly-syntax-comment};
+    --color-syntax-decorator: #{$jolly-syntax-decorator};
+    --color-syntax-function-name: #{$jolly-syntax-function-name};
+    --color-syntax-keyword: #{$jolly-syntax-keyword};
+    --color-syntax-label: #{$jolly-syntax-label};
+    --color-syntax-macro: #{$jolly-syntax-macro};
+    --color-syntax-method-name: #{$jolly-syntax-method-name};
+    --color-syntax-namespace: #{$jolly-syntax-namespace};
+    --color-syntax-number: #{$jolly-syntax-number};
+    --color-syntax-operator: #{$jolly-syntax-operator};
+    --color-syntax-parameter: #{$jolly-syntax-parameter};
+    --color-syntax-property: #{$jolly-syntax-property};
+    --color-syntax-regexp: #{$jolly-syntax-regexp};
+    --color-syntax-string: #{$jolly-syntax-string};
+    --color-syntax-type: #{$jolly-syntax-type};
+    --color-syntax-variable: #{$jolly-syntax-variable};
+    --color-syntax-null: #{$jolly-syntax-null};
+    --color-syntax-punctuation: #{$jolly-syntax-punctuation};
+    --color-syntax-builtin: #{$jolly-syntax-builtin};
+}

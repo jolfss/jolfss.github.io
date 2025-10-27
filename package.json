@@ -4,8 +4,9 @@
   "description": "Sean's personal website with Tree-sitter syntax highlighting",
   "private": true,
   "scripts": {
-    "highlight": "node scripts/highlight-treesitter.js",
-    "build": "npm run highlight && hugo --gc --minify"
+    "color_code": "python3 scripts/color-code.py",
+    "preprocess": "node scripts/highlight-treesitter.js",
+    "build": "npm run color_code && npm run preprocess && hugo --gc --minify"
   },
   "dependencies": {
     "tree-sitter": "^0.21.1",

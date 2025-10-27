@@ -116,8 +116,7 @@ module.exports = {
     'call': 'ts-function-call',
     'call_expression': 'ts-function-call',
 
-    // Function/method names
-    'identifier': 'ts-variable',
+    // Function/method names (identifier is context-dependent, handled in getTokenClass)
     'function_name': 'ts-function-name',
     'method_name': 'ts-method-name',
 

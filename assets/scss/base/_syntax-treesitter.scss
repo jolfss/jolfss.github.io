@@ -162,3 +162,9 @@
     color: var(--color-syntax-builtin);
     font-weight: $font-weight-semibold;
 }
+
+// Constants (ALL_CAPS variables)
+.ts-constant {
+    color: var(--color-syntax-variable);
+    font-weight: $font-weight-semibold;
+}

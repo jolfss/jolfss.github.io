@@ -2,6 +2,7 @@ baseURL = 'https://jolfss.github.io/' # May be jolfss.io or something similar.
 languageCode = 'en-us'
 title = "Sean's Personal Website"
 enableRobotsTXT = true
+contentDir = 'build/content'
 
 [markup]
   [markup.goldmark]

@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "color_code": "python3 scripts/color-code.py",
+    "process_blocks": "node scripts/process-blocks.js",
     "preprocess": "node scripts/highlight-treesitter.js",
-    "build": "npm run color_code && npm run preprocess && hugo --gc --minify"
+    "build": "npm run color_code && npm run process_blocks && hugo --gc --minify"
   },
   "dependencies": {
     "tree-sitter": "^0.21.1",

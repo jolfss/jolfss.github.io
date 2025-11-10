@@ -20,5 +20,3 @@ welcome_text: |
 portrait: "latrabjarg.jpg"
 portrait_alt_text: "Sean wearing a blue and black hand-knit lopapeysa on a sunny summer day at Látrabjarg."
 ---
-
-## Select Projects

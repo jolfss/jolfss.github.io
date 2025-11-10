@@ -1,8 +1,9 @@
 .hugo_build.lock
 public
 resources
+build
 
-# Generated markdown files (source is *.md.code)
-content/**/*.md
+# Legacy: Generated markdown files (old *.md.code system)
+# content/**/*.md
 # Exception: Keep structural index files that don't need preprocessing
-!content/**/_index.md
+# !content/**/_index.md

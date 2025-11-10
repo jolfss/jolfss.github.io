@@ -21,13 +21,15 @@
     margin-bottom: $grid-spacing;
 }
 
-/* 
+/*
     The panel-gradient fades from transparent to $bg-color over a vertical distance of $fade-pad
     and then at the bottom of the panel, fades back out to transparent over the same distance.
+    Bottom padding is added to keep content within the opaque region.
 */
-@mixin panel-gradient($fade-pad, $_bg-color, $bg-opacity:1) {    
+@mixin panel-gradient($fade-pad, $_bg-color, $bg-opacity:1) {
     @include panel-base();
     @include gradient($fade-pad, $_bg-color, $bg-opacity);
+    padding-bottom: $fade-pad;
 }
 
 .p-quote {
@@ -74,5 +76,14 @@ TODO: Style this panel.
     @include panel-base();
     background-color: $bg-color;
     box-shadow: 0 0 0.5rem 0 $shadow-color;
+    border-radius: 3rem;
+}
+
+/*
+The panel-default is the default panel style for content blocks.
+Uses gradient background with rounded borders and slight transparency (75% opacity like p-card).
+*/
+.p-default {
+    @include panel-gradient(1rem, var(--_color-default-panel-bg), var(--a_color-default-panel-bg));
     border-radius: 3rem;
 }

@@ -1,21 +1,5 @@
 {{ define "main" }}
 
-<div class="rem-height-ceil-js card test-page">
-    <div>This is a test page.</div>
-    <div class="split-lr-3">
-        <div>
-            This is the left page.
-        </div>
-        <div>
-            This is the right page.
-        </div>
-    </div>
-</div>
-
-<div class="rem-height-ceil-js">
-    <div class="card">
-        {{ .Content }}
-    </div>
-</div>
+{{ .Content }}
 
 {{ end }}

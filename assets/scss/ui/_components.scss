@@ -9,19 +9,25 @@
 
 .c-tag {
     background: var(--color-text);
-    color: var(--color-bg); 
+    color: var(--color-bg);
     padding: 0.4875rem 1rem;
+    margin-right: 1rem;
     // border-radius: 0.5rem;
     box-shadow: 0 0 0.25rem 0 rgba(var(--_color-dark), 0.5);
     font-family: $font-atkinson-hyperlegible-next;
     font-weight: $font-weight-bold;
-    
+
+    // Grid-aligned width (set by c-tag-occupy-and-expand.js)
+    display: inline-block;
+    text-align: center;
+
     transition: all 0.3s ease;
     &:hover {
-        color: var(--color-bg);    
+        color: var(--color-bg);
         background: var(--color-text);
         text-decoration: none;
-        padding: 0.4875rem 2rem;
+        // Use width set by JavaScript (--hover-width custom property)
+        width: var(--hover-width) !important;
     }
 }
 

@@ -39,10 +39,15 @@
 
             {{ partial "footer.html" . }}
 
-            <!-- Add the resizing script here; NOTE I don't know what js.Build does -->
-            {{ $remResizeScript := resources.Get "js/rem-height-ceil.js" | js.Build }}
-            {{ if $remResizeScript }}
-                <script src="{{ $remResizeScript.RelPermalink }}"></script>
+            <!-- Add the resizing scripts here; NOTE I don't know what js.Build does -->
+            {{ $remHeightScript := resources.Get "js/rem-height-ceil.js" | js.Build }}
+            {{ if $remHeightScript }}
+                <script src="{{ $remHeightScript.RelPermalink }}"></script>
+            {{ end }}
+
+            {{ $cTagScript := resources.Get "js/c-tag-occupy-and-expand.js" | js.Build }}
+            {{ if $cTagScript }}
+                <script src="{{ $cTagScript.RelPermalink }}"></script>
             {{ end }}
 
             <!-- Add the image preview script -->

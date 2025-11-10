@@ -1,4 +1,4 @@
-@mixin gradient($fade-pad, $_bg-color, $bg-opacity:1) {    
+@mixin gradient($fade-pad, $_bg-color, $bg-opacity:1) {
     background: linear-gradient(
         to bottom,
         rgba(#{$_bg-color}, 0) 0%,
@@ -7,3 +7,37 @@
         rgba(#{$_bg-color}, 0) 100%
     );
 }
+
+@mixin gradient-2d-mask($fade-pad-vertical, $fade-pad-horizontal, $bg-color-name) {
+  background-color: rgba(var(--_#{$bg-color-name}), var(--a_#{$bg-color-name}));
+
+  /* Horizontal fade */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black #{$fade-pad-horizontal},
+    black calc(100% - #{$fade-pad-horizontal}),
+    transparent 100%
+  );
+
+  /* Vertical fade layered on top */
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      black #{$fade-pad-vertical},
+      black calc(100% - #{$fade-pad-vertical}),
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      black #{$fade-pad-horizontal},
+      black calc(100% - #{$fade-pad-horizontal}),
+      transparent 100%
+    );
+
+  -webkit-mask-composite: intersect;
+  mask-composite: intersect;
+}
+

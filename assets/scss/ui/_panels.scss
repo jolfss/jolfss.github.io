@@ -81,9 +81,11 @@ TODO: Style this panel.
 
 /*
 The panel-default is the default panel style for content blocks.
-Uses gradient background with rounded borders and slight transparency (75% opacity like p-card).
+Uses 2D gradient background (1rem fade on all sides) with rounded borders and slight transparency (75% opacity like p-card).
 */
 .p-default {
-    @include panel-gradient(1rem, var(--_color-default-panel-bg), var(--a_color-default-panel-bg));
-    border-radius: 3rem;
+    @include panel-base();
+    @include gradient-2d-mask(1rem, 1rem, color-default-panel-bg);
+    padding: 2rem 2rem 0 2rem;
+    // border-radius: 3rem;
 }

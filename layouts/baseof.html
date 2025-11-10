@@ -16,7 +16,9 @@
                 processEnvironments: true
             },
             options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+                // Allow MathJax to process inline math ($...$) inside code blocks
+                // by removing 'pre' from skipHtmlTags
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea']
             }
         };
         </script>

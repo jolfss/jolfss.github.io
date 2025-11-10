@@ -136,9 +136,15 @@ pre {
   }
 }
 
-// MathJax styling - ensure both inline and block math use the text color
+// MathJax styling
 mjx-container {
+  // For standalone math (not in code blocks), use the default text color
   color: var(--color-text);
+
+  // Math inside code blocks should inherit the syntax highlighting color
+  pre &, code & {
+    color: inherit !important;
+  }
 
   // Target the actual math content
   mjx-math {

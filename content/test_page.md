@@ -73,7 +73,7 @@ class MyClass[Generic : int](int, MyString):
         return self.instance_variable * 2
 
     def sample_method(self, arg1: str, arg2: list) -> None:
-        """A sample method with various syntax elements."""
+        """A sample method with various syntax elements. $x\in X$?"""
         local_variable = 10  # A local variable
         for item in arg2:
             if item == arg1:

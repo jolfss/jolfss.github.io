@@ -59,7 +59,7 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install
       - name: Run Tree-sitter syntax highlighting
-        run: npm run highlight
+        run: npm run preprocess
       - name: Cache Restore
         id: cache-restore
         uses: actions/cache/restore@v4

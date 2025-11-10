@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Configuration
-THEME_PATH = Path.home() / "Sean" / "jolly" / "themes" / "jolly-light-color-theme.json"
+THEME_PATH = Path(__file__).parent.parent / "themes" / "jolly-light-color-theme.json"
 OUTPUT_PATH = Path(__file__).parent.parent / "assets" / "scss" / "base" / "_jolly-theme-generated.scss"
 
 # Maps VS Code semantic token types to Tree-sitter CSS class variables
@@ -261,8 +261,8 @@ def main():
 
     if not THEME_PATH.exists():
         print(f"✗ Theme file not found: {THEME_PATH}")
-        print('\nPlease ensure the Jolly theme is in the correct location:')
-        print('  ~/Sean/jolly/themes/jolly-light-color-theme.json')
+        print('\nPlease ensure the Jolly theme is in the repository:')
+        print('  themes/jolly-light-color-theme.json')
         return 1
 
     with open(THEME_PATH, 'r') as f:

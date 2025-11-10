@@ -1,9 +1,10 @@
 /**
  * .rem-height-ceil-js
  *
- * This script runs on DOM ready and again when images load or window resizes.
- * It finds all elements with the class 'rem-height-ceil-js', calculates their actual content
- * height, and then adjusts the container's height to be the nearest multiple of 2rem.
+ * This script runs immediately on load, on DOM ready, after MathJax renders, when images load,
+ * and when the window resizes. It finds all elements with the class 'rem-height-ceil-js',
+ * calculates their actual content height, and adjusts the container's height to be the nearest
+ * multiple of 2rem.
  *
  * Requires:
  * - The container does not contain any elements that are themselves rem-height-ceil-js.
@@ -97,12 +98,57 @@ const initializeContainers = () => {
     });
 };
 
+// Set up MutationObserver to detect dynamic content changes
+const observeContentChanges = () => {
+    const containers = document.querySelectorAll('.rem-height-ceil-js');
+
+    const observer = new MutationObserver(() => {
+        // Debounce the resize to avoid excessive recalculations
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resizeContainers, 50);
+    });
+
+    containers.forEach(container => {
+        observer.observe(container, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+    });
+};
+
+// Hook into MathJax typesetting completion
+const setupMathJaxHook = () => {
+    if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.startup.promise) {
+        MathJax.startup.promise.then(() => {
+            // MathJax has completed initial typesetting
+            resizeContainers();
+        }).catch((err) => {
+            console.error("MathJax initialization error:", err);
+        });
+    }
+};
+
 // --- Event Listeners ---
 
-// 1. Run the script once the DOM is ready (doesn't wait for images).
-document.addEventListener('DOMContentLoaded', initializeContainers);
+// 1. Run immediately on script load (before DOMContentLoaded)
+//    This provides an initial sizing even before all content is parsed
+if (document.readyState === 'loading') {
+    // Still parsing, run as soon as possible
+    resizeContainers();
+} else {
+    // DOM already ready or interactive
+    initializeContainers();
+}
 
-// 2. Rerun the script when the window is resized (with debouncing).
+// 2. Run the script once the DOM is ready (doesn't wait for images).
+document.addEventListener('DOMContentLoaded', () => {
+    initializeContainers();
+    observeContentChanges();
+    setupMathJaxHook();
+});
+
+// 3. Rerun the script when the window is resized (with debouncing).
 let resizeTimer;
 
 window.addEventListener('resize', () => {

@@ -135,3 +135,29 @@ pre {
     padding: 0;
   }
 }
+
+// MathJax styling - ensure both inline and block math use the text color
+mjx-container {
+  color: var(--color-text);
+
+  // Target the actual math content
+  mjx-math {
+    color: inherit;
+  }
+
+  // Disable collapsible equations by preventing click interactions.
+  // MathJax's tex-chtml.js component includes complexity analysis and generates
+  // collapsible <mjx-maction> elements for complex expressions. The configuration
+  // options (enableExplorer, menuOptions.settings.collapsible, etc.) are not
+  // consistently honored by the tex-chtml distribution, so we use CSS to disable
+  // the click behavior entirely via pointer-events.
+  mjx-maction {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+
+  &[data-collapsible] {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+}

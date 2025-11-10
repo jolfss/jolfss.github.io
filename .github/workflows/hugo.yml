@@ -58,8 +58,8 @@ jobs:
           cache: 'npm'
       - name: Install Node.js dependencies
         run: npm install
-      - name: Run Tree-sitter syntax highlighting
-        run: npm run preprocess
+      - name: Run preprocessing scripts
+        run: npm run color_code && npm run process_blocks
       - name: Cache Restore
         id: cache-restore
         uses: actions/cache/restore@v4

@@ -15,6 +15,7 @@
 
 // Cache the rem value to avoid repeated calculations
 let remInPixels = null;
+let resizeTimer;
 
 // Calculate and cache the rem value
 const getRemInPixels = () => {
@@ -71,6 +72,11 @@ const resizeContainers = () => {
     }
 };
 
+const scheduleResize = (delay = 50) => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeContainers, delay);
+};
+
 // Set up image load listeners for a container
 const attachImageLoadListeners = (container) => {
     const images = container.querySelectorAll('img');
@@ -104,8 +110,7 @@ const observeContentChanges = () => {
 
     const observer = new MutationObserver(() => {
         // Debounce the resize to avoid excessive recalculations
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resizeContainers, 50);
+        scheduleResize();
     });
 
     containers.forEach(container => {
@@ -129,6 +134,27 @@ const setupMathJaxHook = () => {
     }
 };
 
+// Ensure height adjustments run after web fonts finish loading so that
+// shifted glyph metrics don't knock panels off the grid.
+const setupFontLoadHooks = () => {
+    if (!document.fonts) {
+        return;
+    }
+
+    const handleFontEvent = () => scheduleResize(0);
+
+    document.fonts.ready
+        .then(handleFontEvent)
+        .catch((err) => {
+            console.error("Font loading error:", err);
+        });
+
+    if (typeof document.fonts.addEventListener === 'function') {
+        document.fonts.addEventListener('loadingdone', handleFontEvent);
+        document.fonts.addEventListener('loadingerror', handleFontEvent);
+    }
+};
+
 // --- Event Listeners ---
 
 // 1. Run immediately on script load (before DOMContentLoaded)
@@ -149,9 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 3. Rerun the script when the window is resized (with debouncing).
-let resizeTimer;
-
 window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resizeContainers, 50);
+    scheduleResize();
 });
+
+// 4. Kick off font hooks immediately as well in case DOMContentLoaded has
+//    already fired (e.g., script injected at the end of the document).
+setupFontLoadHooks();

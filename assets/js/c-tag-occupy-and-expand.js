@@ -43,8 +43,7 @@ const resizeCTag = (tag) => {
         const stepWidth = 2 * rem;
         const ceiledWidth = Math.ceil(contentWidth / stepWidth) * stepWidth;
 
-        // Subtract 2rem to correct for overestimation
-        const baseWidthInPixels = ceiledWidth - stepWidth;
+        const baseWidthInPixels = Math.max(stepWidth, ceiledWidth);
         const hoverWidthInPixels = baseWidthInPixels + stepWidth;
 
         // Apply the base width to the tag.

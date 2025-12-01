@@ -1,7 +1,7 @@
 /**
  * AUTO-GENERATED FILE - DO NOT EDIT MANUALLY
  * Generated from: jolly-light-color-theme.json
- * Generated at: 2025-11-09T23:49:38.596808
+ * Generated at: 2025-11-29T16:58:38.157601
  *
  * To regenerate: npm run color_code
  */
@@ -25,14 +25,14 @@ $jolly-syntax-keyword: #af00db;
 $jolly-syntax-label: #750eb1;
 $jolly-syntax-macro: #750eb1;
 $jolly-syntax-method-name: #980349;
-$jolly-syntax-namespace: #3a0ff8;
+$jolly-syntax-namespace: #4925ec;
 $jolly-syntax-number: #768700;
 $jolly-syntax-operator: #079672;
 $jolly-syntax-parameter: #00569c;
 $jolly-syntax-property: #05726b;
 $jolly-syntax-regexp: #9f6c0e;
 $jolly-syntax-string: #4F681F;
-$jolly-syntax-type: #0081da;
+$jolly-syntax-type: #107ac1;
 $jolly-syntax-variable: #1715AF;
 
 // Fallback colors (using editor foreground or sensible defaults)
@@ -71,7 +71,7 @@ $jolly-syntax-builtin: #002a5e !default;
 // These map to VS Code semantic token types
 
 .ts-any-type-hint {
-    color: #0081da;
+    color: #107ac1;
     font-weight: $font-weight-semibold;
 }
 
@@ -80,13 +80,17 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-class {
-    color: #0081da;
+    color: #107ac1;
     font-weight: $font-weight-semibold;
 }
 
 .ts-class-declaration {
     color: #cd0030;
     font-weight: $font-weight-semibold;
+}
+
+.ts-cls-parameter {
+    color: #00569c;
 }
 
 .ts-comment {
@@ -100,7 +104,7 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-enum {
-    color: #0081da;
+    color: #107ac1;
 }
 
 .ts-enum-declaration {
@@ -127,7 +131,7 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-interface {
-    color: #0081da;
+    color: #107ac1;
 }
 
 .ts-interface-declaration {
@@ -158,11 +162,11 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-module {
-    color: #3a0ff8;
+    color: #4925ec;
 }
 
 .ts-namespace {
-    color: #3a0ff8;
+    color: #4925ec;
     font-weight: $font-weight-semibold;
 }
 
@@ -179,11 +183,15 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-property {
-    color: #c34f1d;
+    color: #a8420b;
 }
 
 .ts-regexp {
     color: #9f6c0e;
+}
+
+.ts-self-parameter {
+    color: #00569c;
 }
 
 .ts-string {
@@ -191,7 +199,7 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-struct {
-    color: #0081da;
+    color: #107ac1;
 }
 
 .ts-struct-declaration {
@@ -199,7 +207,7 @@ $jolly-syntax-builtin: #002a5e !default;
 }
 
 .ts-type {
-    color: #0081da;
+    color: #107ac1;
     font-weight: $font-weight-semibold;
 }
 

@@ -33,12 +33,10 @@
 }
 
 .p-quote {
-    @include panel-gradient(1rem, var(--_color-bg), var(--a_color-bg));
+    @include panel-gradient($grid-spacing, var(--_color-bg), var(--a_color-bg));
     
     display: flex;
     align-items: center;
-    padding: 0 1rem;
-    margin: 0 calc(#{$grid-thickness}/4) 2rem calc(#{$grid-thickness}/4);
     border-left: 0.25rem solid var(--color-link);
 }
 
@@ -81,11 +79,11 @@ TODO: Style this panel.
 
 /*
 The panel-default is the default panel style for content blocks.
-Uses 2D gradient background (1rem fade on all sides) with rounded borders and slight transparency (75% opacity like p-card).
+Uses 2D gradient background (grid-aligned fade on all sides) with rounded borders and slight transparency (75% opacity like p-card).
 */
 .p-default {
     @include panel-base();
-    @include gradient-2d-mask(1rem, 1rem, color-default-panel-bg);
-    padding: 2rem 2rem 0 2rem;
+    @include gradient-2d-mask($grid-spacing, $grid-spacing, color-default-panel-bg);
+    padding: $grid-spacing $grid-spacing 0 $grid-spacing;
     // border-radius: 3rem;
 }

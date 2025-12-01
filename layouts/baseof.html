@@ -57,6 +57,11 @@
             {{ if $imagePreviewScript }}
                 <script src="{{ $imagePreviewScript.RelPermalink }}"></script>
             {{ end }}
+
+            {{ $debugGridScript := resources.Get "js/debug-grid.js" | js.Build }}
+            {{ if $debugGridScript }}
+                <script src="{{ $debugGridScript.RelPermalink }}"></script>
+            {{ end }}
         </div>
     </body>
 </html>

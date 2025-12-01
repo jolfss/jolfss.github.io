@@ -3,11 +3,12 @@
 /**
  * Block-based content processor for Hugo
  *
- * Reads *.md source files, splits on `---` delimiters, wraps in grid-aligned panels
+ * Reads *.md source files, splits on HTML block comment delimiters, wraps in grid-aligned panels
  *
  * Features:
- * - Splits content into blocks on `---` delimiters (ignoring frontmatter)
- * - Detects panel type via `<!-- panel: p-card -->` comments (default: p-default)
+ * - Splits content into blocks using `<!-- block:start --> ... <!-- block:end -->`
+ *   (falls back to legacy `---` delimiters if no block comments are present)
+ * - Detects panel type via block comment attributes or legacy `<!-- panel: ... -->`
  * - Applies Tree-sitter syntax highlighting to code blocks
  * - Wraps each block in `<div class="rem-height-ceil-js p-{type}">...</div>`
  * - Outputs to build/content/ (processed .md files) for Hugo to consume
@@ -29,42 +30,104 @@ const { highlightCode, extractCodeBlocks, loadLanguage } = require('./highlight-
  * Returns array of {content, panelType}
  */
 function splitIntoBlocks(markdownContent) {
-    const blocks = [];
+    const blockStartRegex = /^<!--\s*block:start(?:\s+type=([a-z0-9-]+))?\s*-->$/im;
+    const blockEndRegex = /^<!--\s*block:end\s*-->$/im;
+    const usesBlockComments = blockStartRegex.test(markdownContent);
 
-    // Split on `---` but we need to be careful about frontmatter
-    // We'll use a simple approach: split on lines that are exactly `---`
+    if (usesBlockComments) {
+        const blocks = [];
+        const lines = markdownContent.split('\n');
+        let currentBlock = [];
+        let currentPanelType = 'p-default';
+        let insideBlock = false;
+        let outsideBlock = [];
+
+        const flushBlock = () => {
+            if (currentBlock.length > 0 && currentBlock.join('\n').trim().length > 0) {
+                blocks.push({
+                    content: currentBlock.join('\n'),
+                    panelType: currentPanelType
+                });
+            }
+            currentBlock = [];
+            currentPanelType = 'p-default';
+        };
+
+        const flushOutside = () => {
+            if (outsideBlock.length > 0 && outsideBlock.join('\n').trim().length > 0) {
+                blocks.push({
+                    content: outsideBlock.join('\n'),
+                    panelType: 'p-default'
+                });
+            }
+            outsideBlock = [];
+        };
+
+        for (const line of lines) {
+            const startMatch = line.match(blockStartRegex);
+            const isEnd = blockEndRegex.test(line);
+
+            if (startMatch) {
+                if (insideBlock) {
+                    flushBlock();
+                } else {
+                    flushOutside();
+                }
+                currentPanelType = startMatch[1] || 'p-default';
+                insideBlock = true;
+                currentBlock = [];
+                continue;
+            }
+
+            if (isEnd) {
+                if (insideBlock) {
+                    flushBlock();
+                    insideBlock = false;
+                }
+                continue;
+            }
+
+            if (insideBlock) {
+                currentBlock.push(line);
+            } else {
+                outsideBlock.push(line);
+            }
+        }
+
+        if (insideBlock) {
+            flushBlock();
+        }
+        flushOutside();
+
+        return blocks;
+    }
+
+    // Fallback: legacy `---` delimiters
+    const blocks = [];
     const lines = markdownContent.split('\n');
     let currentBlock = [];
     let currentPanelType = 'p-default';
 
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-
-        // Check if this line is a delimiter
+    for (const line of lines) {
         if (line.trim() === '---') {
-            // Save the current block if it has content
             if (currentBlock.length > 0) {
                 blocks.push({
                     content: currentBlock.join('\n'),
                     panelType: currentPanelType
                 });
                 currentBlock = [];
-                currentPanelType = 'p-default'; // Reset to default
+                currentPanelType = 'p-default';
             }
         } else {
-            // Check if this is a panel type comment
             const panelMatch = line.match(/^<!--\s*panel:\s*([a-z-]+)\s*-->$/i);
             if (panelMatch && currentBlock.length === 0) {
-                // This is a panel type declaration at the start of a block
                 currentPanelType = panelMatch[1];
-                // Don't add this comment to the block content
             } else {
                 currentBlock.push(line);
             }
         }
     }
 
-    // Don't forget the last block
     if (currentBlock.length > 0) {
         blocks.push({
             content: currentBlock.join('\n'),

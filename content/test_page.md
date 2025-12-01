@@ -15,17 +15,28 @@ references:
     year: 2018
     url: http://incompleteideas.net/book/RLbook2020.pdf
 ---
+<!-- block:start -->
 # Test1 *Test1* **Test1** ***Test1***
 ## Test2 *Test2* **Test2** ***Test2***
 ### Test3 *Test3* **Test3** ***Test3***
----
+
+| Column A | Column B | Column C |
+|----------|----------|----------|
+| Item 1   | Value A  | Notes 1  |
+| Item 1   | Value A  | Notes 1  |
+| Item 2   | Value B  | Notes 2  |
+| Item 2   | Value B  | Notes 2  |
+<!-- block:end -->
+
+<!-- block:start -->
 #### Test4 *Test4* **Test4** ***Test4***
 ##### Test5 *Test5* **Test5** ***Test5***
 ###### Test6 *Test6* **Test6** ***Test6***
 
 Testp *Testp* **Testp** ***Testp***
----
+<!-- block:end -->
 
+<!-- block:start -->
 You can learn more by reading [@goodfellow2016; @SuttonBarto2018].
 
 This is some good ol' inlined `code`..! You should look at `/docs/CODE.md`!
@@ -144,6 +155,7 @@ if __name__ == "__main__":
     print("Running main execution block.")
     asyncio.run(fetch_data("http://example.com"))
 ```
+<!-- block:end -->
 
 This is the inlined Q-function recurrence relation: $Q^\pi(s,a) = r(s,a) + \gamma\underset{s'\sim P(s'|s,a)}{\mathbb{E}}[Q^\pi(s',\pi(s'))]$. **Wow that's so nice!**
 

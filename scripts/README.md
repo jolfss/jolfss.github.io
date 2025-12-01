@@ -55,8 +55,8 @@ npm run process_blocks
 
 **How it works**:
 1. Scans all `.md` files in `content/`
-2. Splits content on `---` delimiters (ignoring frontmatter)
-3. Detects panel type via `<!-- panel: p-card -->` comments (defaults to `p-default`)
+2. Splits content using `<!-- block:start --> ... <!-- block:end -->` delimiters (ignoring frontmatter; falls back to legacy `---` if needed)
+3. Detects panel type via block comment attributes (defaults to `p-default`)
 4. Applies Tree-sitter syntax highlighting to code blocks
 5. Wraps each block in `<div class="rem-height-ceil-js p-{type}">...</div>`
 6. Outputs to `build/content/` for Hugo to consume
@@ -66,15 +66,17 @@ npm run process_blocks
 ---
 title: My Post
 ---
-<!-- panel: p-card -->
+<!-- block:start type=p-card -->
 This content will be wrapped in a p-card panel.
+<!-- block:end -->
 
----
-<!-- panel: p-quote -->
+<!-- block:start type=p-quote -->
 This will be in a p-quote panel.
+<!-- block:end -->
 
----
-No comment? This defaults to p-default panel.
+<!-- block:start -->
+No `type` attribute? This defaults to p-default panel.
+<!-- block:end -->
 ```
 
 **Supported languages** (for syntax highlighting):
@@ -155,20 +157,22 @@ public/                    # Final static site (Hugo output)
 ---
 title: "My Post"
 ---
-<!-- panel: p-card -->
+<!-- block:start type=p-card -->
 Here's my introduction in a card panel.
+<!-- block:end -->
 
----
-<!-- panel: p-default -->
+<!-- block:start -->
 Here's some Python code in the default panel:
 
 \`\`\`python
 def hello():
     print("Hello, world!")
 \`\`\`
+<!-- block:end -->
 
----
+<!-- block:start -->
 Another block using the default panel.
+<!-- block:end -->
 ```
 
 2. **Build**: Run `npm run build` or `npm run process_blocks`
@@ -180,8 +184,8 @@ Another block using the default panel.
 ### Block System Features
 
 - **Grid alignment**: All blocks automatically align to the 2rem background grid
-- **Automatic wrapping**: Every section between `---` becomes a grid-aligned panel
-- **Panel types**: Use `<!-- panel: p-card -->`, `<!-- panel: p-quote -->`, or omit for `p-default`
+- **Automatic wrapping**: Every `<!-- block:start --> ... <!-- block:end -->` section becomes a grid-aligned panel
+- **Panel types**: Use `<!-- block:start type=p-card -->`, `<!-- block:start type=p-quote -->`, or omit `type` for `p-default`
 - **Code highlighting**: Tree-sitter syntax highlighting is applied automatically within blocks
 - **Math support**: LaTeX math (`$...$` and `$$...$$`) works within blocks
 

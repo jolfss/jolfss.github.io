@@ -92,6 +92,35 @@ li {
   list-style-type: disc;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-family: $font-atkinson-hyperlegible-next;
+  font-size: 1.05rem;
+  text-align: left;
+  color: var(--color-text);
+  background: rgba(var(--_color-bg), 1);
+  border: var(--grid-thickness) solid rgba(var(--_color-grid), 0.25);
+
+  th,
+  td {
+    border: var(--grid-thickness) solid rgba(var(--_color-grid), 0.25);
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text);
+    min-width: 4rem;
+  }
+
+  th {
+    background-color: rgba(var(--_color-dark), 0.02);
+    font-weight: $font-weight-semibold;
+  }
+
+  tr:nth-child(even) td {
+    background-color: rgba(var(--_color-dark), 0.0125);
+  }
+}
+
 em {
   font-style: italic;
 }

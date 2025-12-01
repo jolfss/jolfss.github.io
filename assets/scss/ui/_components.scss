@@ -10,15 +10,20 @@
 .c-tag {
     background: var(--color-text);
     color: var(--color-bg);
-    padding: calc(#{$grid-spacing} / 2) $grid-spacing;
+    height: $grid-spacing;
+    min-height: $grid-spacing;
+    padding: 0 calc(#{$grid-spacing} / 2);
     margin-right: $grid-spacing;
-    // border-radius: 0.5rem;
     box-shadow: 0 0 0.25rem 0 rgba(var(--_color-dark), 0.5);
     font-family: $font-atkinson-hyperlegible-next;
     font-weight: $font-weight-bold;
+    font-size: 1rem;
+    line-height: 1;
 
     // Grid-aligned width (set by c-tag-occupy-and-expand.js)
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 
     transition: all 0.3s ease;

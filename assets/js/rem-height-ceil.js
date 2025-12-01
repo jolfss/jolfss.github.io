@@ -41,9 +41,14 @@ const resizeContainer = (container) => {
         // Get the total height of the content within the box.
         const contentHeight = container.scrollHeight;
 
-        // Calculate the new height ceiled to the nearest multiple of (2 * 1rem).
+        // Calculate the new height snapped to the nearest multiple of 2rem,
+        // but avoid rounding up when the content already fits.
         const stepHeight = 2 * rem;
-        const newHeightInPixels = Math.ceil(contentHeight / stepHeight) * stepHeight;
+        let steps = Math.round(contentHeight / stepHeight);
+        if (steps * stepHeight < contentHeight) {
+            steps += 1;
+        }
+        const newHeightInPixels = Math.max(stepHeight, steps * stepHeight);
 
         // Apply the new height to the container.
         container.style.height = `${newHeightInPixels}px`;

@@ -29,6 +29,13 @@ references:
 <!-- block:end -->
 
 <!-- block:start -->
+This is the Desmos calculator. 
+<div id="calculator" style="width: 100%; height: 24rem; margin: 1rem;"></div>
+
+It's incredibly easy to use!
+<!-- block:end -->
+
+<!-- block:start -->
 #### Test4 *Test4* **Test4** ***Test4***
 ##### Test5 *Test5* **Test5** ***Test5***
 ###### Test6 *Test6* **Test6** ***Test6***

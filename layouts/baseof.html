@@ -63,6 +63,18 @@
             {{ if $debugGridScript }}
                 <script src="{{ $debugGridScript.RelPermalink }}"></script>
             {{ end }}
+
+            <!-- Desmos Graphing Calculator API (personal key as per Desmos docs) -->
+            <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=ff93384857564241b9525db72216299b"></script>
+            <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var elt = document.getElementById('calculator');
+                if (elt && window.Desmos && !elt.dataset.desmosInitialized) {
+                    Desmos.GraphingCalculator(elt);
+                    elt.dataset.desmosInitialized = 'true';
+                }
+            });
+            </script>
         </div>
     </body>
 </html>

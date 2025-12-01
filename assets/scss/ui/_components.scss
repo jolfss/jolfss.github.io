@@ -46,3 +46,14 @@
         width: 100%;
     }
 }
+
+.calculator-wrapper {
+    margin: 1rem 0;
+
+    #calculator {
+        width: 100%;
+        max-width: 36rem;
+        height: 24rem;
+        margin: 0 auto;
+    }
+}

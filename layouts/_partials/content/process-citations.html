@@ -1,0 +1,28 @@
+{{- $page := .page -}}
+{{- $content := .content -}}
+{{- $pattern := `\[@([^\]]+)\]` -}}
+{{- $matches := findRESubmatch $pattern $content -}}
+{{- if not (gt (len $matches) 0) -}}
+    {{- $content -}}
+{{- else -}}
+    {{- $references := $page.Params.references -}}
+    {{- if not $references -}}
+        {{- errorf "Found Pandoc-style citation syntax on %s but no references front matter" $page.File.Path -}}
+    {{- end -}}
+    {{- $indexMap := dict -}}
+    {{- range $idx, $ref := $references -}}
+        {{- $id := printf "%v" (index $ref "id") -}}
+        {{- if not $id -}}
+            {{- errorf "Reference entry %d on %s is missing an id" (add $idx 1) $page.File.Path -}}
+        {{- end -}}
+        {{- $entry := dict "number" (add $idx 1) "id" $id -}}
+        {{- $indexMap = merge $indexMap (dict $id $entry) -}}
+    {{- end -}}
+    {{- range $matches -}}
+        {{- $full := index . 0 -}}
+        {{- $inner := index . 1 -}}
+        {{- $rendered := partial "content/render-citation-inline.html" (dict "keys" $inner "indexMap" $indexMap "page" $page) -}}
+        {{- $content = replace $content $full $rendered -}}
+    {{- end -}}
+    {{- $content -}}
+{{- end -}}

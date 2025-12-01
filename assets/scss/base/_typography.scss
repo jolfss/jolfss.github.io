@@ -110,6 +110,70 @@ strong, b {
   font-weight: $font-weight-bold;
 }
 
+.citation {
+  font-size: 0.85em;
+  margin-left: 0.15rem;
+  a {
+    color: var(--color-link);
+    &:hover {
+      color: var(--color-link-hover);
+    }
+  }
+}
+
+.page-bibliography {
+  margin-top: 2.5rem;
+  padding-top: 0;
+  border: none;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    position: relative;
+    padding: 0.35rem 0.75rem 0.35rem 2.5rem;
+    border-radius: 0.65rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    scroll-margin-top: 2rem;
+
+    &.reference-highlight,
+    &:target {
+      background: rgba(var(--_color-link), 0.08);
+      box-shadow: inset 0 0 0 1px rgba(var(--_color-link), 0.2);
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    .reference-number {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.5rem;
+      font-weight: $font-weight-semibold;
+      color: var(--color-link);
+    }
+  }
+
+  a {
+    color: var(--color-link);
+    &:hover {
+      color: var(--color-link-hover);
+    }
+  }
+}
+
 // Code and monospace elements
 code, pre, kbd {
   font-family: $font-jetbrains-mono;

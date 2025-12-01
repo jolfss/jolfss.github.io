@@ -1,0 +1,41 @@
+{{- $references := .Params.references -}}
+{{- with $references }}
+<section class="page-bibliography p-default rem-height-ceil-js" aria-label="Page references">
+    <h2>References</h2>
+    <ol>
+        {{- range $index, $ref := . }}
+            {{- $id := index . "id" | default "" -}}
+            <li id="ref-{{ $id }}">
+                <span class="reference-number">[{{ add $index 1 }}]</span>
+                {{- $custom := index . "citation" -}}
+                {{- if $custom }}
+                    {{ $custom | safeHTML }}
+                {{- else -}}
+                    {{- $pieces := slice -}}
+                    {{- with index . "author" }}
+                        {{- $pieces = $pieces | append . -}}
+                    {{- end -}}
+                    {{- with index . "title" }}
+                        {{- $pieces = $pieces | append (printf "<em>%s</em>" .) -}}
+                    {{- end -}}
+                    {{- with index . "journal" }}
+                        {{- $pieces = $pieces | append . -}}
+                    {{- end -}}
+                    {{- with index . "publisher" }}
+                        {{- $pieces = $pieces | append . -}}
+                    {{- end -}}
+                    {{- with index . "year" }}
+                        {{- $pieces = $pieces | append (printf "%v" .) -}}
+                    {{- end -}}
+                    {{- $citationText := delimit $pieces ". " -}}
+                    {{- with index . "url" }}
+                        <a href="{{ . }}" target="_blank" rel="noopener">{{ $citationText | safeHTML }}</a>
+                    {{- else -}}
+                        {{- $citationText | safeHTML -}}
+                    {{- end -}}
+                {{- end -}}
+            </li>
+        {{- end -}}
+    </ol>
+</section>
+{{- end }}

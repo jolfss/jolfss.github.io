@@ -1,6 +1,19 @@
 ---
 title: Test Page
 layout: test_page
+references:
+  - id: goodfellow2016
+    title: "Deep Learning"
+    author: "Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+    publisher: MIT Press
+    year: 2016
+    url: https://www.deeplearningbook.org
+  - id: SuttonBarto2018
+    title: "Reinforcement Learning: An Introduction"
+    author: "Richard S. Sutton and Andrew G. Barto"
+    publisher: MIT Press
+    year: 2018
+    url: http://incompleteideas.net/book/RLbook2020.pdf
 ---
 # Test1 *Test1* **Test1** ***Test1***
 ## Test2 *Test2* **Test2** ***Test2***
@@ -13,7 +26,7 @@ layout: test_page
 Testp *Testp* **Testp** ***Testp***
 ---
 
-[Citation]()
+You can learn more by reading [@goodfellow2016; @SuttonBarto2018].
 
 This is some good ol' inlined `code`..! You should look at `/docs/CODE.md`!
 

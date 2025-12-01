@@ -1,0 +1,25 @@
+{{- $page := .page -}}
+{{- $indexMap := .indexMap -}}
+{{- $rawKeys := .keys -}}
+{{- $normalized := replace $rawKeys ";" "," -}}
+{{- $parts := slice -}}
+{{- range (split $normalized ",") -}}
+    {{- $entry := trim . " \t\n" -}}
+    {{- if not $entry -}}
+        {{- continue -}}
+    {{- end -}}
+    {{- if hasPrefix $entry "@" -}}
+        {{- $entry = substr $entry 1 -}}
+    {{- end -}}
+    {{- $info := index $indexMap $entry -}}
+    {{- if not $info -}}
+        {{- errorf "Page %s cites %q but it was not found in references" $page.File.Path $entry -}}
+    {{- end -}}
+    {{- $number := index $info "number" -}}
+    {{- $link := printf "<a href=\"#ref-%s\" aria-label=\"Reference %v\">%v</a>" $entry $number $number | safeHTML -}}
+    {{- $parts = $parts | append $link -}}
+{{- end -}}
+{{- if lt (len $parts) 1 -}}
+    {{- errorf "Page %s contains an empty citation expression" $page.File.Path -}}
+{{- end -}}
+<sup class="citation">[{{ delimit $parts ", " | safeHTML }}]</sup>

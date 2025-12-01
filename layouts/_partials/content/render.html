@@ -1,0 +1,5 @@
+{{- $content := .Content -}}
+{{- $content = partial "content/process-citations.html" (dict "page" . "content" $content) -}}
+{{- $content = partial "content/process-footnotes.html" (dict "page" . "content" $content) -}}
+{{- $content = htmlUnescape $content -}}
+{{- $content | safeHTML -}}

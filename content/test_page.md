@@ -16,6 +16,12 @@ references:
     url: http://incompleteideas.net/book/RLbook2020.pdf
 ---
 <!-- block:start -->
+This is where I am testing features which I will be adding to the site.
+Currently code, math, tables, desmos (+3d), rudimentary citations, and some subset of markdown (goldmark?) is supported.
+<!-- block:end -->
+
+
+<!-- block:start -->
 # Test1 *Test1* **Test1** ***Test1***
 ## Test2 *Test2* **Test2** ***Test2***
 ### Test3 *Test3* **Test3** ***Test3***
@@ -39,7 +45,7 @@ It's incredibly easy to use!
 <!-- block:end -->
 
 <!-- block:start -->
-This is the Desmos 3D calculator with a pre-loaded equation and locked orientation.
+This is the Desmos 3D calculator with a pre-loaded equation and locked zoom.
 <div class="c-desmos-calculator-3d">
     <div id="calculator-3d" class="desmos-graph" data-lock-viewport="true"></div>
     <button class="desmos-fullscreen-btn" data-calculator="calculator-3d">⛶</button>

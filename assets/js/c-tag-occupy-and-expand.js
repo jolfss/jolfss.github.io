@@ -36,12 +36,12 @@ const resizeCTag = (tag) => {
         tag.style.width = 'auto';
         tag.style.minWidth = 'auto';
 
-        // Get the total width of the content.
-        const contentWidth = tag.scrollWidth;
+        // Get the total width including padding (with border-box, this is what we'll set)
+        const totalWidth = tag.scrollWidth;
 
         // Calculate the new width ceiled to the nearest multiple of (2 * 1rem).
         const stepWidth = 2 * rem;
-        const ceiledWidth = Math.ceil(contentWidth / stepWidth) * stepWidth;
+        const ceiledWidth = Math.ceil(totalWidth / stepWidth) * stepWidth;
 
         const baseWidthInPixels = Math.max(stepWidth, ceiledWidth);
         const hoverWidthInPixels = baseWidthInPixels + stepWidth;

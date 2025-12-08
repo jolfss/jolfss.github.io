@@ -17,7 +17,7 @@
     The panel-base is a base mixin that is used to apply the grid spacing to all panels.
 */
 @mixin panel-base() {
-    padding: $grid-spacing $grid-spacing 0 $grid-spacing;
+    padding: $grid-spacing $grid-spacing calc(#{$grid-spacing} / 2) $grid-spacing;
     margin-bottom: $grid-spacing;
 }
 
@@ -90,6 +90,5 @@ Uses 2D gradient background (grid-aligned fade on all sides) with rounded border
 .p-default {
     @include panel-base();
     @include gradient-2d-mask(calc(#{$grid-spacing} / 2), calc(#{$grid-spacing} / 2), color-default-panel-bg);
-    padding: $grid-spacing $grid-spacing 0 $grid-spacing;
     // border-radius: 3rem;
 }

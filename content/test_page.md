@@ -29,10 +29,23 @@ references:
 <!-- block:end -->
 
 <!-- block:start -->
-This is the Desmos calculator. 
-<div id="calculator" style="width: 100%; height: 24rem; margin: 1rem;"></div>
+This is the Desmos 2D calculator.
+<div class="c-desmos-calculator">
+    <div id="calculator" class="desmos-graph"></div>
+    <button class="desmos-fullscreen-btn" data-calculator="calculator">⛶</button>
+</div>
 
 It's incredibly easy to use!
+<!-- block:end -->
+
+<!-- block:start -->
+This is the Desmos 3D calculator with a pre-loaded equation and locked orientation.
+<div class="c-desmos-calculator-3d">
+    <div id="calculator-3d" class="desmos-graph" data-lock-viewport="true"></div>
+    <button class="desmos-fullscreen-btn" data-calculator="calculator-3d">⛶</button>
+</div>
+
+Pretty cool, right?
 <!-- block:end -->
 
 <!-- block:start -->

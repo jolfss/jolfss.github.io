@@ -2,7 +2,7 @@
     Base rules for formatting elements which are true for all pages.
 */
 
-$max-width: 58rem;
+$max-width: 66rem;
 $mobile-breakpoint: 812px;
 
 $grid-opacity: 0.15;
@@ -10,11 +10,13 @@ $grid-thickness: 0.1rem;
 $grid-spacing: 2rem;
 
 :root {
+    font-size: 87.5%; // 12px base (12/16 = 0.75)
     --grid-spacing: #{$grid-spacing};
     --grid-thickness: #{$grid-thickness};
 }
 
 // makes sure padding is included when content widths are established
+*,
 *::before,
 *::after {
   box-sizing: border-box; /* 1 */

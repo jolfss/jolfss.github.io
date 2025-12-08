@@ -38,14 +38,16 @@ const resizeContainer = (container) => {
         // Temporarily reset height to auto to measure the natural content height accurately.
         container.style.height = 'auto';
 
-        // Get the total height of the content within the box.
-        const contentHeight = container.scrollHeight;
+        // With box-sizing: border-box, scrollHeight includes padding, but when we set
+        // height, the padding is included in that height. So we need to measure
+        // the actual content height by using offsetHeight which respects box-sizing.
+        const totalHeight = container.offsetHeight;
 
         // Calculate the new height snapped to the nearest multiple of 2rem,
         // but avoid rounding up when the content already fits.
         const stepHeight = 2 * rem;
-        let steps = Math.round(contentHeight / stepHeight);
-        if (steps * stepHeight < contentHeight) {
+        let steps = Math.round(totalHeight / stepHeight);
+        if (steps * stepHeight < totalHeight) {
             steps += 1;
         }
         const newHeightInPixels = Math.max(stepHeight, steps * stepHeight);
@@ -113,9 +115,28 @@ const initializeContainers = () => {
 const observeContentChanges = () => {
     const containers = document.querySelectorAll('.rem-height-ceil-js');
 
-    const observer = new MutationObserver(() => {
-        // Debounce the resize to avoid excessive recalculations
-        scheduleResize();
+    const observer = new MutationObserver((mutations) => {
+        // Filter out mutations that occur within Desmos calculators
+        const relevantMutations = mutations.filter(mutation => {
+            let node = mutation.target;
+            // Walk up the DOM tree to check if we're inside a Desmos calculator
+            while (node && node !== document) {
+                if (node.classList && (
+                    node.classList.contains('c-desmos-calculator') ||
+                    node.classList.contains('c-desmos-calculator-3d') ||
+                    node.classList.contains('desmos-graph')
+                )) {
+                    return false; // Ignore mutations inside Desmos calculators
+                }
+                node = node.parentElement;
+            }
+            return true;
+        });
+
+        // Only trigger resize if there were relevant mutations
+        if (relevantMutations.length > 0) {
+            scheduleResize();
+        }
     });
 
     containers.forEach(container => {

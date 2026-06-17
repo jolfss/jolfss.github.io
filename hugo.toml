@@ -1,13 +1,17 @@
-baseURL = 'https://jolfss.github.io/' # May be jolfss.io or something similar.
+baseURL = 'https://jolfss.github.io/'
 languageCode = 'en-us'
-title = "Sean's Personal Website"
+title = "Sean Brynjolfsson"
 enableRobotsTXT = true
-contentDir = 'build/content'
+disableKinds = ['taxonomy', 'term']
+
+[permalinks]
+  blog = '/blog/:slug/'
+  papers = '/papers/:slug/'
+  projects = '/projects/:slug/'
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      # Allow raw HTML in markdown (needed for Tree-sitter pre-rendered code blocks)
       unsafe = true
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.passthrough]
@@ -21,6 +25,6 @@ contentDir = 'build/content'
     guessSyntax = true
     lineNos = false
     lineNumbersInTable = false
-    noClasses = true
+    noClasses = false
     style = 'github'
     tabWidth = 4

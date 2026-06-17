@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ if eq .Section "feed" }}
+    {{ $pages = (where site.RegularPages "Section" "in" (slice "papers" "blog")).ByDate.Reverse }}
+{{ end }}
+
+<section class="item-list" aria-label="{{ .Title }}">
+    {{ range $pages }}
+        {{ partial "item-card.html" . }}
+    {{ else }}
+        <article class="item-card pane">
+            <p>No entries yet.</p>
+        </article>
+    {{ end }}
+</section>
+{{ end }}

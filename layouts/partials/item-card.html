@@ -1,0 +1,11 @@
+<article class="item-card pane">
+    {{ $summary := .Params.summary }}
+    {{ if and (not $summary) .Params.description }}
+        {{ $summary = .Params.description | markdownify | plainify | truncate 220 }}
+    {{ end }}
+    {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006.01.02" }}</time>{{ end }}
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ partial "authors.html" (dict "page" . "showAffiliations" false) }}
+    {{ with .Params.venue }}<p class="item-venue">{{ . }}</p>{{ end }}
+    {{ with $summary }}<p>{{ . }}</p>{{ end }}
+</article>

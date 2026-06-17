@@ -1,0 +1,48 @@
+{{ $page := .page }}
+{{ $showAffiliations := true }}
+{{ if isset . "showAffiliations" }}{{ $showAffiliations = .showAffiliations }}{{ end }}
+{{ $affiliations := $page.Params.affiliations }}
+{{ $affiliationNumbers := dict }}
+{{ range $idx, $affiliation := $affiliations }}
+    {{ $id := printf "%d" (add $idx 1) }}
+    {{ if reflect.IsMap $affiliation }}
+        {{ with $affiliation.id }}{{ $id = . }}{{ end }}
+    {{ end }}
+    {{ $affiliationNumbers = merge $affiliationNumbers (dict $id (add $idx 1)) }}
+{{ end }}
+
+{{ with $page.Params.authors }}
+{{ $hasCorresponding := false }}
+<ul class="author-list" aria-label="Authors">
+    {{ range . }}
+        {{ $author := . }}
+        {{ $name := $author }}
+        {{ $url := "" }}
+        {{ $refs := slice }}
+        {{ $corresponding := false }}
+        {{ if reflect.IsMap $author }}
+            {{ $name = $author.name }}
+            {{ with $author.url }}{{ $url = . }}{{ end }}
+            {{ with $author.affiliations }}{{ $refs = . }}{{ end }}
+            {{ with $author.affiliation }}{{ $refs = slice . }}{{ end }}
+            {{ with $author.corresponding }}{{ $corresponding = . }}{{ end }}
+        {{ end }}
+        {{ if $corresponding }}{{ $hasCorresponding = true }}{{ end }}
+        <li>
+            {{ if $url }}<a href="{{ $url }}">{{ $name }}</a>{{ else }}{{ $name }}{{ end }}{{ if and $showAffiliations (gt (len $refs) 0) }}<sup>{{ range $idx, $ref := $refs }}{{ if $idx }},{{ end }}{{ index $affiliationNumbers $ref | default $ref }}{{ end }}</sup>{{ end }}{{ if and $showAffiliations $corresponding }}<span class="corresponding-mark">*</span>{{ end }}
+        </li>
+    {{ end }}
+</ul>
+{{ if and $showAffiliations $affiliations }}
+<ol class="affiliation-list" aria-label="Affiliations">
+    {{ range $idx, $affiliation := $affiliations }}
+    <li value="{{ add $idx 1 }}">
+        {{ if reflect.IsMap $affiliation }}{{ $affiliation.name }}{{ else }}{{ $affiliation }}{{ end }}
+    </li>
+    {{ end }}
+</ol>
+{{ end }}
+{{ if and $showAffiliations $hasCorresponding }}
+<p class="corresponding-note">* Corresponding author</p>
+{{ end }}
+{{ end }}

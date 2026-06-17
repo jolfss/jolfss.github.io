@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="article-page pane">
+    <header class="article-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end }}
+        {{ partial "authors.html" (dict "page" . "showAffiliations" true) }}
+        {{ with .Params.summary }}<p class="summary">{{ . }}</p>{{ end }}
+    </header>
+
+    {{ with .Params.media }}
+    <div class="project-media" aria-label="Project media">
+        {{ range . }}
+            {{ with .content }}
+            <img src="{{ printf "%s%s" $.RelPermalink . }}" alt="{{ $.Title }}">
+            {{ end }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="prose">
+        {{ if .Content }}
+            {{ .Content }}
+        {{ else }}
+            {{ with .Params.description }}{{ . | markdownify }}{{ end }}
+        {{ end }}
+    </div>
+</article>
+{{ end }}

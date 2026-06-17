@@ -1,164 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="{{ .Description }}">
-        <title>{{ .Title }} | My Site</title>
-
-        <!-- MathJax configuration -->
-        <script>
-        MathJax = {
+<!doctype html>
+<html lang="{{ site.LanguageCode }}" data-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else with .Params.summary }}{{ . }}{{ else }}{{ site.Title }}{{ end }}">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+    <script>
+        document.documentElement.dataset.theme = localStorage.getItem('theme') || 'auto';
+    </script>
+    {{ $style := resources.Get "css/site.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    {{ if .Param "math" }}
+    <script>
+        window.MathJax = {
             tex: {
                 inlineMath: [['$', '$']],
                 displayMath: [['$$', '$$']],
-                processEscapes: true,
-                processEnvironments: true
+                processEscapes: true
             },
             options: {
-                // Allow MathJax to process inline math ($...$) inside code blocks
-                // by removing 'pre' from skipHtmlTags
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea']
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
             }
         };
-        </script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    {{ end }}
+</head>
+<body class="{{ if .IsHome }}is-home{{ end }} section-{{ .Section }} kind-{{ .Kind }}">
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="site-shell">
+        <header class="site-header" aria-label="Site header">
+            <a class="site-mark" href="/">SB</a>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="/feed/">Feed</a>
+                <a href="/papers/">Papers</a>
+                {{/* Projects are hidden until the restored blurbs are rewritten as full pages. */}}
+                {{/* <a href="/projects/">Projects</a> */}}
+                <a href="/blog/">Blog</a>
+            </nav>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                <span data-theme-toggle-label>Auto</span>
+            </button>
+        </header>
 
-        <!-- <link rel="stylesheet" href="/css/style.css"> -->
-        {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
-    </head>
-    <body class="{{ if .IsHome }}page-home{{ else }}page-{{ .Section }}{{ end }}">
-        <div>
-            <!--  if not .IsHome  -->
-            <!-- We use a custom header for the home page which is defined in its main.html -->
-            {{ partial "header.html" . }}
-             <!-- end  -->
+        <main id="content" class="site-main">
+            {{ block "main" . }}{{ end }}
+        </main>
 
-            <main>
-                {{ block "main" . }}{{ end }}
-                {{ partial "bibliography.html" . }}
-            </main>
+        <footer class="site-footer">
+            <p>
+                &copy; 2026 Sean Brynjolfsson. All rights reserved. Feel free to copy the theme;
+                I'll eventually release it as a theme for Hugo after I finish the features I want.
+            </p>
+        </footer>
+    </div>
 
-            {{ partial "footer.html" . }}
+    {{ $themeScript := resources.Get "js/theme.js" | minify | fingerprint }}
+    <script defer src="{{ $themeScript.RelPermalink }}" integrity="{{ $themeScript.Data.Integrity }}"></script>
 
-            <!-- Add the resizing scripts here; NOTE I don't know what js.Build does -->
-            {{ $remHeightScript := resources.Get "js/rem-height-ceil.js" | js.Build }}
-            {{ if $remHeightScript }}
-                <script src="{{ $remHeightScript.RelPermalink }}"></script>
-            {{ end }}
-
-            {{ $cTagScript := resources.Get "js/c-tag-occupy-and-expand.js" | js.Build }}
-            {{ if $cTagScript }}
-                <script src="{{ $cTagScript.RelPermalink }}"></script>
-            {{ end }}
-
-            <!-- Add the image preview script -->
-            {{ $imagePreviewScript := resources.Get "js/image-preview.js" | js.Build }}
-            {{ if $imagePreviewScript }}
-                <script src="{{ $imagePreviewScript.RelPermalink }}"></script>
-            {{ end }}
-
-            {{ $debugGridScript := resources.Get "js/debug-grid.js" | js.Build }}
-            {{ if $debugGridScript }}
-                <script src="{{ $debugGridScript.RelPermalink }}"></script>
-            {{ end }}
-
-            <!-- Desmos Graphing Calculator API (personal key as per Desmos docs) -->
-            <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=ff93384857564241b9525db72216299b"></script>
-            <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Initialize 2D calculator
-                var elt2d = document.getElementById('calculator');
-                if (elt2d && window.Desmos && !elt2d.dataset.desmosInitialized) {
-                    Desmos.GraphingCalculator(elt2d);
-                    elt2d.dataset.desmosInitialized = 'true';
-                }
-
-                // Initialize 3D calculator
-                var elt3d = document.getElementById('calculator-3d');
-                if (elt3d && window.Desmos && !elt3d.dataset.desmosInitialized) {
-                    // Read configuration from data attributes
-                    var lockViewport = elt3d.dataset.lockViewport === 'true';
-
-                    var calculator3d = Desmos.Calculator3D(elt3d, {
-                        expressionsCollapsed: true,  // Start with expressions collapsed
-                        settingsMenu: false,         // Hide settings menu for cleaner look
-                        zoomButtons: false,          // Hide zoom buttons
-                        lockViewport: lockViewport   // Lock viewport based on data attribute
-                    });
-
-                    // Add some pre-loaded equations
-                    calculator3d.setMathBounds({
-                        left: -5,
-                        right: 5,
-                        bottom: -5,
-                        top: 5
-                    });
-
-                    // Plot a 3D surface (paraboloid)
-                    calculator3d.setExpression({
-                        id: 'surface1',
-                        latex: 'z=x^2+y^2',
-                        color: '#2d70b3'
-                    });
-
-                    // Plot a sphere
-                    calculator3d.setExpression({
-                        id: 'surface2',
-                        latex: 'x^2+y^2+z^2=9',
-                        color: '#388c46'
-                    });
-
-                    // Plot a saddle surface
-                    calculator3d.setExpression({
-                        id: 'surface3',
-                        latex: 'z=x^2-y^2',
-                        color: '#c74440'
-                    });
-
-                    elt3d.dataset.desmosInitialized = 'true';
-                }
-            });
-
-            // Fullscreen button functionality
-            document.querySelectorAll('.desmos-fullscreen-btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var calculatorId = this.getAttribute('data-calculator');
-                    var calculatorDiv = document.getElementById(calculatorId);
-
-                    if (!calculatorDiv) return;
-
-                    if (!document.fullscreenElement) {
-                        // Enter fullscreen
-                        calculatorDiv.requestFullscreen().then(function() {
-                            // Make calculator fill the fullscreen container
-                            calculatorDiv.style.width = '100vw';
-                            calculatorDiv.style.height = '100vh';
-                            calculatorDiv.style.margin = '0';
-                        }).catch(function(err) {
-                            console.error('Error entering fullscreen:', err);
-                        });
-                    } else {
-                        // Exit fullscreen
-                        document.exitFullscreen();
-                    }
-                });
-            });
-
-            // Reset calculator size when exiting fullscreen
-            document.addEventListener('fullscreenchange', function() {
-                if (!document.fullscreenElement) {
-                    // Restore original styles
-                    var calculators = document.querySelectorAll('.desmos-graph');
-                    calculators.forEach(function(calc) {
-                        calc.style.width = '100%';
-                        calc.style.height = '24rem';
-                        calc.style.margin = '0';
-                    });
-                }
-            });
-            </script>
-        </div>
-    </body>
+    {{ if or (.Param "desmos") (.Store.Get "hasDesmos") }}
+    <script defer src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=ff93384857564241b9525db72216299b"></script>
+    {{ $desmosScript := resources.Get "js/desmos.js" | minify | fingerprint }}
+    <script defer src="{{ $desmosScript.RelPermalink }}" integrity="{{ $desmosScript.Data.Integrity }}"></script>
+    {{ end }}
+</body>
 </html>

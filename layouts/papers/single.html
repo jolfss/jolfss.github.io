@@ -1,0 +1,47 @@
+{{ define "main" }}
+<article class="paper-page">
+    <header class="paper-header pane">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.venue }}<p class="paper-venue">{{ . }}</p>{{ end }}
+        {{ partial "authors.html" (dict "page" . "showAffiliations" true) }}
+        {{ with .Params.links }}
+        <div class="action-row" aria-label="Paper links">
+            {{ range . }}
+            <a class="button" href="{{ .url }}">{{ .label }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </header>
+
+    {{ with .Params.hero }}
+    <figure class="planned-media pane" style="--media-rows: {{ .rows | default 18 | safeCSS }};">
+        {{ with .src }}
+            <img src="{{ . | relURL }}" alt="{{ $.Params.hero.alt | default $.Params.hero.label }}">
+        {{ else }}
+            <div class="media-placeholder">{{ $.Params.hero.label | default "Planned media" }}</div>
+        {{ end }}
+        {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+    </figure>
+    {{ end }}
+
+    {{ with .Params.abstract }}
+    <section class="paper-section pane">
+        <h2>Abstract</h2>
+        <div class="prose">{{ . | markdownify }}</div>
+    </section>
+    {{ end }}
+
+    <section class="paper-section pane">
+        <div class="prose">
+            {{ .Content }}
+        </div>
+    </section>
+
+    {{ with .Params.bibtex }}
+    <section class="paper-section pane">
+        <h2>BibTeX</h2>
+        <pre><code>{{ . }}</code></pre>
+    </section>
+    {{ end }}
+</article>
+{{ end }}

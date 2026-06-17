@@ -1,0 +1,10 @@
+{{ $rows := .Get "rows" | default 16 }}
+{{ $label := .Get "label" | default "Planned media" }}
+<figure class="planned-media" style="--media-rows: {{ $rows | safeCSS }};">
+    {{ with .Get "src" }}
+        <img src="{{ . | relURL }}" alt="{{ $.Get "alt" | default $label }}">
+    {{ else }}
+        <div class="media-placeholder">{{ $label }}</div>
+    {{ end }}
+    {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

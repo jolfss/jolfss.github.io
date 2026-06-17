@@ -1,62 +1,14 @@
-{{/* This content will be injected into the baseof.html template */}}
 {{ define "main" }}
-    <div class="home-welcome">
-
-        <!-- quote -->
-        <div class="p-quote rem-height-ceil-js">
-            <p><em>
-                <b>"</b> . . . Practice any art, music, singing, dancing, acting, drawing, painting, sculpting, poetry, 
-                fiction, essays, reportage, no matter how well or badly, not to get money and fame, 
-                but to experience becoming, to find out what's inside you, to make your soul grow. <b>"</b>
-            — Kurt Vonnegut
-            </em></p> 
-        </div>
-
-        <!-- welcome text and portrait -->
-        <div class="p-card rem-height-ceil-js">
-            <div class="t-minor-stack home-name-travel">
-                <h2>{{ .Params.title }}</h2>
-                <h6>Bismarck, ND <b>→</b> Ithaca, NY <b>→</b> San José, CA</h6>
-            </div>
-            <div class="t-split-first-3">    
-                <div class="c-squircle t-minor-stack hover-nudge home-portrait">
-                    <img src="{{ .Params.portrait }}" alt="{{ .Params.portrait_alt_text }}">
-                </div>
-                <div class="home-text-gradient">
-                    <h6 class="home-welcome-text">{{ .Params.welcome_text | .RenderString (dict "display" "block") }}</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    <!-- <div class="rem-height-ceil-js"> -->
-    {{ partial "content/render.html" . }}
-    <!-- </div> -->
-    
-    <!-- some projects -->
-    <div> 
-        <!-- enumerate some projects which are allowed as 'featured', sorted by date -->
-        {{ range first 10
-            (where 
-                (where .Site.Pages.ByDate.Reverse "Section" "projects") 
-            ".Params.featured" true) 
-        }}
-        <div class="home-projects">
-            {{ $page := . }}
-            <div class="p-card t-split-first-5 rem-height-ceil-js">
-                <div class="c-squircle t-major-stack hover-nudge">
-                    {{ range .Params.media }}
-                        <img 
-                            src='{{ $page.RelPermalink }}{{ index . "content" }}{{ . }}'
-                            alt='{{ index . "alt_text" }}'
-                        >
-                    {{ end }}
-                </div>
-                <div class="home-text-gradient">
-                    {{ .Params.description | .RenderString (dict "display" "block") }}
-                </div>
-            </div>
-        </div>
+<section class="home-pane pane">
+    <div class="home-layout">
+        {{ with .Params.portrait }}
+        <figure class="home-portrait">
+            <img src="{{ . | relURL }}" alt="{{ $.Params.portrait_alt_text }}">
+        </figure>
         {{ end }}
+        <div class="home-copy prose">
+            {{ .Content }}
+        </div>
     </div>
+</section>
 {{ end }}

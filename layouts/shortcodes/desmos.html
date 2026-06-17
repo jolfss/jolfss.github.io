@@ -1,0 +1,7 @@
+{{ .Page.Store.Set "hasDesmos" true }}
+{{ $rows := .Get "rows" | default 16 }}
+{{ $expression := .Get "expression" | default "y=x^2" }}
+<figure class="desmos-frame planned-media" style="--media-rows: {{ $rows | safeCSS }};">
+    <div class="desmos-canvas" data-desmos data-expression="{{ $expression }}"></div>
+    {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

@@ -58,6 +58,10 @@ jobs:
           cache: 'npm'
       - name: Install Node.js dependencies
         run: npm install
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Generate syntax theme colors
+        run: npm run color_code
       - name: Process content blocks
         run: npm run process_blocks
       - name: Cache Restore
@@ -78,6 +82,8 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/" \
             --cacheDir "${{ runner.temp }}/hugo_cache"
+      - name: Precompute static panel heights
+        run: npm run precompute_panels
       - name: Cache Save
         id: cache-save
         uses: actions/cache/save@v4

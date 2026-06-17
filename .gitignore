@@ -2,6 +2,7 @@
 public
 resources
 build
+node_modules
 
 # Legacy: Generated markdown files (old *.md.code system)
 # content/**/*.md

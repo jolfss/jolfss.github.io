@@ -7,7 +7,9 @@
     "color_code": "python3 scripts/color-code.py",
     "process_blocks": "node scripts/process-blocks.js",
     "preprocess": "node scripts/highlight-treesitter.js",
-    "build": "npm run color_code && npm run process_blocks && hugo --gc --minify"
+    "precompute_panels": "node scripts/precompute-panel-heights.js",
+    "watch": "node scripts/watch.js",
+    "build": "npm run color_code && npm run process_blocks && hugo --gc --minify && npm run precompute_panels"
   },
   "dependencies": {
     "tree-sitter": "^0.21.1",
@@ -15,7 +17,10 @@
     "gray-matter": "^4.0.3",
     "glob": "^10.3.10"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cheerio": "^1.1.2",
+    "playwright": "^1.52.0"
+  },
   "engines": {
     "node": ">=18.0.0"
   }

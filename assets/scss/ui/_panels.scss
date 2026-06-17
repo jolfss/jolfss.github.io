@@ -13,6 +13,16 @@
         - p-quote
 */
 
+.rem-height-ceil-js[data-rem-static='true'] {
+    min-height: var(--rh-desktop);
+}
+
+@media (max-width: $mobile-breakpoint) {
+    .rem-height-ceil-js[data-rem-static='true'] {
+        min-height: var(--rh-mobile, var(--rh-desktop));
+    }
+}
+
 /*
     The panel-base is a base mixin that is used to apply the grid spacing to all panels.
 */

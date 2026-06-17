@@ -106,6 +106,30 @@ Maps Tree-sitter node types to VS Code-style semantic token CSS classes.
 
 **Purpose**: Universal mapping that works across all Tree-sitter languages, enabling theme-independent highlighting similar to VS Code's architecture.
 
+### `precompute-panel-heights.js`
+
+Build-time panel height precompute step (hybrid static + runtime fallback).
+
+**Input**: `public/**/*.html` (after Hugo build)
+**Output**: Patches those HTML files with static panel height hints:
+- `data-rem-static-id="..."`
+- `data-rem-static="true"`
+- `style="--rh-desktop: ...rem; --rh-mobile: ...rem"`
+
+**Usage**:
+```bash
+node scripts/precompute-panel-heights.js
+# or
+npm run precompute_panels
+```
+
+**How it works**:
+1. Assigns stable IDs to `.rem-height-ceil-js` containers in generated HTML
+2. Runs headless Chromium at desktop + mobile viewports
+3. Measures each panel's rendered height and snaps to 2rem
+4. Writes static `min-height` hints back into HTML
+5. Runtime JS only handles true overflow/late content changes
+
 ## Build Pipeline
 
 The complete build pipeline is:
@@ -118,6 +142,20 @@ Which runs:
 1. `npm run color_code` - Generate SCSS from VS Code theme
 2. `npm run process_blocks` - Process `content/*.md` → `build/content/*.md` with block wrapping and Tree-sitter highlighting
 3. `hugo --gc --minify` - Build static site from `build/content/` → `public/`
+4. `npm run precompute_panels` - Precompute static panel heights in `public/*.html`
+
+For local development with automatic re-processing and live preview:
+
+```bash
+npm run watch
+```
+
+This command:
+1. Runs `process_blocks` once on startup
+2. Starts `hugo server`
+3. Watches `content/` for changes and reruns `process_blocks`
+
+Note: `watch` keeps runtime fallback resizing enabled for rapid iteration. Static panel precompute runs as part of `npm run build`.
 
 ## File Structure
 
@@ -231,6 +269,16 @@ The theme colors are automatically extracted and applied to:
 - Ensure Node.js is installed: `node --version`
 - Check theme file exists: `~/Sean/jolly/themes/jolly-light-color-theme.json`
 - Verify Hugo extended version is installed: `hugo version`
+
+**`npm run precompute_panels` fails?**
+- Ensure Playwright is installed: `npm install`
+- Install Chromium once: `npx playwright install chromium`
+- Ensure `public/` exists by running Hugo first (`npm run build` handles this automatically)
+
+**`npm run watch` fails?**
+- Ensure `hugo` is installed and available on your PATH (`hugo version`)
+- Ensure `content/` exists and contains source markdown files
+- Run `npm run process_blocks` once to confirm preprocessing works standalone
 
 **I accidentally edited a file in `build/`?**
 - Don't worry! Just run `npm run process_blocks` to regenerate from source

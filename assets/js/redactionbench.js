@@ -85,16 +85,13 @@
         demoMount.className = 'redactionbench-demo';
         demoMount.innerHTML = [
             '<section class="rb-window">',
-            '<div class="rb-block-heading"><h2>Interactive labels</h2><span class="rb-score" data-score></span></div>',
-            '<div class="rb-doc rb-edit-doc" tabindex="0" data-edit-doc></div>',
             renderLegend(true),
-            '<p class="rb-help">Select text to redact it. Click a redaction to remove it.</p>',
+            '<div class="rb-doc rb-edit-doc" tabindex="0" data-edit-doc></div>',
             '<div class="rb-readout" data-readout></div>',
             '</section>'
         ].join('');
 
         const editDoc = demoMount.querySelector('[data-edit-doc]');
-        const scoreNode = demoMount.querySelector('[data-score]');
         const readoutNode = demoMount.querySelector('[data-readout]');
 
         editDoc.innerHTML = renderLabeledText(demo.text, demo.hard, demo.displayContextual, demo.combinators);
@@ -137,13 +134,12 @@
                 softGoldSpans: demo.contextual,
                 text: demo.text
             });
-            scoreNode.textContent = 'R-Score ' + formatPercent(score.sample_entity_iou);
             readoutNode.innerHTML = [
                 '<div><strong>' + formatPercent(score.sample_entity_iou) + '</strong><span>R-Score</span></div>',
-                '<div><strong>' + formatNumber(score.weighted_connected_iou_numerator) + ' / ' + formatNumber(score.weighted_connected_iou_denominator) + '</strong><span>numerator / denominator</span></div>',
-                '<div><strong>' + score.entity_term_count + '</strong><span>red entity terms</span></div>',
-                '<div><strong>' + formatNumber(score.yellow_penalty_denominator_weight) + '</strong><span>contextual penalty weight</span></div>',
-                '<div><strong>' + formatNumber(score.connected_fp_penalty_denominator_weight) + '</strong><span>false-positive penalty weight</span></div>'
+                '<div><strong>' + formatNumber(score.weighted_connected_iou_numerator) + ' / ' + formatNumber(score.weighted_connected_iou_denominator) + '</strong><span>num / denom</span></div>',
+                '<div><strong>' + score.entity_term_count + '</strong><span>red terms</span></div>',
+                '<div><strong>' + formatNumber(score.yellow_penalty_denominator_weight) + '</strong><span>context penalty</span></div>',
+                '<div><strong>' + formatNumber(score.connected_fp_penalty_denominator_weight) + '</strong><span>FP penalty</span></div>'
             ].join('');
         }
     }

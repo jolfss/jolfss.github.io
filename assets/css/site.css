@@ -26,11 +26,11 @@ html[data-theme='light'] {
     --shadow: rgba(0, 42, 94, 0.12);
     --link: #0b75e6;
     --link-hover: #df00c9;
-    --accent: #af00db;
+    --accent: #df00c9;
     --accent-2: #079672;
     --code-bg: #eef2f7;
     --code-text: #002a5e;
-    --code-keyword: #af00db;
+    --code-keyword: #df00c9;
     --code-string: #4f681f;
     --code-comment: #9a91ae;
     --redaction-ink: #29313a;
@@ -560,19 +560,22 @@ time {
     overflow-x: auto;
     border-collapse: collapse;
     border-spacing: 0;
+    background-image: linear-gradient(to bottom, transparent 0 calc(100% - 1px), var(--border) calc(100% - 1px) 100%);
+    background-position-y: 1px;
+    background-size: 100% var(--grid);
     font-size: 0.92rem;
     line-height: var(--grid);
 }
 
 .prose tr {
-    height: calc(var(--grid) * 2);
+    height: var(--grid);
 }
 
 .prose th,
 .prose td {
-    padding: calc((var(--grid) - 2px) / 2) 0.55rem;
+    padding: 0 0.55rem;
     border-bottom: 0;
-    box-shadow: 0 1px 0 var(--border);
+    box-shadow: none;
     text-align: left;
     vertical-align: top;
     white-space: nowrap;
@@ -580,7 +583,11 @@ time {
 
 .prose th code,
 .prose td code {
+    display: inline-block;
+    height: var(--grid);
+    line-height: var(--grid);
     padding-block: 0;
+    vertical-align: top;
 }
 
 .paper-section .prose {
@@ -843,8 +850,8 @@ html[data-theme='dark'] .paper-sponsor-logo {
 
 .rb-sample-tabs {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--grid);
+    flex-wrap: nowrap;
+    gap: 0;
 }
 
 .rb-sample-tabs button {
@@ -852,15 +859,21 @@ html[data-theme='dark'] .paper-sponsor-logo {
     --button-line: var(--grid-color);
     position: relative;
     isolation: isolate;
+    flex: 1 1 0;
+    min-width: 0;
     min-height: calc(var(--grid) * 2);
-    padding: 0 calc(var(--grid) * 0.75);
+    padding: 0 calc(var(--grid) * 0.25);
     border: 0;
     border-radius: calc(var(--button-radius) * 0.75);
     background: transparent;
     color: var(--text);
     font: inherit;
+    font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .rb-sample-tabs button::before {
@@ -922,7 +935,6 @@ html[data-theme='dark'] .paper-sponsor-logo {
 
 .rb-block-heading span,
 .rb-meta,
-.rb-score,
 .rb-help,
 .rb-readout span {
     color: var(--muted);
@@ -969,7 +981,7 @@ html[data-theme='dark'] .paper-sponsor-logo {
 
 .redactionbench-demo {
     display: grid;
-    gap: calc(var(--grid) * 2);
+    gap: var(--grid);
     margin-block: var(--grid) calc(var(--grid) * 2);
 }
 
@@ -1092,8 +1104,8 @@ html[data-theme='dark'] .paper-sponsor-logo {
 
 .rb-readout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(calc(var(--grid) * 7), 1fr));
-    grid-auto-rows: calc(var(--grid) * 4);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-auto-rows: calc(var(--grid) * 3);
     gap: var(--grid);
     padding: var(--grid);
     border-radius: calc(var(--radius) * 0.65);
@@ -1103,13 +1115,22 @@ html[data-theme='dark'] .paper-sponsor-logo {
 
 .rb-readout div {
     min-height: 0;
+    min-width: 0;
 }
 
 .rb-readout strong {
     display: block;
     color: var(--accent);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: var(--grid);
+    white-space: nowrap;
+}
+
+.rb-readout span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .planned-media {

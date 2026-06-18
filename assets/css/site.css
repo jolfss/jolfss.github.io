@@ -1307,8 +1307,20 @@ html[data-theme='dark'] .redactionbench-demo {
     }
 
     .paper-header h1 {
+        grid-column: 1;
         max-width: none;
         font-size: 2.4rem;
         line-height: calc(var(--grid) * 2);
+    }
+
+    .paper-title-row {
+        display: block;
+        padding-top: calc(var(--grid) * 2);
+    }
+
+    .paper-theme-toggle {
+        position: absolute;
+        top: var(--grid);
+        right: var(--grid);
     }
 }

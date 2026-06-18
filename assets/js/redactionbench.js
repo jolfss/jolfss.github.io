@@ -1149,7 +1149,7 @@
     function scoreSampleEntityIou(goldSpans, predSpans, options = {}) {
         const hardGold = normalizeSpans(goldSpans);
         const softGold = normalizeSpans(options.softGoldSpans || []);
-        const pred = stripSpanWhitespace(options.text || '', normalizeSpans(predSpans, options.text ? options.text.length : undefined));
+        const pred = normalizeSpans(predSpans, options.text ? options.text.length : undefined);
         const hardGoldMerged = mergeSpans(hardGold);
         const allGold = [...hardGold, ...softGold];
         const predStats = predSpanQualityStats(hardGoldMerged, pred);

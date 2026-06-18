@@ -326,6 +326,8 @@ pre code {
 .site-nav a,
 .theme-toggle,
 .button {
+    --button-fill: var(--paper);
+    --button-line: var(--grid-color);
     position: relative;
     isolation: isolate;
     display: inline-flex;
@@ -333,9 +335,9 @@ pre code {
     justify-content: center;
     height: calc(var(--grid) * 2);
     padding: 0 var(--grid);
-    border: 1px solid var(--grid-color);
+    border: 0;
     border-radius: var(--button-radius);
-    background: var(--paper);
+    background: transparent;
     color: var(--text);
     font: inherit;
     font-weight: 600;
@@ -344,6 +346,21 @@ pre code {
     white-space: nowrap;
     box-shadow: none;
     transition: color 120ms ease;
+}
+
+.site-mark::before,
+.site-nav a::before,
+.theme-toggle::before,
+.button::before {
+    position: absolute;
+    inset: 0 0 -1px;
+    z-index: -1;
+    border: 1px solid var(--button-line);
+    border-radius: inherit;
+    background: var(--button-fill);
+    content: "";
+    pointer-events: none;
+    transition: background-color 120ms ease, border-color 120ms ease;
 }
 
 .site-mark {
@@ -374,8 +391,8 @@ pre code {
 }
 
 .pane .button {
-    border-color: var(--text);
-    background: var(--text);
+    --button-fill: var(--text);
+    --button-line: var(--text);
     color: var(--paper);
 }
 
@@ -388,14 +405,14 @@ pre code {
 .theme-toggle:focus-visible,
 .button:focus-visible {
     color: var(--link-hover);
-    border-color: var(--link-hover);
+    --button-line: var(--link-hover);
     outline: none;
 }
 
 .pane .button:hover,
 .pane .button:focus-visible {
-    border-color: var(--link-hover);
-    background: var(--link-hover);
+    --button-fill: var(--link-hover);
+    --button-line: var(--link-hover);
     color: var(--paper);
 }
 
@@ -831,33 +848,50 @@ html[data-theme='dark'] .paper-sponsor-logo {
 }
 
 .rb-sample-tabs button {
+    --button-fill: var(--paper);
+    --button-line: var(--grid-color);
+    position: relative;
+    isolation: isolate;
     min-height: calc(var(--grid) * 2);
     padding: 0 calc(var(--grid) * 0.75);
-    border: 1px solid var(--grid-color);
+    border: 0;
     border-radius: calc(var(--button-radius) * 0.75);
-    background: var(--paper);
+    background: transparent;
     color: var(--text);
     font: inherit;
     font-weight: 600;
     cursor: pointer;
 }
 
+.rb-sample-tabs button::before {
+    position: absolute;
+    inset: 0 0 -1px;
+    z-index: -1;
+    border: 1px solid var(--button-line);
+    border-radius: inherit;
+    background: var(--button-fill);
+    content: "";
+    pointer-events: none;
+    transition: background-color 120ms ease, border-color 120ms ease;
+}
+
 .rb-sample-tabs button[aria-selected='true'] {
-    border-color: var(--text);
-    background: var(--text);
+    --button-fill: var(--text);
+    --button-line: var(--text);
     color: var(--paper);
 }
 
 .rb-sample-tabs button:hover,
 .rb-sample-tabs button:focus-visible {
-    border-color: var(--link-hover);
+    --button-line: var(--link-hover);
     color: var(--link-hover);
     outline: none;
 }
 
 .rb-sample-tabs button[aria-selected='true']:hover,
 .rb-sample-tabs button[aria-selected='true']:focus-visible {
-    background: var(--link-hover);
+    --button-fill: var(--link-hover);
+    --button-line: var(--link-hover);
     color: var(--paper);
 }
 

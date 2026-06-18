@@ -13,21 +13,27 @@
 
 {{ with $page.Params.authors }}
 {{ $hasCorresponding := false }}
+{{ $correspondingEmail := "" }}
 <ul class="author-list" aria-label="Authors">
     {{ range . }}
         {{ $author := . }}
         {{ $name := $author }}
         {{ $url := "" }}
+        {{ $email := "" }}
         {{ $refs := slice }}
         {{ $corresponding := false }}
         {{ if reflect.IsMap $author }}
             {{ $name = $author.name }}
             {{ with $author.url }}{{ $url = . }}{{ end }}
+            {{ with $author.email }}{{ $email = . }}{{ end }}
             {{ with $author.affiliations }}{{ $refs = . }}{{ end }}
             {{ with $author.affiliation }}{{ $refs = slice . }}{{ end }}
             {{ with $author.corresponding }}{{ $corresponding = . }}{{ end }}
         {{ end }}
-        {{ if $corresponding }}{{ $hasCorresponding = true }}{{ end }}
+        {{ if $corresponding }}
+            {{ $hasCorresponding = true }}
+            {{ with $email }}{{ $correspondingEmail = . }}{{ end }}
+        {{ end }}
         <li>
             {{ if $url }}<a href="{{ $url }}">{{ $name }}</a>{{ else }}{{ $name }}{{ end }}{{ if and $showAffiliations (gt (len $refs) 0) }}<sup>{{ range $idx, $ref := $refs }}{{ if $idx }},{{ end }}{{ index $affiliationNumbers $ref | default $ref }}{{ end }}</sup>{{ end }}{{ if and $showAffiliations $corresponding }}<span class="corresponding-mark">*</span>{{ end }}
         </li>
@@ -43,6 +49,6 @@
 </ol>
 {{ end }}
 {{ if and $showAffiliations $hasCorresponding }}
-<p class="corresponding-note">* Corresponding author</p>
+<p class="corresponding-note">* Corresponding author{{ with $correspondingEmail }}: <a href="{{ printf "mailto:%s" . | safeURL }}">{{ . }}</a>{{ end }}</p>
 {{ end }}
 {{ end }}

@@ -1,15 +1,56 @@
 {{ define "main" }}
+{{ $page := . }}
 <article class="paper-page">
     <header class="paper-header pane">
         <h1>{{ .Title }}</h1>
         {{ with .Params.venue }}<p class="paper-venue">{{ . }}</p>{{ end }}
         {{ partial "authors.html" (dict "page" . "showAffiliations" true) }}
+        {{ with .Params.sponsor }}
+        {{ $mark := .mark | default .name }}
+        {{ $name := .name | default $mark }}
+        {{ $lightSrc := "" }}
+        {{ $darkSrc := "" }}
+        {{ with .logo_light }}
+            {{ with $page.Resources.GetMatch . }}{{ $lightSrc = .RelPermalink }}{{ else }}{{ $lightSrc = . | relURL }}{{ end }}
+        {{ end }}
+        {{ with .logo_dark }}
+            {{ with $page.Resources.GetMatch . }}{{ $darkSrc = .RelPermalink }}{{ else }}{{ $darkSrc = . | relURL }}{{ end }}
+        {{ end }}
+        {{ $logoStyle := "" }}
+        {{ if or $lightSrc $darkSrc }}
+            {{ $logoStyle = printf "--paper-sponsor-logo-light: url('%s'); --paper-sponsor-logo-dark: url('%s');" ($lightSrc | default $darkSrc) ($darkSrc | default $lightSrc) }}
+        {{ end }}
+        {{ with .url }}
+        <a class="paper-sponsor" href="{{ . }}" aria-label="{{ $name }}"{{ with $logoStyle }} style="{{ . | safeCSS }}"{{ end }}>
+            {{ if or $lightSrc $darkSrc }}
+                <span class="paper-sponsor-logo" aria-hidden="true"></span>
+            {{ else }}
+                <span aria-hidden="true">{{ $mark }}</span>
+            {{ end }}
+        </a>
+        {{ else }}
+        <div class="paper-sponsor" aria-label="{{ $name }}"{{ with $logoStyle }} style="{{ . | safeCSS }}"{{ end }}>
+            {{ if or $lightSrc $darkSrc }}
+                <span class="paper-sponsor-logo" aria-hidden="true"></span>
+            {{ else }}
+                <span aria-hidden="true">{{ $mark }}</span>
+            {{ end }}
+        </div>
+        {{ end }}
+        {{ end }}
         {{ with .Params.links }}
         <div class="action-row" aria-label="Paper links">
             {{ range . }}
-            <a class="button" href="{{ .url }}">{{ .label }}</a>
+            <a class="button" href="{{ .url }}">{{ with .icon }}<span class="button-icon" aria-hidden="true">{{ . }}</span>{{ end }}<span>{{ .label }}</span></a>
             {{ end }}
         </div>
+        {{ end }}
+
+        {{ with .Params.abstract }}
+        <section class="paper-abstract" aria-labelledby="paper-abstract-heading">
+            <h2 id="paper-abstract-heading">Abstract</h2>
+            <div class="prose"><p>{{ . }}</p></div>
+        </section>
         {{ end }}
     </header>
 
@@ -24,22 +65,35 @@
     </figure>
     {{ end }}
 
-    {{ with .Params.abstract }}
+    {{ if .Param "redactionbench" }}
     <section class="paper-section pane">
-        <h2>Abstract</h2>
-        <div class="prose">{{ . | markdownify }}</div>
+        <div class="prose">
+            <h2>Sample Documents</h2>
+        </div>
+        <div data-redactionbench-gallery></div>
     </section>
     {{ end }}
 
+    {{ with .Content }}
     <section class="paper-section pane">
         <div class="prose">
-            {{ .Content }}
+            {{ . }}
         </div>
     </section>
+    {{ end }}
+
+    {{ if .Param "redactionbench" }}
+    <section class="paper-section pane">
+        <div class="prose">
+            <h2>Interactive R-Score</h2>
+        </div>
+        <div data-redactionbench-demo></div>
+    </section>
+    {{ end }}
 
     {{ with .Params.bibtex }}
     <section class="paper-section pane">
-        <h2>BibTeX</h2>
+        <h2>Bib</h2>
         <pre><code>{{ . }}</code></pre>
     </section>
     {{ end }}

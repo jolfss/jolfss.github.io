@@ -58,6 +58,13 @@
     {{ $themeScript := resources.Get "js/theme.js" | minify | fingerprint }}
     <script defer src="{{ $themeScript.RelPermalink }}" integrity="{{ $themeScript.Data.Integrity }}"></script>
 
+    {{ if .Param "redactionbench" }}
+    {{ $redactionBenchData := resources.Get "js/redactionbench-data.js" | minify | fingerprint }}
+    <script defer src="{{ $redactionBenchData.RelPermalink }}" integrity="{{ $redactionBenchData.Data.Integrity }}"></script>
+    {{ $redactionBenchScript := resources.Get "js/redactionbench.js" | minify | fingerprint }}
+    <script defer src="{{ $redactionBenchScript.RelPermalink }}" integrity="{{ $redactionBenchScript.Data.Integrity }}"></script>
+    {{ end }}
+
     {{ if or (.Param "desmos") (.Store.Get "hasDesmos") }}
     <script defer src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=ff93384857564241b9525db72216299b"></script>
     {{ $desmosScript := resources.Get "js/desmos.js" | minify | fingerprint }}

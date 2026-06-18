@@ -588,12 +588,22 @@ time {
     text-align: center;
 }
 
-.prose table {
-    display: block;
+.table-scroll {
     width: 100%;
     max-width: 100%;
     margin: 0 0 var(--grid);
     overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: calc(var(--radius) * 0.65);
+    background: var(--paper);
+    box-shadow: inset 0 0 0 1px var(--grid-color);
+}
+
+.table-scroll table,
+.prose table {
+    width: 100%;
+    min-width: max-content;
+    margin: 0;
     border-collapse: collapse;
     border-spacing: 0;
     background-image: linear-gradient(to bottom, transparent 0 calc(100% - 1px), var(--border) calc(100% - 1px) 100%);
@@ -628,6 +638,7 @@ time {
 
 .paper-section .prose {
     max-width: none;
+    min-width: 0;
 }
 
 .project-media {
@@ -664,6 +675,12 @@ time {
 .paper-header {
     position: relative;
     text-align: center;
+}
+
+.paper-page,
+.paper-section {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .paper-title-row {
@@ -880,6 +897,8 @@ html[data-theme='dark'] .paper-sponsor-logo {
     --rb-redaction-outline: var(--redaction-outline);
     --rb-redaction-line: var(--redaction-line);
     --rb-redaction-text: var(--paper);
+    min-width: 0;
+    max-width: 100%;
 }
 
 html[data-theme='dark'] .rb-sample-browser,
@@ -1025,6 +1044,7 @@ html[data-theme='dark'] .redactionbench-demo {
 
 .rb-doc {
     max-width: 100%;
+    min-width: 0;
     padding: var(--grid);
     background: var(--paper);
     color: var(--text);
@@ -1040,6 +1060,8 @@ html[data-theme='dark'] .redactionbench-demo {
 .rb-gallery-doc {
     display: block;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     min-height: calc(var(--grid) * 7);
     max-height: calc(var(--grid) * 18);
     overflow-x: auto;
@@ -1047,6 +1069,8 @@ html[data-theme='dark'] .redactionbench-demo {
     overflow-wrap: normal;
     word-break: normal;
     white-space: pre;
+    contain: inline-size;
+    font-size: 0.78rem;
 }
 
 .rb-gallery-doc span {

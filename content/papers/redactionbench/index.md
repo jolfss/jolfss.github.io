@@ -84,7 +84,7 @@ bibtex: |
     <div class="paper-figure-frame">
         <img src="assets/model_performance_over_size.png" alt="Pareto plot of RedactionBench mean R-Score against model size." width="1320" height="593" loading="lazy" decoding="async">
     </div>
-    <figcaption>Model evaluation Pareto plot: mean R-Score against model size.</figcaption>
+    <figcaption>Mean R-Score over Model Size</figcaption>
 </figure>
 
 ### Overall Model Leaderboard

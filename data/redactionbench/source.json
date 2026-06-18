@@ -8211,96 +8211,281 @@
     }
   ],
   "demo": {
-    "text": "Alert: Mira Shah (mira.shah-support) approved card 5669-6205 and host 10.67.2.205.",
+    "text": "Incident: Mira Shah (mira.shah-support) met Dana (QA Lead).\nCard 5669-6205 touched host 10.67.2.205 and api-prod-03.\nOffice: 410 Mission Bay Blvd, Suite 9, San Francisco, CA 94158.\nContact: Devin Bridges <devin.bridges@example.org> with ref ACCT-42.",
     "spans": [
       [
-        7,
-        16,
+        10,
+        14,
         "mandatory"
       ],
       [
-        17,
-        18,
+        14,
+        15,
         "contextual"
       ],
       [
-        18,
-        22,
+        15,
+        19,
         "mandatory"
       ],
       [
-        22,
-        23,
+        20,
+        21,
         "contextual"
       ],
       [
-        23,
-        27,
+        21,
+        25,
+        "contextual"
+      ],
+      [
+        25,
+        26,
+        "contextual"
+      ],
+      [
+        26,
+        30,
+        "contextual"
+      ],
+      [
+        30,
+        31,
+        "contextual"
+      ],
+      [
+        31,
+        38,
+        "contextual"
+      ],
+      [
+        38,
+        39,
+        "contextual"
+      ],
+      [
+        44,
+        48,
+        "contextual"
+      ],
+      [
+        49,
+        50,
+        "contextual"
+      ],
+      [
+        50,
+        57,
+        "contextual"
+      ],
+      [
+        57,
+        58,
+        "contextual"
+      ],
+      [
+        65,
+        69,
         "mandatory"
       ],
       [
-        27,
-        28,
+        69,
+        70,
         "contextual"
-      ],
-      [
-        28,
-        35,
-        "contextual"
-      ],
-      [
-        35,
-        36,
-        "contextual"
-      ],
-      [
-        51,
-        55,
-        "mandatory"
-      ],
-      [
-        55,
-        56,
-        "contextual"
-      ],
-      [
-        56,
-        60,
-        "mandatory"
       ],
       [
         70,
-        72,
+        74,
         "mandatory"
       ],
       [
-        72,
-        73,
+        88,
+        90,
         "contextual"
       ],
       [
-        73,
-        75,
+        90,
+        91,
+        "contextual"
+      ],
+      [
+        91,
+        93,
+        "contextual"
+      ],
+      [
+        93,
+        94,
+        "contextual"
+      ],
+      [
+        94,
+        95,
+        "contextual"
+      ],
+      [
+        95,
+        96,
+        "contextual"
+      ],
+      [
+        96,
+        99,
+        "contextual"
+      ],
+      [
+        104,
+        107,
+        "contextual"
+      ],
+      [
+        107,
+        108,
+        "contextual"
+      ],
+      [
+        108,
+        112,
+        "contextual"
+      ],
+      [
+        112,
+        113,
+        "contextual"
+      ],
+      [
+        113,
+        115,
+        "contextual"
+      ],
+      [
+        125,
+        128,
+        "contextual"
+      ],
+      [
+        128,
+        129,
+        "contextual"
+      ],
+      [
+        129,
+        145,
+        "contextual"
+      ],
+      [
+        145,
+        147,
+        "contextual"
+      ],
+      [
+        147,
+        152,
+        "contextual"
+      ],
+      [
+        152,
+        153,
+        "contextual"
+      ],
+      [
+        153,
+        154,
+        "contextual"
+      ],
+      [
+        154,
+        156,
+        "contextual"
+      ],
+      [
+        156,
+        169,
+        "contextual"
+      ],
+      [
+        169,
+        171,
+        "contextual"
+      ],
+      [
+        171,
+        173,
+        "contextual"
+      ],
+      [
+        173,
+        174,
+        "contextual"
+      ],
+      [
+        174,
+        179,
+        "contextual"
+      ],
+      [
+        190,
+        195,
         "mandatory"
       ],
       [
-        75,
-        76,
+        195,
+        196,
         "contextual"
       ],
       [
-        76,
-        77,
+        196,
+        203,
         "mandatory"
       ],
       [
-        77,
-        78,
+        204,
+        205,
         "contextual"
       ],
       [
-        78,
-        81,
+        205,
+        210,
+        "mandatory"
+      ],
+      [
+        210,
+        211,
+        "contextual"
+      ],
+      [
+        211,
+        218,
+        "mandatory"
+      ],
+      [
+        218,
+        219,
+        "contextual"
+      ],
+      [
+        219,
+        230,
+        "contextual"
+      ],
+      [
+        230,
+        231,
+        "contextual"
+      ],
+      [
+        241,
+        245,
+        "contextual"
+      ],
+      [
+        245,
+        246,
+        "contextual"
+      ],
+      [
+        246,
+        248,
         "mandatory"
       ]
     ]

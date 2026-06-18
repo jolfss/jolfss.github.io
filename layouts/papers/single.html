@@ -2,7 +2,12 @@
 {{ $page := . }}
 <article class="paper-page">
     <header class="paper-header pane">
-        <h1>{{ .Title }}</h1>
+        <div class="paper-title-row">
+            <h1>{{ .Title }}</h1>
+            <button class="theme-toggle paper-theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                <span data-theme-toggle-label aria-hidden="true">☀︎☾</span>
+            </button>
+        </div>
         {{ with .Params.venue }}<p class="paper-venue">{{ . }}</p>{{ end }}
         {{ partial "authors.html" (dict "page" . "showAffiliations" true) }}
         {{ with .Params.sponsor }}

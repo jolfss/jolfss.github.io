@@ -43,9 +43,11 @@
                         <a href="/blog/">Blog</a>
                     </nav>
                 {{ end }}
-                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
-                    <span data-theme-toggle-label>Auto</span>
-                </button>
+                {{ if not $isPaperPage }}
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                        <span data-theme-toggle-label aria-hidden="true">☀︎☾</span>
+                    </button>
+                {{ end }}
             </header>
         {{ end }}
 

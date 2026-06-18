@@ -48,13 +48,13 @@ def merge_spans(spans: list[Span]) -> list[Span]:
 
 
 def subtract_spans(left: list[Span], right: list[Span]) -> list[Span]:
-    left_merged = merge_spans(left)
+    left_ordered = normalize_spans(left)
     right_merged = merge_spans(right)
     if not right_merged:
-        return left_merged
+        return left_ordered
     out: list[Span] = []
     right_index = 0
-    for left_start, left_end in left_merged:
+    for left_start, left_end in left_ordered:
         cursor = left_start
         while right_index < len(right_merged) and right_merged[right_index][1] <= cursor:
             right_index += 1

@@ -1,13 +1,27 @@
 (function () {
     const order = ['auto', 'light', 'dark'];
-    const button = document.querySelector('[data-theme-toggle]');
-    const label = document.querySelector('[data-theme-toggle-label]');
+    const buttons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
+    const icons = {
+        auto: '☀︎☾',
+        light: '☀︎',
+        dark: '☾'
+    };
+    const names = {
+        auto: 'Auto theme',
+        light: 'Light theme',
+        dark: 'Dark theme'
+    };
 
-    if (!button || !label) return;
+    if (!buttons.length) return;
 
     function apply(theme) {
         document.documentElement.dataset.theme = theme;
-        label.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+        buttons.forEach(function (button) {
+            const label = button.querySelector('[data-theme-toggle-label]');
+            if (label) label.textContent = icons[theme];
+            button.setAttribute('aria-label', names[theme] + '. Toggle color theme.');
+            button.setAttribute('title', names[theme]);
+        });
         if (theme === 'auto') {
             localStorage.removeItem('theme');
         } else {
@@ -18,9 +32,11 @@
     const current = localStorage.getItem('theme') || 'auto';
     apply(order.includes(current) ? current : 'auto');
 
-    button.addEventListener('click', function () {
-        const active = document.documentElement.dataset.theme || 'auto';
-        const next = order[(order.indexOf(active) + 1) % order.length];
-        apply(next);
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const active = document.documentElement.dataset.theme || 'auto';
+            const next = order[(order.indexOf(active) + 1) % order.length];
+            apply(next);
+        });
     });
 }());

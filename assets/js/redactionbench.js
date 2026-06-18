@@ -8,7 +8,7 @@
     const redactionBenchData = globalThis.__REDACTIONBENCH_DATA__ || {};
     const gallerySamples = (redactionBenchData.gallerySamples || []).map(normalizeRecord);
     const demo = normalizeRecord(redactionBenchData.demo || {});
-    let redactions = mergeSpans([...demo.hard, ...demo.combinators]);
+    let redactions = buildInitialRedactions(demo);
 
     mountGallery();
     mountDemo();
@@ -70,7 +70,10 @@
     }
 
     function formatSampleId(sample) {
-        return String(sample.category || '').replace(/^_+/, '') + ':' + String(sample.genre || '').replace(/^_+/, '');
+        return 'Category: '
+            + String(sample.category || '').replace(/^_+/, '')
+            + ', Genre: '
+            + String(sample.genre || '').replace(/^_+/, '');
     }
 
     function renderSampleProvenance(sample) {
@@ -187,6 +190,31 @@
         });
     }
 
+    function buildInitialRedactions(record) {
+        const candidates = [
+            ...record.hard.map((span, index) => ({ span, kind: 'hard', index })),
+            ...record.contextual.map((span, index) => ({ span, kind: 'contextual', index })),
+            ...record.combinators.map((span, index) => ({ span, kind: 'combinator', index }))
+        ];
+        const selected = candidates.filter(({ span, kind, index }) => {
+            const score = deterministicSpanScore(span, kind, index);
+            if (kind === 'hard') return score % 5 < 3;
+            if (kind === 'contextual') return score % 7 < 2;
+            return score % 4 === 0;
+        });
+        return mergeSpans(selected.map(({ span }) => span));
+    }
+
+    function deterministicSpanScore(span, kind, index) {
+        let hash = 2166136261;
+        const source = kind + ':' + index + ':' + span.start + ':' + span.end;
+        for (let offset = 0; offset < source.length; offset += 1) {
+            hash ^= source.charCodeAt(offset);
+            hash = Math.imul(hash, 16777619);
+        }
+        return hash >>> 0;
+    }
+
     function renderLabeledText(text, hard, soft, combinators) {
         return renderAnnotatedText(text, hard, soft, combinators);
     }
@@ -201,6 +229,9 @@
         layer.style.height = root.scrollHeight + 'px';
         root.appendChild(layer);
         const rootRect = root.getBoundingClientRect();
+        const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+        const expandX = rem * 0.14;
+        const expandY = rem * 0.06;
         normalized.forEach((span, index) => {
             const range = rangeForOffsets(root, span.start, span.end);
             if (!range) return;
@@ -211,10 +242,10 @@
                 button.dataset.redactionIndex = String(index);
                 button.setAttribute('aria-label', 'Remove redaction');
                 if (rectIndex > 0) button.tabIndex = -1;
-                button.style.left = (rect.left - rootRect.left + root.scrollLeft - 1) + 'px';
-                button.style.top = (rect.top - rootRect.top + root.scrollTop) + 'px';
-                button.style.width = (rect.width + 2) + 'px';
-                button.style.height = rect.height + 'px';
+                button.style.left = (rect.left - rootRect.left + root.scrollLeft - expandX) + 'px';
+                button.style.top = (rect.top - rootRect.top + root.scrollTop - expandY) + 'px';
+                button.style.width = (rect.width + expandX * 2) + 'px';
+                button.style.height = (rect.height + expandY * 2) + 'px';
                 layer.appendChild(button);
             });
         });
@@ -295,21 +326,36 @@
     function renderAnnotatedText(text, hard, soft, combinators) {
         let html = '';
         const points = boundaries(text, [hard, soft, combinators]);
+        let previousLabelClass = '';
+        let previousLabelEnd = -1;
+        let sameLabelRunIndex = 0;
         for (let index = 0; index < points.length - 1; index += 1) {
             const start = points[index];
             const end = points[index + 1];
             if (end <= start) continue;
             const labelClass = labelClassForInterval(hard, soft, combinators, start, end);
             const escaped = escapeHtml(text.slice(start, end));
-            html += labelClass ? '<span class="' + labelClass + '">' + escaped + '</span>' : escaped;
+            if (!labelClass) {
+                html += escaped;
+                continue;
+            }
+            if (labelClass === previousLabelClass && start === previousLabelEnd) {
+                sameLabelRunIndex += 1;
+            } else {
+                sameLabelRunIndex = 0;
+            }
+            previousLabelClass = labelClass;
+            previousLabelEnd = end;
+            const altClass = sameLabelRunIndex % 2 === 0 ? 'rb-alt-a' : 'rb-alt-b';
+            html += '<span class="' + labelClass + ' ' + altClass + '">' + escaped + '</span>';
         }
         return html;
     }
 
     function labelClassForInterval(hard, soft, combinators, start, end) {
+        if (combinators.some((span) => overlaps(span, start, end))) return 'rb-combinator';
         if (hard.some((span) => overlaps(span, start, end))) return 'rb-mandatory';
         if (soft.some((span) => overlaps(span, start, end))) return 'rb-contextual';
-        if (combinators.some((span) => overlaps(span, start, end))) return 'rb-combinator';
         return '';
     }
 
@@ -557,6 +603,8 @@
             const lefts = (ends.get(comb.start) || []).filter((span) => !spansEqual(span, comb));
             const rights = (starts.get(comb.end) || []).filter((span) => !spansEqual(span, comb));
             addEdges(lefts, rights);
+            addEdges(lefts, [comb]);
+            addEdges([comb], rights);
         });
 
         yellow.forEach((span) => {
@@ -568,6 +616,8 @@
             if (!rights.some((item) => isNumericToken(spanToken(text, item)))) return;
             effectiveMarkers.add(spanKey(span));
             addEdges(lefts, rights);
+            addEdges(lefts, [span]);
+            addEdges([span], rights);
         });
 
         const closeTokens = new Set([')', ']', '}']);
@@ -584,13 +634,17 @@
             if (!sawSpace) return;
             const lefts = (ends.get(closeSpan.start) || []).filter((item) => !spansEqual(item, closeSpan));
             const rights = starts.get(cursor) || [];
+            const bridgeSpans = [closeSpan];
             effectiveMarkers.add(spanKey(closeSpan));
             yellow.forEach((spaceSpan) => {
                 if (spaceSpan.start >= closeSpan.end && spaceSpan.end <= cursor && /^\s+$/.test(spanToken(text, spaceSpan))) {
                     effectiveMarkers.add(spanKey(spaceSpan));
+                    bridgeSpans.push(spaceSpan);
                 }
             });
             addEdges(lefts, rights);
+            addEdges(lefts, bridgeSpans);
+            addEdges(bridgeSpans, rights);
         });
 
         const dsu = disjointSet(allSpans.length);

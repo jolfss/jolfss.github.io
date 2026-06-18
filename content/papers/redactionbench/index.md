@@ -60,6 +60,8 @@ links:
   - label: "arXiv"
     icon: "📄"
     url: "https://arxiv.org/abs/2606.18782"
+  - label: "Soon"
+    icon: "🤗"
   - label: "CC BY 4.0"
     icon: "⚖"
     url: "https://creativecommons.org/licenses/by/4.0/"

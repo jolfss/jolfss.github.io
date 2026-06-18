@@ -29,17 +29,20 @@
 <body class="{{ if .IsHome }}is-home{{ end }} section-{{ .Section }} kind-{{ .Kind }}">
     <a class="skip-link" href="#content">Skip to content</a>
     <div class="site-shell">
-        {{ $hideSiteHeader := or (.Param "hide_site_header") (and .IsPage (eq .Section "papers")) }}
+        {{ $isPaperPage := and .IsPage (eq .Section "papers") }}
+        {{ $hideSiteHeader := and (.Param "hide_site_header") (not $isPaperPage) }}
         {{ if not $hideSiteHeader }}
-            <header class="site-header" aria-label="Site header">
-                <a class="site-mark" href="/">SB</a>
-                <nav class="site-nav" aria-label="Primary navigation">
-                    <a href="/feed/">Feed</a>
-                    <a href="/papers/">Papers</a>
-                    {{/* Projects are hidden until the restored blurbs are rewritten as full pages. */}}
-                    {{/* <a href="/projects/">Projects</a> */}}
-                    <a href="/blog/">Blog</a>
-                </nav>
+            <header class="site-header{{ if $isPaperPage }} is-compact{{ end }}" aria-label="Site header">
+                {{ if not $isPaperPage }}
+                    <a class="site-mark" href="/">SB</a>
+                    <nav class="site-nav" aria-label="Primary navigation">
+                        <a href="/feed/">Feed</a>
+                        <a href="/papers/">Papers</a>
+                        {{/* Projects are hidden until the restored blurbs are rewritten as full pages. */}}
+                        {{/* <a href="/projects/">Projects</a> */}}
+                        <a href="/blog/">Blog</a>
+                    </nav>
+                {{ end }}
                 <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
                     <span data-theme-toggle-label>Auto</span>
                 </button>

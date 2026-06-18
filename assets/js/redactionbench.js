@@ -24,7 +24,7 @@
             '<div class="rb-sample-tabs" role="tablist" aria-label="Dataset sample categories">',
             gallerySamples.map((sample, index) => [
                 '<button type="button" role="tab" data-gallery-index="' + index + '">',
-                escapeHtml(formatLabel(sample.category)),
+                '<span class="rb-sample-tab-label">' + escapeHtml(formatLabel(sample.category)) + '</span>',
                 '</button>'
             ].join('')).join(''),
             '</div>',

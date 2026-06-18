@@ -423,8 +423,23 @@ pre code {
     cursor: pointer;
 }
 
+.button.is-disabled {
+    cursor: default;
+}
+
+.button.is-disabled:hover,
+.button.is-disabled:focus-visible {
+    --button-fill: var(--text);
+    --button-line: var(--text);
+    color: var(--paper);
+}
+
 .theme-toggle {
     justify-self: end;
+}
+
+.site-header.is-compact .theme-toggle {
+    grid-column: 3;
 }
 
 .pane {
@@ -871,8 +886,6 @@ html[data-theme='dark'] .paper-sponsor-logo {
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -886,6 +899,13 @@ html[data-theme='dark'] .paper-sponsor-logo {
     content: "";
     pointer-events: none;
     transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.rb-sample-tab-label {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .rb-sample-tabs button[aria-selected='true'] {

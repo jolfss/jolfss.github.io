@@ -41,7 +41,11 @@
         {{ with .Params.links }}
         <div class="action-row" aria-label="Paper links">
             {{ range . }}
-            <a class="button" href="{{ .url }}">{{ with .icon }}<span class="button-icon" aria-hidden="true">{{ . }}</span>{{ end }}<span>{{ .label }}</span></a>
+            {{ if .url }}
+                <a class="button" href="{{ .url }}">{{ with .icon }}<span class="button-icon" aria-hidden="true">{{ . }}</span>{{ end }}<span>{{ .label }}</span></a>
+            {{ else }}
+                <span class="button is-disabled" aria-disabled="true">{{ with .icon }}<span class="button-icon" aria-hidden="true">{{ . }}</span>{{ end }}<span>{{ .label }}</span></span>
+            {{ end }}
             {{ end }}
         </div>
         {{ end }}

@@ -8,7 +8,10 @@ html[data-theme='light'] {
     --grid: 1.5rem;
     --line: var(--grid);
     --max-width: 63rem;
-    --shell-pad: max(var(--grid), calc((100vw - var(--max-width)) / 2));
+    --shell-width-fluid: min(calc(100vw - (var(--grid) * 2)), var(--max-width));
+    --shell-width: var(--shell-width-fluid);
+    --shell-pad: calc((100vw - var(--shell-width)) / 2);
+    --grid-center-origin: calc(50% - (var(--grid) / 2));
     --radius: 1.5rem;
     --button-radius: calc(var(--grid) * 0.85);
     --bg: #ffffff;
@@ -129,6 +132,13 @@ html {
     color: var(--text);
 }
 
+@supports (width: round(down, 100vw, 1px)) {
+    :root,
+    html[data-theme='light'] {
+        --shell-width: round(down, var(--shell-width-fluid), calc(var(--grid) * 2));
+    }
+}
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -149,8 +159,14 @@ body {
             var(--grid-color) var(--grid)
         );
     background-size: var(--grid) var(--grid);
-    background-position-x: var(--shell-pad), var(--shell-pad);
+    background-position-x: var(--grid-center-origin), var(--grid-center-origin);
     background-position-y: 0, 0;
+}
+
+@supports (overflow: clip) {
+    body {
+        overflow-x: clip;
+    }
 }
 
 @supports (min-height: 100dvh) {
@@ -292,7 +308,7 @@ pre code {
 }
 
 .site-shell {
-    width: min(calc(100% - (var(--grid) * 2)), var(--max-width));
+    width: var(--shell-width);
     margin-inline: auto;
 }
 
@@ -464,10 +480,20 @@ pre code {
 }
 
 .pane {
+    position: relative;
+    isolation: isolate;
     margin-block: calc(var(--grid) * 2);
     padding: calc(var(--grid) * 2);
     border: 0;
     border-radius: var(--radius);
+    background-color: transparent;
+}
+
+.pane::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
     background-color: var(--pane-fill);
     -webkit-mask-image:
         linear-gradient(
@@ -501,6 +527,7 @@ pre code {
         );
     -webkit-mask-composite: intersect;
     mask-composite: intersect;
+    content: "";
 }
 
 .home-pane {
@@ -559,6 +586,7 @@ time {
     place-items: center;
     background: var(--paper);
     border-radius: calc(var(--radius) * 0.65);
+    box-shadow: 0 0 0 1px var(--grid-color);
 }
 
 @supports (height: round(nearest, calc(100cqw / 2), 1px)) {
@@ -589,14 +617,35 @@ time {
 }
 
 .table-scroll {
-    width: 100%;
-    max-width: 100%;
+    position: relative;
+    width: calc(100% + 1px);
+    max-width: calc(100% + 1px);
     margin: 0 0 var(--grid);
-    overflow-x: auto;
-    overflow-y: hidden;
+    margin-left: -1px;
+    padding-bottom: 1px;
+    overflow: hidden;
     border-radius: calc(var(--radius) * 0.65);
     background: var(--paper);
-    box-shadow: inset 0 0 0 1px var(--grid-color);
+    background-clip: padding-box;
+    box-shadow: none;
+    isolation: isolate;
+}
+
+.table-scroll::after {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border: 1px solid var(--grid-color);
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+}
+
+.table-scroll__viewport {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .table-scroll table,
@@ -606,15 +655,18 @@ time {
     margin: 0;
     border-collapse: collapse;
     border-spacing: 0;
-    background-image: linear-gradient(to bottom, transparent 0 calc(100% - 1px), var(--border) calc(100% - 1px) 100%);
-    background-position-y: 1px;
-    background-size: 100% var(--grid);
+    background-image: none;
     font-size: 0.92rem;
     line-height: var(--grid);
 }
 
 .prose tr {
     height: var(--grid);
+    box-shadow: 0 1px 0 var(--border);
+}
+
+.prose tbody tr:last-child {
+    box-shadow: none;
 }
 
 .prose th,
@@ -928,7 +980,9 @@ html[data-theme='dark'] .redactionbench-demo {
     display: grid;
     gap: var(--grid);
     min-width: 0;
+    max-width: 100%;
     margin-block: var(--grid) calc(var(--grid) * 2);
+    overflow-x: hidden;
 }
 
 .rb-sample-browser [data-gallery-panel] {
@@ -938,8 +992,11 @@ html[data-theme='dark'] .redactionbench-demo {
 
 .rb-sample-tabs {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--grid);
+    max-width: 100%;
+    overflow: visible;
 }
 
 .rb-sample-tabs button {
@@ -947,9 +1004,10 @@ html[data-theme='dark'] .redactionbench-demo {
     --button-line: var(--grid-color);
     position: relative;
     isolation: isolate;
-    flex: 1 1 0;
-    min-width: 0;
-    min-height: calc(var(--grid) * 2);
+    flex: 0 0 calc(var(--grid) * 5);
+    min-width: calc(var(--grid) * 5);
+    height: var(--grid);
+    min-height: var(--grid);
     padding: 0 calc(var(--grid) * 0.25);
     border: 0;
     border-radius: calc(var(--button-radius) * 0.75);
@@ -964,7 +1022,7 @@ html[data-theme='dark'] .redactionbench-demo {
 
 .rb-sample-tabs button::before {
     position: absolute;
-    inset: 0 0 -1px;
+    inset: 0;
     z-index: -1;
     border: 1px solid var(--button-line);
     border-radius: inherit;
@@ -1042,7 +1100,10 @@ html[data-theme='dark'] .redactionbench-demo {
     color: var(--link-hover);
 }
 
-.rb-doc {
+.rb-doc,
+.rb-doc-frame {
+    position: relative;
+    isolation: isolate;
     max-width: 100%;
     min-width: 0;
     padding: var(--grid);
@@ -1052,9 +1113,25 @@ html[data-theme='dark'] .redactionbench-demo {
     font-size: 0.9rem;
     line-height: var(--grid);
     border-radius: calc(var(--radius) * 0.65);
-    box-shadow: inset 0 0 0 1px var(--grid-color);
+    box-shadow: none;
+    overflow: hidden;
     overflow-wrap: anywhere;
     white-space: pre-wrap;
+}
+
+.rb-doc::after,
+.rb-doc-frame::after {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border: 1px solid var(--grid-color);
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+}
+
+.rb-doc-frame {
+    padding: 0;
 }
 
 .rb-gallery-doc {
@@ -1064,12 +1141,11 @@ html[data-theme='dark'] .redactionbench-demo {
     min-width: 0;
     min-height: calc(var(--grid) * 7);
     max-height: calc(var(--grid) * 18);
-    overflow-x: auto;
-    overflow-y: auto;
+    padding: var(--grid);
+    overflow: auto;
     overflow-wrap: normal;
     word-break: normal;
     white-space: pre;
-    contain: inline-size;
     font-size: 0.78rem;
 }
 
@@ -1103,14 +1179,25 @@ html[data-theme='dark'] .redactionbench-demo {
     display: flex;
     flex-wrap: wrap;
     gap: var(--grid);
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
     color: var(--muted);
     font-size: 0.92rem;
 }
 
-.rb-legend span {
-    display: inline-flex;
+.rb-legend > span {
+    display: flex;
+    flex: 0 1 auto;
+    min-width: 0;
     align-items: center;
     gap: 0.45rem;
+}
+
+.rb-legend-description {
+    min-width: 0;
+    max-width: calc(var(--grid) * 14);
+    overflow-wrap: break-word;
 }
 
 .rb-label-legend {
@@ -1121,7 +1208,8 @@ html[data-theme='dark'] .redactionbench-demo {
     color: var(--text);
 }
 
-.rb-legend span::before {
+.rb-legend > span::before {
+    flex: 0 0 auto;
     content: "";
     width: 1.1rem;
     height: 0.8rem;
@@ -1215,13 +1303,13 @@ html[data-theme='dark'] .redactionbench-demo {
 
 .rb-readout {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     grid-auto-rows: calc(var(--grid) * 3);
     gap: var(--grid);
     padding: var(--grid);
     border-radius: calc(var(--radius) * 0.65);
     background: var(--paper);
-    box-shadow: inset 0 0 0 1px var(--grid-color);
+    box-shadow: 0 0 0 1px var(--grid-color);
 }
 
 .rb-readout div {
@@ -1306,10 +1394,6 @@ html[data-theme='dark'] .redactionbench-demo {
         align-items: center;
         flex-direction: column;
         gap: 0;
-    }
-
-    .pane {
-        padding: var(--grid);
     }
 
     .rb-readout {

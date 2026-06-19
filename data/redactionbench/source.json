@@ -1,180 +1,965 @@
 {
   "selection": {
-    "method": "one deterministic random row per category, excluding the previous displayed genre when possible",
+    "method": "one representative row per category; academic manually set to title_ix after review",
     "seed": "redactionbench-site-examples-2026-06-18",
     "dataset": "/Users/sbrynjolfson/a10/pii-redaction/lib/RedactionBench/_redactionbench_release/data/test/data-00000-of-00001.arrow"
   },
   "gallerySamples": [
     {
       "category": "academic",
-      "genre": "grade_appeal",
-      "meta": "real release row 7",
-      "source": "https://www.icom.edu/wp-content/uploads/2023/09/ICOM-Title-IX-Complaint-Form-2023.pdf",
-      "text": "Grade Appeals - Office of the Registrar\n\nGrade Appeals Process\n\nAt Kennesaw State University, students may submit a formal grade appeal if they\nbelieve a final course grade has been assigned in error or unfairly. The process is\nintended for final grades only. Interim grades and grades on specific assignments are\nnot appealable.\n\nGrade Appeal Policy\n\nAn appeal must be based on one or more of the following:\n- an allegation that the faculty member violated the stated grading policy;\n- an allegation that the faculty member assigned a grade using a different standard\n  than was used with other students in the same course;\n- an allegation that the grade was miscalculated.\n\nThe student has the burden of proving these allegations. All formal appeals under\nthese procedures are based only on the written record.\n\nThis process does not address academic integrity allegations, faculty misconduct, or\ndiscrimination or retaliation. If the student alleges their grade is based on\ndiscrimination or retaliation because of membership in a protected class, the student\nmay file a complaint with the Office of Institutional Equity (OIE).\n\nComplaints filed with the OIE are independent of the grade appeal process and are\nnot reviewed by OIE as an appeal of a grade. If an OIE complaint is filed, the grade\nremains the final grade and cannot be changed based on OIE authority alone.\nHowever, after receiving a finding from the OIE, the Dean may determine whether a\nchange of grade is warranted.\n\nA complaint filed with the OIE and a formal grade appeal may be filed concurrently.\nFiling a discrimination or retaliation complaint with the OIE does not change the time\nrequirements for filing a grade appeal.\n\nHow to Submit a Grade Appeal\n\nBeginning in Fall 2024, the grade appeals process is handled in Owl Express. Grade\nappeals can be submitted for a course from the day after grades are posted for the\nsemester until the 20th business day of the following semester. If a grade appeal is\napproved, the grade change process is initiated automatically. If a grade appeal is\ndenied, the student has 20 days from the date of the decision to appeal the denial.\n\nStep-by-step submission instructions:\n\n1. Log in to Owl Express and select the Student Records tab.\n2. Select Request Grade Appeal.\n3. To begin the Grade Appeal process, connect to the campus network or use the KSU\n   virtual private network (VPN) with GlobalProtect if you are in KSU housing or off\n   campus.\n4. In the left menu, expand the Grade Appeal folder and click Student.\n5. On the Grade Appeal dashboard, select Submit New Request.\n6. Read the acknowledgements in the Grade Appeal Acknowledgement box, then select\n   Acknowledge & Continue.\n7. In the Grade Appeal Request form, select the course for which you would like to\n   submit the appeal.\n8. Enter a justification for the appeal and upload the course syllabus. Additional\n   supporting documentation may also be uploaded, but it is not mandatory.\n\nNotes:\n- PDF is the preferred file type.\n- Once an appeal has been submitted, supporting documents are visible to authorized\n  reviewers and cannot be deleted.\n\nWhen finished, select one of the following:\n- Save as Draft to save your appeal without submitting.\n- Cancel to exit the appeal form without submitting.\n- Submit to submit your appeal for review.\n\nAfter submission, the appeal appears on the Grade Appeals dashboard with the status\nPending Department Chair Decision. To review the submission, select the transaction\nnumber.\n\nIf the appeal is denied, the dashboard status changes to Pending Student Appeal DC.\nTo appeal the decision:\n1. Right click anywhere on the row and click Appeal Decision.\n2. On the Student Appeal Form, optionally upload additional documents.\n3. Click Appeal Decision.\n4. Enter comments and click Submit.\n\nContact Information\n\nKennesaw Campus\n1000 Chastain Road\nKennesaw, GA 30144\n\nMarietta Campus\n1100 South Marietta Pkwy\nMarietta, GA 30060\n\nPhone\n470-KSU-INFO\n(470-578-4636)\n",
+      "genre": "title_ix",
+      "meta": "real release row 13",
+      "source": "https://www.friscoisd.org/docs/default-source/hr/title-ix-complaint-form.pdf?sfvrsn=2eb47fd7_0",
+      "text": "Title IX Discrimination Formal Complaint Form\n\nCOMPLAINANT PERSONAL INFORMATION:\nName: Elena Marie Rodriguez\nEmail: e.rodriguez882@evergreen-isd.net\nHome Address: 4402 Whispering Oaks Lane\nCity: Silver Creek  State: TX  Zip code: 78201\nPhone Numbers: (Cell) 512-998-0198  Work: N/A\nStudent ID: 8841029  Campus: West Valley High School\nEmployee ID: N/A  Job Title: Student\nEmployee's School/Office Location: N/A\n\nType of Complaint:\n[X] Sexual Harassment  [ ] Sexual Assault  [ ] Gender Based Harassment  [ ] Dating Violence\n[X] Stalking  [X] Retaliation  [X] Cyber Bullying  [ ] Other\n\nDate Incident Occurred:\nEarliest: October 14, 2025\nLatest: February 10, 2026\n[X] Continuing Action\n\nRESPONDENT INFORMATION:\nName: Adam Moreno              School/Department: West Valley High School / Athletics\nName: Rhonda Davis               School/Department: West Valley High School / 11th Grade\nName: __________________________ School/Department: _________________________\nName: __________________________ School/Department: _________________________\n\nInformal Resolution: No\n\nNature of Complaint:\nBeginning in mid-October 2025, Adam Moreno began sending unsolicited and sexually suggestive direct messages to my private Instagram account (@elenar_77). After I blocked him, his friend Rhonda Davis began recording me during my lunch period without my consent and posting the videos to a public TikTok account (WVHS-Burn-77) with captions mocking my appearance and making false, derogatory claims about my private life.\n\nOn January 15, 2026, I confronted Adam in the parking lot and asked him to stop following me to my car after volleyball practice. He told me that if I reported his behavior to the coach or the office, he would make sure I was \"kicked off the team and ruined.\" Since that confrontation, I have received over 50 \"No Caller ID\" phone calls at night. On February 10, I found a typed note taped to my locker that contained a printout of my home address and the words \"I am always watching.\" This environment has made it impossible for me to focus on my classes, and I no longer feel safe staying for after-school activities.\n\nWitnesses:\nName: John Jenkins              Relationship: Best Friend / Student\nPhone Number: 512-150-0144       Email: s.jenkins@evergreen-isd.net\n\nName: Devin Miller               Relationship: Teammate / Peer\nPhone Number: 512-151-0921       Email: miller.dave@gmail.com\n\nDid you discuss this matter with any of the witnesses? Yes\nName: John Jenkins              Date: February 11, 2026\nMethod of Communication: Text Message and In-Person\n\nReports to Administrators/Law Enforcement:\nReported to: Coach Lynn Clark   Date: January 18, 2026\nHow reported: Verbal conversation after practice.\nResults: Coach spoke to Adam Moreno, but the behavior escalated into the anonymous phone calls and the locker note shortly after.\n\nReported to: Officer Brandon Peters  Date: February 11, 2026\nHow reported: Incident report filed at the SRO office on campus.\nResults: Case number 26-00412  opened; advised to file this formal Title IX complaint.\n\nI certify the aforementioned is true and correct.\n\nSignature: Elena Marie Rodriguez     Date: February 25, 2026\n\nComplaint taken by:\nTitle IX Coordinator: Dr. Melissa Davis  Date: February 25, 2026",
       "spans": [
         [
-          67,
+          87,
           92,
+          "mandatory"
+        ],
+        [
+          92,
+          93,
           "contextual"
         ],
         [
-          2361,
-          2364,
+          93,
+          98,
+          "mandatory"
+        ],
+        [
+          98,
+          99,
           "contextual"
         ],
         [
-          2431,
-          2434,
+          99,
+          108,
+          "mandatory"
+        ],
+        [
+          116,
+          130,
+          "mandatory"
+        ],
+        [
+          130,
+          131,
           "contextual"
         ],
         [
-          3826,
-          3841,
+          131,
+          148,
           "contextual"
         ],
         [
-          3842,
-          3846,
+          163,
+          167,
+          "mandatory"
+        ],
+        [
+          167,
+          168,
           "contextual"
         ],
         [
-          3846,
-          3847,
+          168,
+          188,
+          "mandatory"
+        ],
+        [
+          195,
+          207,
+          "mandatory"
+        ],
+        [
+          216,
+          218,
+          "mandatory"
+        ],
+        [
+          230,
+          235,
+          "mandatory"
+        ],
+        [
+          251,
+          258,
           "contextual"
         ],
         [
-          3847,
-          3860,
+          258,
+          261,
+          "mandatory"
+        ],
+        [
+          261,
+          262,
           "contextual"
         ],
         [
-          3861,
-          3869,
+          262,
+          265,
+          "mandatory"
+        ],
+        [
+          265,
+          266,
           "contextual"
         ],
         [
-          3869,
-          3871,
+          266,
+          270,
+          "mandatory"
+        ],
+        [
+          278,
+          281,
           "contextual"
         ],
         [
-          3871,
-          3873,
+          294,
+          301,
+          "mandatory"
+        ],
+        [
+          311,
+          334,
+          "mandatory"
+        ],
+        [
+          348,
+          351,
           "contextual"
         ],
         [
-          3873,
-          3874,
+          364,
+          371,
+          "mandatory"
+        ],
+        [
+          407,
+          410,
           "contextual"
         ],
         [
-          3874,
-          3879,
+          431,
+          432,
           "contextual"
         ],
         [
-          3881,
-          3896,
+          432,
+          433,
           "contextual"
         ],
         [
-          3897,
-          3901,
+          433,
+          434,
           "contextual"
         ],
         [
-          3901,
-          3902,
+          454,
+          455,
           "contextual"
         ],
         [
-          3902,
-          3921,
+          455,
+          456,
           "contextual"
         ],
         [
-          3922,
-          3930,
+          456,
+          457,
           "contextual"
         ],
         [
-          3930,
-          3932,
+          474,
+          475,
           "contextual"
         ],
         [
-          3932,
-          3934,
+          475,
+          476,
           "contextual"
         ],
         [
-          3934,
-          3935,
+          476,
+          477,
           "contextual"
         ],
         [
-          3935,
-          3940,
+          503,
+          504,
           "contextual"
         ],
         [
-          3948,
-          3951,
+          504,
+          505,
           "contextual"
         ],
         [
-          3951,
-          3952,
+          505,
+          506,
           "contextual"
         ],
         [
-          3952,
-          3955,
+          523,
+          524,
           "contextual"
         ],
         [
-          3955,
-          3956,
+          524,
+          525,
           "contextual"
         ],
         [
-          3956,
-          3960,
+          525,
+          526,
           "contextual"
         ],
         [
-          3961,
-          3962,
+          537,
+          538,
           "contextual"
         ],
         [
-          3962,
-          3965,
+          538,
+          539,
           "contextual"
         ],
         [
-          3965,
-          3966,
+          539,
+          540,
           "contextual"
         ],
         [
-          3966,
-          3969,
+          554,
+          555,
           "contextual"
         ],
         [
-          3969,
-          3970,
+          555,
+          556,
           "contextual"
         ],
         [
-          3970,
-          3974,
+          556,
+          557,
           "contextual"
         ],
         [
-          3974,
-          3975,
+          574,
+          575,
+          "contextual"
+        ],
+        [
+          575,
+          576,
+          "contextual"
+        ],
+        [
+          576,
+          577,
+          "contextual"
+        ],
+        [
+          619,
+          626,
+          "contextual"
+        ],
+        [
+          626,
+          627,
+          "contextual"
+        ],
+        [
+          627,
+          629,
+          "contextual"
+        ],
+        [
+          629,
+          631,
+          "contextual"
+        ],
+        [
+          631,
+          635,
+          "contextual"
+        ],
+        [
+          644,
+          652,
+          "contextual"
+        ],
+        [
+          652,
+          653,
+          "contextual"
+        ],
+        [
+          653,
+          655,
+          "contextual"
+        ],
+        [
+          655,
+          657,
+          "contextual"
+        ],
+        [
+          657,
+          661,
+          "contextual"
+        ],
+        [
+          662,
+          663,
+          "contextual"
+        ],
+        [
+          663,
+          664,
+          "contextual"
+        ],
+        [
+          664,
+          665,
+          "contextual"
+        ],
+        [
+          715,
+          719,
+          "mandatory"
+        ],
+        [
+          719,
+          720,
+          "contextual"
+        ],
+        [
+          720,
+          726,
+          "mandatory"
+        ],
+        [
+          759,
+          782,
+          "contextual"
+        ],
+        [
+          782,
+          785,
+          "contextual"
+        ],
+        [
+          785,
+          794,
+          "contextual"
+        ],
+        [
+          801,
+          807,
+          "mandatory"
+        ],
+        [
+          807,
+          808,
+          "contextual"
+        ],
+        [
+          808,
+          813,
+          "mandatory"
+        ],
+        [
+          847,
+          870,
+          "contextual"
+        ],
+        [
+          870,
+          873,
+          "contextual"
+        ],
+        [
+          873,
+          883,
+          "contextual"
+        ],
+        [
+          890,
+          916,
+          "contextual"
+        ],
+        [
+          936,
+          961,
+          "contextual"
+        ],
+        [
+          968,
+          994,
+          "contextual"
+        ],
+        [
+          1014,
+          1039,
+          "contextual"
+        ],
+        [
+          1062,
+          1064,
+          "contextual"
+        ],
+        [
+          1100,
+          1103,
+          "contextual"
+        ],
+        [
+          1103,
+          1104,
+          "contextual"
+        ],
+        [
+          1104,
+          1111,
+          "contextual"
+        ],
+        [
+          1111,
+          1112,
+          "contextual"
+        ],
+        [
+          1112,
+          1116,
+          "contextual"
+        ],
+        [
+          1118,
+          1122,
+          "mandatory"
+        ],
+        [
+          1122,
+          1123,
+          "contextual"
+        ],
+        [
+          1123,
+          1129,
+          "mandatory"
+        ],
+        [
+          1228,
+          1229,
+          "contextual"
+        ],
+        [
+          1229,
+          1230,
+          "contextual"
+        ],
+        [
+          1230,
+          1239,
+          "mandatory"
+        ],
+        [
+          1239,
+          1240,
+          "contextual"
+        ],
+        [
+          1274,
+          1280,
+          "mandatory"
+        ],
+        [
+          1280,
+          1281,
+          "contextual"
+        ],
+        [
+          1281,
+          1286,
+          "mandatory"
+        ],
+        [
+          1398,
+          1399,
+          "contextual"
+        ],
+        [
+          1399,
+          1411,
+          "mandatory"
+        ],
+        [
+          1411,
+          1412,
+          "contextual"
+        ],
+        [
+          1512,
+          1519,
+          "contextual"
+        ],
+        [
+          1519,
+          1520,
+          "contextual"
+        ],
+        [
+          1520,
+          1522,
+          "contextual"
+        ],
+        [
+          1522,
+          1524,
+          "contextual"
+        ],
+        [
+          1524,
+          1528,
+          "contextual"
+        ],
+        [
+          1543,
+          1547,
+          "mandatory"
+        ],
+        [
+          1859,
+          1867,
+          "contextual"
+        ],
+        [
+          1867,
+          1868,
+          "contextual"
+        ],
+        [
+          1868,
+          1870,
+          "contextual"
+        ],
+        [
+          2147,
+          2151,
+          "mandatory"
+        ],
+        [
+          2151,
+          2152,
+          "contextual"
+        ],
+        [
+          2152,
+          2159,
+          "mandatory"
+        ],
+        [
+          2187,
+          2198,
+          "contextual"
+        ],
+        [
+          2198,
+          2201,
+          "contextual"
+        ],
+        [
+          2201,
+          2208,
+          "contextual"
+        ],
+        [
+          2223,
+          2226,
+          "mandatory"
+        ],
+        [
+          2226,
+          2227,
+          "contextual"
+        ],
+        [
+          2227,
+          2230,
+          "mandatory"
+        ],
+        [
+          2230,
+          2231,
+          "contextual"
+        ],
+        [
+          2231,
+          2235,
+          "mandatory"
+        ],
+        [
+          2249,
+          2258,
+          "mandatory"
+        ],
+        [
+          2258,
+          2259,
+          "contextual"
+        ],
+        [
+          2259,
+          2276,
+          "contextual"
+        ],
+        [
+          2284,
+          2289,
+          "mandatory"
+        ],
+        [
+          2289,
+          2290,
+          "contextual"
+        ],
+        [
+          2290,
+          2296,
+          "mandatory"
+        ],
+        [
+          2325,
+          2333,
+          "contextual"
+        ],
+        [
+          2333,
+          2336,
+          "contextual"
+        ],
+        [
+          2336,
+          2340,
+          "contextual"
+        ],
+        [
+          2355,
+          2358,
+          "mandatory"
+        ],
+        [
+          2358,
+          2359,
+          "contextual"
+        ],
+        [
+          2359,
+          2362,
+          "mandatory"
+        ],
+        [
+          2362,
+          2363,
+          "contextual"
+        ],
+        [
+          2363,
+          2367,
+          "mandatory"
+        ],
+        [
+          2381,
+          2392,
+          "mandatory"
+        ],
+        [
+          2392,
+          2393,
+          "contextual"
+        ],
+        [
+          2393,
+          2402,
+          "contextual"
+        ],
+        [
+          2459,
+          2462,
+          "contextual"
+        ],
+        [
+          2469,
+          2473,
+          "mandatory"
+        ],
+        [
+          2473,
+          2474,
+          "contextual"
+        ],
+        [
+          2474,
+          2481,
+          "mandatory"
+        ],
+        [
+          2501,
+          2509,
+          "contextual"
+        ],
+        [
+          2509,
+          2510,
+          "contextual"
+        ],
+        [
+          2510,
+          2512,
+          "contextual"
+        ],
+        [
+          2512,
+          2514,
+          "contextual"
+        ],
+        [
+          2514,
+          2518,
+          "contextual"
+        ],
+        [
+          2628,
+          2633,
+          "contextual"
+        ],
+        [
+          2633,
+          2634,
+          "contextual"
+        ],
+        [
+          2634,
+          2638,
+          "mandatory"
+        ],
+        [
+          2638,
+          2639,
+          "contextual"
+        ],
+        [
+          2639,
+          2644,
+          "mandatory"
+        ],
+        [
+          2653,
+          2660,
+          "contextual"
+        ],
+        [
+          2660,
+          2661,
+          "contextual"
+        ],
+        [
+          2661,
+          2663,
+          "contextual"
+        ],
+        [
+          2663,
+          2665,
+          "contextual"
+        ],
+        [
+          2665,
+          2669,
+          "contextual"
+        ],
+        [
+          2744,
+          2748,
+          "mandatory"
+        ],
+        [
+          2748,
+          2749,
+          "contextual"
+        ],
+        [
+          2749,
+          2755,
+          "mandatory"
+        ],
+        [
+          2864,
+          2871,
+          "contextual"
+        ],
+        [
+          2871,
+          2872,
+          "contextual"
+        ],
+        [
+          2872,
+          2879,
+          "mandatory"
+        ],
+        [
+          2879,
+          2880,
+          "contextual"
+        ],
+        [
+          2880,
+          2886,
+          "mandatory"
+        ],
+        [
+          2894,
+          2902,
+          "contextual"
+        ],
+        [
+          2902,
+          2903,
+          "contextual"
+        ],
+        [
+          2903,
+          2905,
+          "contextual"
+        ],
+        [
+          2905,
+          2907,
+          "contextual"
+        ],
+        [
+          2907,
+          2911,
+          "contextual"
+        ],
+        [
+          2998,
+          3000,
+          "mandatory"
+        ],
+        [
+          3000,
+          3001,
+          "contextual"
+        ],
+        [
+          3001,
+          3006,
+          "mandatory"
+        ],
+        [
+          3127,
+          3132,
+          "mandatory"
+        ],
+        [
+          3132,
+          3133,
+          "contextual"
+        ],
+        [
+          3133,
+          3138,
+          "mandatory"
+        ],
+        [
+          3138,
+          3139,
+          "contextual"
+        ],
+        [
+          3139,
+          3148,
+          "mandatory"
+        ],
+        [
+          3159,
+          3167,
+          "contextual"
+        ],
+        [
+          3167,
+          3168,
+          "contextual"
+        ],
+        [
+          3168,
+          3170,
+          "contextual"
+        ],
+        [
+          3170,
+          3172,
+          "contextual"
+        ],
+        [
+          3172,
+          3176,
+          "contextual"
+        ],
+        [
+          3220,
+          3222,
+          "contextual"
+        ],
+        [
+          3222,
+          3224,
+          "contextual"
+        ],
+        [
+          3224,
+          3231,
+          "contextual"
+        ],
+        [
+          3231,
+          3232,
+          "contextual"
+        ],
+        [
+          3232,
+          3237,
+          "contextual"
+        ],
+        [
+          3245,
+          3253,
+          "contextual"
+        ],
+        [
+          3253,
+          3254,
+          "contextual"
+        ],
+        [
+          3254,
+          3256,
+          "contextual"
+        ],
+        [
+          3256,
+          3258,
+          "contextual"
+        ],
+        [
+          3258,
+          3262,
           "contextual"
         ]
       ]

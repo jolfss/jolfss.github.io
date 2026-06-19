@@ -22,14 +22,11 @@
             button.setAttribute('aria-label', names[theme] + '. Toggle color theme.');
             button.setAttribute('title', names[theme]);
         });
-        if (theme === 'auto') {
-            localStorage.removeItem('theme');
-        } else {
-            localStorage.setItem('theme', theme);
-        }
+        localStorage.setItem('theme', theme);
     }
 
-    const current = localStorage.getItem('theme') || 'auto';
+    const fallback = document.documentElement.dataset.defaultTheme || 'auto';
+    const current = localStorage.getItem('theme') || fallback;
     apply(order.includes(current) ? current : 'auto');
 
     buttons.forEach(function (button) {

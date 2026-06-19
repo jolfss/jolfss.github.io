@@ -63,7 +63,7 @@ links:
   - label: "Soon"
     icon: "🤗"
   - label: "CC BY 4.0"
-    icon: "⚖"
+    icon: "⚖️"
     url: "https://creativecommons.org/licenses/by/4.0/"
 bibtex: |
   @misc{brynjolfsson2026redactionbench,
@@ -78,7 +78,7 @@ bibtex: |
   }
 ---
 
-## Evaluations & Tables
+## Evaluations
 
 <figure class="paper-figure">
     <div class="paper-figure-frame">

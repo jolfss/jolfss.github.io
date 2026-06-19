@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="{{ site.LanguageCode }}" data-theme="auto">
+{{ $defaultTheme := cond (and .IsPage (eq .Section "papers")) "light" "auto" }}
+<html lang="{{ site.LanguageCode }}" data-theme="{{ $defaultTheme }}" data-default-theme="{{ $defaultTheme }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else with .Params.summary }}{{ . }}{{ else }}{{ site.Title }}{{ end }}">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
     <script>
-        document.documentElement.dataset.theme = localStorage.getItem('theme') || 'auto';
+        document.documentElement.dataset.theme = localStorage.getItem('theme') || document.documentElement.dataset.defaultTheme || 'auto';
     </script>
     {{ $style := resources.Get "css/site.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">

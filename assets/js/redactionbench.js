@@ -55,7 +55,7 @@
                 '<article class="rb-sample-card">',
                 '<div class="rb-block-heading"><h3>' + escapeHtml(formatSampleId(sample)) + '</h3><span>' + renderSampleProvenance(sample) + '</span></div>',
                 renderLegend(false),
-                '<div class="rb-doc rb-gallery-doc">' + renderLabeledText(sample.text, sample.hard, sample.displayContextual, sample.combinators) + '</div>',
+                '<div class="rb-doc-frame"><div class="rb-gallery-doc">' + renderLabeledText(sample.text, sample.hard, sample.displayContextual, sample.combinators) + '</div></div>',
                 '</article>'
             ].join('');
         }
@@ -71,9 +71,9 @@
 
     function formatSampleId(sample) {
         return 'Category: '
-            + String(sample.category || '').replace(/^_+/, '')
+            + formatLabel(sample.category || '')
             + ', Genre: '
-            + String(sample.genre || '').replace(/^_+/, '');
+            + formatGenre(sample.genre || '');
     }
 
     function renderSampleProvenance(sample) {
@@ -138,11 +138,7 @@
                 text: demo.text
             });
             readoutNode.innerHTML = [
-                '<div><strong>' + formatPercent(score.sample_entity_iou) + '</strong><span>R-Score</span></div>',
-                '<div><strong>' + formatNumber(score.weighted_connected_iou_numerator) + ' / ' + formatNumber(score.weighted_connected_iou_denominator) + '</strong><span>num / denom</span></div>',
-                '<div><strong>' + score.entity_term_count + '</strong><span>red terms</span></div>',
-                '<div><strong>' + formatNumber(score.yellow_penalty_denominator_weight) + '</strong><span>context penalty</span></div>',
-                '<div><strong>' + formatNumber(score.connected_fp_penalty_denominator_weight) + '</strong><span>FP penalty</span></div>'
+                '<div><strong>' + formatPercent(score.sample_entity_iou) + '</strong><span>R-Score</span></div>'
             ].join('');
         }
     }
@@ -151,7 +147,7 @@
         const items = [
             ['legend-red', 'Mandatory', 'must be redacted'],
             ['legend-yellow', 'Contextual', 'depends on document context'],
-            ['legend-combinator', 'Combinator', 'connector used for scoring']
+            ['legend-combinator', 'Combinator', 'pseudo-label; groups spans into entities']
         ];
         if (includeRedaction) items.push(['legend-redaction', 'Redaction', 'current redaction span']);
         return [
@@ -159,9 +155,9 @@
             items.map(([className, label, description]) => [
                 '<span class="' + className + '"><strong>',
                 label,
-                '</strong> ',
+                '</strong> <span class="rb-legend-description">',
                 description,
-                '</span>'
+                '</span></span>'
             ].join('')).join(''),
             '</div>'
         ].join('');

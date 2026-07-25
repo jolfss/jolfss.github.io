@@ -1,0 +1,9 @@
+{{ $content := "" }}
+{{ with .Get 0 }}
+    {{ $content = . }}
+{{ else }}
+    {{ $content = .Inner }}
+{{ end }}
+<span class="sidenote" role="note"><span class="sidenote__content">
+    {{ $content | markdownify }}
+</span></span>

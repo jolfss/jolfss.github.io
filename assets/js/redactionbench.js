@@ -89,6 +89,7 @@
         demoMount.innerHTML = [
             '<section class="rb-window">',
             renderLegend(true),
+            '<div class="rb-demo-actions"><button class="button rb-randomize" type="button" data-randomize-redactions>Randomize redactions</button></div>',
             '<div class="rb-doc rb-edit-doc" tabindex="0" data-edit-doc></div>',
             '<div class="rb-readout" data-readout></div>',
             '</section>'
@@ -96,6 +97,7 @@
 
         const editDoc = demoMount.querySelector('[data-edit-doc]');
         const readoutNode = demoMount.querySelector('[data-readout]');
+        const randomizeButton = demoMount.querySelector('[data-randomize-redactions]');
 
         editDoc.innerHTML = renderLabeledText(demo.text, demo.hard, demo.displayContextual, demo.combinators);
         renderDemoState();
@@ -103,6 +105,7 @@
         editDoc.addEventListener('mouseup', () => redactSelection());
         editDoc.addEventListener('keyup', () => redactSelection());
         window.addEventListener('resize', () => renderRedactionOverlays(editDoc, redactions));
+        randomizeButton.addEventListener('click', randomizeRedactions);
 
         editDoc.addEventListener('click', (event) => {
             const redaction = event.target.closest('[data-redaction-index]');
@@ -128,6 +131,17 @@
         function removeRedaction(index) {
             if (!Number.isInteger(index)) return;
             redactions = redactions.filter((_span, current) => current !== index);
+            renderDemoState();
+        }
+
+        function randomizeRedactions() {
+            const keepProbability = 0.1 + Math.random() * 0.9;
+            const candidates = uniqueSortedSpans([
+                ...demo.hard,
+                ...demo.contextual,
+                ...demo.combinators
+            ]);
+            redactions = mergeSpans(candidates.filter(() => Math.random() < keepProbability));
             renderDemoState();
         }
 

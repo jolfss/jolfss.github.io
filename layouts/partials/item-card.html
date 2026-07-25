@@ -1,11 +1,16 @@
+{{ $page := .page }}
+{{ $displayDate := .displayDate | default $page.Date }}
+
 <article class="item-card pane">
-    {{ $summary := .Params.summary }}
-    {{ if and (not $summary) .Params.description }}
-        {{ $summary = .Params.description | markdownify | plainify | truncate 220 }}
+    {{ $summary := $page.Params.summary }}
+    {{ if and (not $summary) $page.Params.description }}
+        {{ $summary = $page.Params.description | markdownify | plainify | truncate 220 }}
     {{ end }}
-    {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006.01.02" }}</time>{{ end }}
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    {{ partial "authors.html" (dict "page" . "showAffiliations" false) }}
-    {{ with .Params.venue }}<p class="item-venue">{{ . }}</p>{{ end }}
+    {{ with $displayDate }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006.01.02" }}</time>{{ end }}
+    <h2><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+    {{ if ne $page.Section "blog" }}
+        {{ partial "authors.html" (dict "page" $page "showAffiliations" false) }}
+    {{ end }}
+    {{ with $page.Params.venue }}<p class="item-venue">{{ . }}</p>{{ end }}
     {{ with $summary }}<p>{{ . }}</p>{{ end }}
 </article>

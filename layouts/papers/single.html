@@ -77,9 +77,11 @@
     {{ if .Param "redactionbench" }}
     <section class="paper-section pane">
         <div class="prose">
-            <h2>Sample Documents</h2>
+            <h2>Interactive R-Score</h2>
+            <p class="rb-help">Select text to redact it. Click a redaction to remove it.</p>
+            <p class="rb-mobile-note">Text selection in this interactive does not work on mobile. Use Randomize redactions to explore different combinations instead.</p>
         </div>
-        <div data-redactionbench-gallery></div>
+        <div data-redactionbench-demo></div>
     </section>
     {{ end }}
 
@@ -94,10 +96,9 @@
     {{ if .Param "redactionbench" }}
     <section class="paper-section pane">
         <div class="prose">
-            <h2>Interactive R-Score</h2>
-            <p class="rb-help">Select text to redact it. Click a redaction to remove it.</p>
+            <h2>Data Samples</h2>
         </div>
-        <div data-redactionbench-demo></div>
+        <div data-redactionbench-gallery></div>
     </section>
     {{ end }}
 

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<article class="article-page pane">
+    <header class="article-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end }}
+        {{ if .Params.thread_title }}
+            <p class="thread-meta">
+                <span>{{ .Params.thread_title }}{{ with .Params.thread_order }} &middot; Part {{ . }}{{ end }}</span>
+            </p>
+        {{ end }}
+        {{ with .Params.summary }}<p class="summary">{{ . }}</p>{{ end }}
+    </header>
+    <div class="prose">
+        {{ .Content }}
+    </div>
+    {{ if or .Params.previous .Params.next }}
+    <nav class="blog-post-nav" aria-label="Thread navigation">
+        {{ with .Params.previous }}
+            {{ $href := . }}
+            {{ $page := index (where site.RegularPages "RelPermalink" $href) 0 }}
+            <a class="blog-post-nav-link is-previous" href="{{ $href }}">
+                <span>Previous in thread</span>
+                <strong>{{ with $page }}{{ .Title }}{{ else }}Previous post{{ end }}</strong>
+            </a>
+        {{ end }}
+        {{ with .Params.next }}
+            {{ $href := . }}
+            {{ $page := index (where site.RegularPages "RelPermalink" $href) 0 }}
+            <a class="blog-post-nav-link is-next" href="{{ $href }}">
+                <span>Next in thread</span>
+                <strong>{{ with $page }}{{ .Title }}{{ else }}Next post{{ end }}</strong>
+            </a>
+        {{ end }}
+    </nav>
+    {{ end }}
+</article>
+{{ end }}

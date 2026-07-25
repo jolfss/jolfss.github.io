@@ -7,14 +7,87 @@
 
     const redactionBenchData = globalThis.__REDACTIONBENCH_DATA__ || {};
     const gallerySamples = (redactionBenchData.gallerySamples || []).map(normalizeRecord);
-    const demo = normalizeRecord(redactionBenchData.demo || {});
+    const demo = buildDemoSample();
     let redactions = buildInitialRedactions(demo);
 
     mountGallery();
     mountDemo();
 
     function buildDemoSample() {
-        return cloneRecord(demo);
+        const text = [
+            'Credential rotation incident review',
+            '',
+            'At 03:14 UTC, engineers Maya Chen and Jordan Lee contained an authentication leak affecting the production settlement service. They revoked the exposed credential prod-7Q4M8D2K-X9P3V6N1-R5T7C2L8-B4H6J9W3-F2K8M5Q7-D9N1P6R4-V3L7X2C8-Q5W9H4T6-Z8R2N7M4, invalidated recovery sequence 4821-7730-9064, and replaced signing key SK-91AF-72CD-48E6 before resuming traffic.',
+            '',
+            'The review traced requests through workers 10.24.18.7, 10.24.18.9, and 10.24.18.12 on subnet 10.24.16.0/20; gateways 10.24.16.1 and 10.24.16.2; and the neighboring range 10.24.32.0/20. A longer route advertisement referenced 2001:0db8:85a3:0000:0000:8a2e:0370:7334. Analyst Esha Navarro confirmed that related telemetry named worker-17.ops.example.test, worker-18.ops.example.test, api-03.ops.example.test, payments-retry-west, ledger-replay-east, prod-us-west-2, INC-2048-A, and TRACE-7730-B. The deployment recovered normally, no customer records were accessed, and the team retained the report for its weekly security review.'
+        ].join('\n');
+        const hard = [];
+        const contextual = [];
+        const annotateComposite = (value, kind) => {
+            const start = text.indexOf(value);
+            if (start < 0) throw new Error('Interactive sample is missing: ' + value);
+            const matcher = /[0-9A-Za-z]+/g;
+            const components = [];
+            const separators = [];
+            let previousEnd = start;
+            let match;
+            while ((match = matcher.exec(value)) !== null) {
+                const component = {
+                    start: start + match.index,
+                    end: start + match.index + match[0].length
+                };
+                if (component.start > previousEnd) {
+                    separators.push({ start: previousEnd, end: component.start });
+                }
+                components.push(component);
+                previousEnd = component.end;
+            }
+            if (previousEnd < start + value.length) {
+                separators.push({ start: previousEnd, end: start + value.length });
+            }
+            if (kind === 'mandatory') hard.push(...components);
+            else contextual.push(...components);
+            contextual.push(...separators);
+        };
+        [
+            'Maya Chen',
+            'Jordan Lee',
+            'Esha Navarro',
+            'prod-7Q4M8D2K-X9P3V6N1-R5T7C2L8-B4H6J9W3-F2K8M5Q7-D9N1P6R4-V3L7X2C8-Q5W9H4T6-Z8R2N7M4',
+            '4821-7730-9064',
+            'SK-91AF-72CD-48E6'
+        ].forEach((value) => annotateComposite(value, 'mandatory'));
+        [
+            '10.24.18.7',
+            '10.24.18.9',
+            '10.24.18.12',
+            '10.24.16.0/20',
+            '10.24.16.1',
+            '10.24.16.2',
+            '10.24.32.0/20',
+            '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+            'worker-17.ops.example.test',
+            'worker-18.ops.example.test',
+            'api-03.ops.example.test',
+            'payments-retry-west',
+            'ledger-replay-east',
+            'prod-us-west-2',
+            'INC-2048-A',
+            'TRACE-7730-B'
+        ].forEach((value) => annotateComposite(value, 'contextual'));
+        const combinators = effectiveYellowCombinatorSpans(hard, contextual, text);
+        const combinatorKeys = new Set(combinators.map(spanKey));
+        return normalizeRecord({
+            category: 'interactive',
+            genre: 'incident_review',
+            meta: 'illustrative sample',
+            source: null,
+            text,
+            hard,
+            contextual,
+            displayContextual: contextual.filter((item) => !combinatorKeys.has(spanKey(item))),
+            combinators
+        });
     }
 
     function mountGallery() {
@@ -88,24 +161,65 @@
         demoMount.className = 'redactionbench-demo';
         demoMount.innerHTML = [
             '<section class="rb-window">',
-            renderLegend(true),
-            '<div class="rb-demo-actions"><button class="button rb-randomize" type="button" data-randomize-redactions>Randomize redactions</button></div>',
-            '<div class="rb-doc rb-edit-doc" tabindex="0" data-edit-doc></div>',
+            '<div class="rb-demo-source" data-demo-source></div>',
+            '<div data-demo-legend></div>',
+            '<div class="rb-demo-actions">',
+            '<button class="button rb-randomize" type="button" data-randomize-redactions>Randomize redactions</button>',
+            '<label class="rb-preview-toggle">',
+            '<input type="checkbox" data-preview-redactions aria-controls="rb-edit-doc">',
+            '<span class="rb-preview-toggle-track" aria-hidden="true"></span>',
+            '<span>Preview redactions</span>',
+            '</label>',
+            '</div>',
+            '<div class="rb-interactive-frame">',
+            '<div class="rb-doc rb-edit-doc" id="rb-edit-doc" tabindex="0" data-edit-doc></div>',
+            '<div class="rb-score-summary">',
             '<div class="rb-readout" data-readout></div>',
+            '</div>',
+            '</div>',
             '</section>'
         ].join('');
 
         const editDoc = demoMount.querySelector('[data-edit-doc]');
         const readoutNode = demoMount.querySelector('[data-readout]');
+        const sourceNode = demoMount.querySelector('[data-demo-source]');
         const randomizeButton = demoMount.querySelector('[data-randomize-redactions]');
+        const previewToggle = demoMount.querySelector('[data-preview-redactions]');
+        const legendNode = demoMount.querySelector('[data-demo-legend]');
+        const scoreSummary = demoMount.querySelector('.rb-score-summary');
+        let activeLabelView = null;
 
-        editDoc.innerHTML = renderLabeledText(demo.text, demo.hard, demo.displayContextual, demo.combinators);
         renderDemoState();
 
         editDoc.addEventListener('mouseup', () => redactSelection());
         editDoc.addEventListener('keyup', () => redactSelection());
         window.addEventListener('resize', () => renderRedactionOverlays(editDoc, redactions));
         randomizeButton.addEventListener('click', randomizeRedactions);
+        previewToggle.addEventListener('change', () => {
+            demoMount.classList.toggle('is-redaction-preview', previewToggle.checked);
+        });
+        scoreSummary.addEventListener('pointerover', (event) => {
+            const viewTarget = event.target.closest('[data-label-view]');
+            if (viewTarget && scoreSummary.contains(viewTarget)) {
+                renderLabelView(viewTarget.dataset.labelView);
+            }
+        });
+        scoreSummary.addEventListener('pointerout', (event) => {
+            const nextTarget = event.relatedTarget?.closest?.('[data-label-view]');
+            if (nextTarget && scoreSummary.contains(nextTarget)) {
+                renderLabelView(nextTarget.dataset.labelView);
+                return;
+            }
+            renderLabelView('contextual');
+        });
+        scoreSummary.addEventListener('focusin', (event) => {
+            const viewTarget = event.target.closest('[data-label-view]');
+            if (viewTarget) renderLabelView(viewTarget.dataset.labelView);
+        });
+        scoreSummary.addEventListener('focusout', (event) => {
+            const nextTarget = event.relatedTarget?.closest?.('[data-label-view]');
+            renderLabelView(nextTarget?.dataset.labelView || 'contextual');
+        });
 
         editDoc.addEventListener('click', (event) => {
             const redaction = event.target.closest('[data-redaction-index]');
@@ -135,44 +249,189 @@
         }
 
         function randomizeRedactions() {
-            const keepProbability = 0.1 + Math.random() * 0.9;
-            const candidates = uniqueSortedSpans([
-                ...demo.hard,
-                ...demo.contextual,
-                ...demo.combinators
-            ]);
-            redactions = mergeSpans(candidates.filter(() => Math.random() < keepProbability));
+            redactions = randomizedRedactions(demo);
             renderDemoState();
         }
 
         function renderDemoState() {
-            renderRedactionOverlays(editDoc, redactions);
-            const score = scoreSampleEntityIou(demo.hard, redactions, {
+            sourceNode.innerHTML = [
+                '<span>Illustrative RedactionBench sample · ',
+                escapeHtml(formatLabel(demo.category || 'sample')),
+                ' / ',
+                escapeHtml(formatGenre(demo.genre || 'document')),
+                '</span>',
+                demo.source
+                    ? '<a href="' + escapeAttribute(demo.source) + '">Source</a>'
+                    : ''
+            ].join('');
+            renderLabelView('contextual', true);
+            const rScore = scoreSampleEntityIou(demo.hard, redactions, {
                 softGoldSpans: demo.contextual,
                 text: demo.text
             });
-            readoutNode.innerHTML = [
-                '<div><strong>' + formatPercent(score.sample_entity_iou) + '</strong><span>R-Score</span></div>'
-            ].join('');
+            const mandatory = scoreUnionMetrics(demo.hard, redactions);
+            const allRequired = scoreUnionMetrics([...demo.hard, ...demo.contextual], redactions);
+            readoutNode.innerHTML = renderMetricRace([
+                {
+                    label: 'R-Score',
+                    ours: true,
+                    variants: [{
+                        value: rScore.sample_entity_iou,
+                        kind: 'ours',
+                        seriesLabel: 'Two-tier',
+                        labelView: 'contextual',
+                        description: 'Two-tier R-Score'
+                    }]
+                },
+                {
+                    label: 'Strict-F1',
+                    variants: [
+                        {
+                            value: mandatory.strictF1,
+                            kind: 'mandatory',
+                            seriesLabel: 'Mandatory only',
+                            labelView: 'mandatory-only',
+                            description: 'Mandatory only Strict-F1'
+                        },
+                        {
+                            value: allRequired.strictF1,
+                            kind: 'all',
+                            seriesLabel: 'All labels',
+                            labelView: 'all-required',
+                            description: 'All required Strict-F1'
+                        }
+                    ]
+                },
+                {
+                    label: 'IoU',
+                    variants: [
+                        {
+                            value: mandatory.iou,
+                            kind: 'mandatory',
+                            seriesLabel: 'Mandatory only',
+                            labelView: 'mandatory-only',
+                            description: 'Mandatory only IoU'
+                        },
+                        {
+                            value: allRequired.iou,
+                            kind: 'all',
+                            seriesLabel: 'All labels',
+                            labelView: 'all-required',
+                            description: 'All required IoU'
+                        }
+                    ]
+                }
+            ]);
+        }
+
+        function renderLabelView(mode, force = false) {
+            if (!force && mode === activeLabelView) return;
+            activeLabelView = mode;
+            let hard = demo.hard;
+            let soft = demo.displayContextual;
+            let combinators = demo.combinators;
+            let entities = mergeSpans([...demo.hard, ...demo.contextual]);
+            if (mode === 'mandatory-only') {
+                soft = [];
+                combinators = [];
+                entities = mergeSpans(demo.hard);
+            } else if (mode === 'all-required') {
+                hard = mergeSpans([...demo.hard, ...demo.contextual]);
+                soft = [];
+                combinators = [];
+            }
+            legendNode.innerHTML = renderLegend(true, mode);
+            editDoc.innerHTML = renderLabeledText(
+                demo.text,
+                hard,
+                soft,
+                combinators,
+                [demo.hard, demo.contextual, demo.combinators],
+                entities,
+                mode
+            );
+            renderRedactionOverlays(editDoc, redactions);
         }
     }
 
-    function renderLegend(includeRedaction) {
-        const items = [
-            ['legend-red', 'Mandatory', 'must be redacted'],
-            ['legend-yellow', 'Contextual', 'depends on document context'],
-            ['legend-combinator', 'Combinator', 'pseudo-label; groups spans into entities']
-        ];
-        if (includeRedaction) items.push(['legend-redaction', 'Redaction', 'current redaction span']);
+    function renderLegend(includeRedaction, mode = 'contextual') {
+        let items;
+        if (mode === 'mandatory-only') {
+            items = [['legend-red', 'Mandatory']];
+        } else if (mode === 'all-required') {
+            items = [['legend-red', 'All required']];
+        } else {
+            items = [
+                ['legend-red', 'Mandatory'],
+                ['legend-yellow', 'Contextual'],
+                ['legend-combinator', 'Combinator']
+            ];
+        }
+        if (includeRedaction) items.push(['legend-redaction', 'Redaction']);
         return [
             '<div class="rb-legend rb-label-legend" aria-label="RedactionBench label legend">',
-            items.map(([className, label, description]) => [
+            items.map(([className, label]) => [
                 '<span class="' + className + '"><strong>',
                 label,
-                '</strong> <span class="rb-legend-description">',
-                description,
-                '</span></span>'
+                '</strong></span>'
             ].join('')).join(''),
+            '</div>'
+        ].join('');
+    }
+
+    function renderMetricRace(metrics) {
+        return [
+            '<div class="rb-score-race" role="group" aria-label="Metric scores from zero to one">',
+            '<div class="rb-score-scale" aria-hidden="true">',
+            '<span></span>',
+            '<div><span>0</span><span>1</span></div>',
+            '<span></span>',
+            '</div>',
+            metrics.map((metric) => {
+                return [
+                    '<section class="rb-score-group',
+                    metric.ours ? ' is-ours' : '',
+                    '">',
+                    '<span class="rb-score-identity">',
+                    '<strong>',
+                    escapeHtml(metric.label),
+                    metric.ours ? ' <em>(ours)</em>' : '',
+                    '</strong>',
+                    metric.context ? '<small>' : '',
+                    metric.context
+                        ? escapeHtml(metric.context)
+                        : '',
+                    metric.context ? '</small>' : '',
+                    '</span>',
+                    '<div class="rb-score-series-list">',
+                    metric.variants.map((variant) => {
+                        const value = Math.max(0, Math.min(1, Number(variant.value) || 0));
+                        return [
+                            '<div class="rb-score-series is-',
+                            escapeAttribute(variant.kind),
+                            '" tabindex="0" data-label-view="',
+                            escapeAttribute(variant.labelView),
+                            '" aria-label="',
+                            escapeAttribute(variant.description + ': ' + formatPercent(value)),
+                            '">',
+                            '<small class="rb-score-series-label">',
+                            escapeHtml(variant.seriesLabel || ''),
+                            '</small>',
+                            '<span class="rb-score-track" style="--score-position: ',
+                            (value * 100).toFixed(3),
+                            '%" aria-hidden="true">',
+                            '<span class="rb-score-bar"></span>',
+                            '</span>',
+                            '<strong class="rb-score-value">',
+                            formatPercent(value),
+                            '</strong>',
+                            '</div>'
+                        ].join('');
+                    }).join(''),
+                    '</div>',
+                    '</section>'
+                ].join('');
+            }).join(''),
             '</div>'
         ].join('');
     }
@@ -188,16 +447,6 @@
             displayContextual: sortedSpans(source.displayContextual || contextual),
             combinators: sortedSpans(source.combinators || [])
         };
-    }
-
-    function cloneRecord(record) {
-        return normalizeRecord({
-            ...record,
-            hard: record.hard.map((span) => ({ ...span })),
-            contextual: record.contextual.map((span) => ({ ...span })),
-            displayContextual: record.displayContextual.map((span) => ({ ...span })),
-            combinators: record.combinators.map((span) => ({ ...span }))
-        });
     }
 
     function buildInitialRedactions(record) {
@@ -225,8 +474,24 @@
         return hash >>> 0;
     }
 
-    function renderLabeledText(text, hard, soft, combinators) {
-        return renderAnnotatedText(text, hard, soft, combinators);
+    function renderLabeledText(
+        text,
+        hard,
+        soft,
+        combinators,
+        boundaryGroups = null,
+        entitySpans = null,
+        entityMode = 'contextual'
+    ) {
+        return renderAnnotatedText(
+            text,
+            hard,
+            soft,
+            combinators,
+            boundaryGroups,
+            entitySpans,
+            entityMode
+        );
     }
 
     function renderRedactionOverlays(root, spans) {
@@ -239,9 +504,8 @@
         layer.style.height = root.scrollHeight + 'px';
         root.appendChild(layer);
         const rootRect = root.getBoundingClientRect();
-        const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-        const expandX = rem * 0.14;
-        const expandY = rem * 0.06;
+        const expandX = 0;
+        const expandY = 0;
         normalized.forEach((span, index) => {
             const range = rangeForOffsets(root, span.start, span.end);
             if (!range) return;
@@ -333,20 +597,65 @@
         return nodes;
     }
 
-    function renderAnnotatedText(text, hard, soft, combinators) {
+    function renderAnnotatedText(
+        text,
+        hard,
+        soft,
+        combinators,
+        boundaryGroups = null,
+        entitySpans = null,
+        entityMode = 'contextual'
+    ) {
         let html = '';
-        const points = boundaries(text, [hard, soft, combinators]);
+        const entities = mergeSpans(entitySpans || [...hard, ...soft, ...combinators]);
+        const points = boundaries(text, [
+            ...(boundaryGroups || [hard, soft, combinators]),
+            entities
+        ]);
         let previousLabelClass = '';
         let previousLabelEnd = -1;
         let sameLabelRunIndex = 0;
+        let entityIndex = 0;
+        let openEntityKey = '';
         for (let index = 0; index < points.length - 1; index += 1) {
             const start = points[index];
             const end = points[index + 1];
             if (end <= start) continue;
+            while (entityIndex < entities.length && entities[entityIndex].end <= start) {
+                entityIndex += 1;
+            }
+            const entity = entities[entityIndex];
+            const entityContainsInterval = entity
+                && entity.start <= start
+                && entity.end >= end;
+            const entityKey = entityContainsInterval ? spanKey(entity) : '';
+            if (entityKey !== openEntityKey) {
+                if (openEntityKey) html += '</span>';
+                openEntityKey = entityKey;
+                if (openEntityKey) {
+                    const entityKind = hard.some((span) => spansIntersect(span, entity))
+                        ? 'mandatory'
+                        : 'contextual';
+                    html += [
+                        '<span class="rb-label-entity rb-entity-',
+                        entityKind,
+                        '" data-label-mode="',
+                        escapeAttribute(entityMode),
+                        '" data-span-start="',
+                        entity.start,
+                        '" data-span-end="',
+                        entity.end,
+                        '">'
+                    ].join('');
+                }
+            }
             const labelClass = labelClassForInterval(hard, soft, combinators, start, end);
             const escaped = escapeHtml(text.slice(start, end));
             if (!labelClass) {
-                html += escaped;
+                previousLabelClass = '';
+                previousLabelEnd = end;
+                sameLabelRunIndex = 0;
+                html += '<span class="rb-unlabeled">' + escaped + '</span>';
                 continue;
             }
             if (labelClass === previousLabelClass && start === previousLabelEnd) {
@@ -359,6 +668,7 @@
             const altClass = sameLabelRunIndex % 2 === 0 ? 'rb-alt-a' : 'rb-alt-b';
             html += '<span class="' + labelClass + ' ' + altClass + '">' + escaped + '</span>';
         }
+        if (openEntityKey) html += '</span>';
         return html;
     }
 
@@ -441,6 +751,132 @@
             else out.push({ ...span });
         }
         return out;
+    }
+
+    function unlabeledSpans(text, labeledSpans) {
+        const labels = mergeSpans(labeledSpans);
+        const gaps = [];
+        let cursor = 0;
+        labels.forEach((label) => {
+            if (label.start > cursor) gaps.push({ start: cursor, end: label.start });
+            cursor = Math.max(cursor, label.end);
+        });
+        if (cursor < text.length) gaps.push({ start: cursor, end: text.length });
+        return gaps.flatMap((gap) => {
+            const out = [];
+            const matcher = /\S+/g;
+            const fragment = text.slice(gap.start, gap.end);
+            let match;
+            while ((match = matcher.exec(fragment)) !== null) {
+                out.push({ start: gap.start + match.index, end: gap.start + match.index + match[0].length });
+            }
+            return out;
+        });
+    }
+
+    function labelSpanGroups(labelSpans) {
+        const labels = uniqueSortedSpans(labelSpans);
+        return mergeSpans(labels).map((range) => (
+            labels.filter((span) => spansIntersectOrTouch(span, range))
+        ));
+    }
+
+    function unlabeledPhraseSpans(text, labeledSpans, random = Math.random) {
+        const words = unlabeledSpans(text, labeledSpans);
+        const phrases = [];
+        let index = 0;
+        while (index < words.length) {
+            const desiredLength = 2 + Math.floor(random() * 4);
+            let endIndex = index;
+            while (endIndex + 1 < words.length && endIndex - index + 1 < desiredLength) {
+                const current = words[endIndex];
+                const next = words[endIndex + 1];
+                const gap = text.slice(current.end, next.start);
+                if (!/^\s+$/.test(gap) || /[.!?]["')\]]?$/.test(text.slice(current.start, current.end))) break;
+                endIndex += 1;
+            }
+            if (endIndex > index) {
+                phrases.push({ start: words[index].start, end: words[endIndex].end });
+                index = endIndex + 1;
+            } else {
+                index += 1;
+            }
+        }
+        return phrases;
+    }
+
+    function randomizedRedactions(record, random = Math.random) {
+        const targetBin = Math.min(9, Math.floor(random() * 10));
+        const targetScore = (targetBin + 0.5) / 10;
+        let nearest = [];
+        let nearestDistance = Infinity;
+        for (let attempt = 0; attempt < 64; attempt += 1) {
+            const candidate = randomizedRedactionCandidate(record, random);
+            const score = scoreSampleEntityIou(record.hard, candidate, {
+                softGoldSpans: record.contextual,
+                text: record.text
+            }).sample_entity_iou;
+            const scoreBin = Math.min(9, Math.floor(score * 10));
+            if (scoreBin === targetBin) return candidate;
+            const distance = Math.abs(score - targetScore);
+            if (distance < nearestDistance) {
+                nearest = candidate;
+                nearestDistance = distance;
+            }
+        }
+        return nearest;
+    }
+
+    function randomizedRedactionCandidate(record, random = Math.random) {
+        const labelCandidates = uniqueSortedSpans([
+            ...record.hard,
+            ...record.contextual
+        ]);
+        const hardKeys = new Set(record.hard.map(spanKey));
+        const rates = sampleRedactionRates(random);
+        const selectedLabels = labelSpanGroups(labelCandidates).flatMap((group) => {
+            const isMandatoryGroup = group.some((span) => hardKeys.has(spanKey(span)));
+            const groupRate = isMandatoryGroup ? rates.mandatory : rates.contextual;
+            const groupSelected = random() < groupRate;
+            const keepProbability = groupSelected
+                ? 0.94 + random() * 0.055
+                : Math.pow(random(), 5) * 0.025;
+            return group.filter(() => random() < keepProbability);
+        });
+        const safeKeepProbability = Math.pow(random(), 6) * 0.1;
+        const selectedSafePhrases = unlabeledPhraseSpans(record.text, labelCandidates, random)
+            .filter(() => random() < safeKeepProbability);
+        return mergeSpans([
+            ...selectedLabels,
+            ...selectedSafePhrases
+        ].map((span) => jitterSpan(span, record.text.length, random)));
+    }
+
+    function sampleRedactionRates(random = Math.random) {
+        const first = random();
+        const second = random();
+        const sharpen = (value) => {
+            const selected = Math.pow(value, 1.8);
+            const omitted = Math.pow(1 - value, 1.8);
+            return selected / (selected + omitted);
+        };
+        return {
+            mandatory: sharpen(Math.max(first, second)),
+            contextual: sharpen(Math.min(first, second))
+        };
+    }
+
+    function jitterSpan(span, textLength, random = Math.random) {
+        const original = normalizeSpans([span], textLength)[0];
+        if (!original) return span;
+        const jitter = () => {
+            if (random() < 0.95) return 0;
+            const magnitude = 1 + Math.floor(Math.pow(random(), 3) * 2);
+            return random() < 0.5 ? -magnitude : magnitude;
+        };
+        const start = Math.max(0, Math.min(textLength, original.start + jitter()));
+        const end = Math.max(0, Math.min(textLength, original.end + jitter()));
+        return end > start ? { start, end } : original;
     }
 
     function stripSpanWhitespace(text, spans) {
@@ -1221,6 +1657,25 @@
         return out;
     }
 
+    function scoreUnionMetrics(goldSpans, predSpans) {
+        const gold = mergeSpans(goldSpans);
+        const prediction = mergeSpans(predSpans);
+        return {
+            iou: iouMerged(gold, prediction),
+            strictF1: strictSpanF1(gold, prediction)
+        };
+    }
+
+    function strictSpanF1(goldSpans, predSpans) {
+        const gold = mergeSpans(goldSpans);
+        const prediction = mergeSpans(predSpans);
+        const goldKeys = new Set(gold.map(spanKey));
+        const truePositive = prediction.filter((span) => goldKeys.has(spanKey(span))).length;
+        const falsePositive = prediction.length - truePositive;
+        const falseNegative = gold.length - truePositive;
+        return f1FromCounts(truePositive, falsePositive, falseNegative);
+    }
+
     function boundaries(text, groups) {
         const points = [0, text.length];
         for (const group of groups) {
@@ -1369,7 +1824,14 @@
             buildDemoSample,
             effectiveYellowCombinatorSpans,
             gallerySamples,
-            scoreSampleEntityIou
+            jitterSpan,
+            labelSpanGroups,
+            randomizedRedactions,
+            sampleRedactionRates,
+            scoreSampleEntityIou,
+            scoreUnionMetrics,
+            unlabeledPhraseSpans,
+            unlabeledSpans
         };
     }
 })();

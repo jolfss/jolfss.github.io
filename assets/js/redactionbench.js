@@ -161,8 +161,8 @@
         demoMount.className = 'redactionbench-demo';
         demoMount.innerHTML = [
             '<section class="rb-window">',
+            '<div class="rb-demo-toolbar">',
             '<div class="rb-demo-source" data-demo-source></div>',
-            '<div data-demo-legend></div>',
             '<div class="rb-demo-actions">',
             '<button class="button rb-randomize" type="button" data-randomize-redactions>Randomize redactions</button>',
             '<label class="rb-preview-toggle">',
@@ -171,6 +171,8 @@
             '<span>Preview redactions</span>',
             '</label>',
             '</div>',
+            '</div>',
+            '<div data-demo-legend></div>',
             '<div class="rb-interactive-frame">',
             '<div class="rb-doc rb-edit-doc" id="rb-edit-doc" tabindex="0" data-edit-doc></div>',
             '<div class="rb-score-summary">',

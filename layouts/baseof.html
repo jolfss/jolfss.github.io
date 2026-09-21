@@ -17,16 +17,12 @@
     {{ end }}
 {{ end }}
 {{ end }}
-{{ $defaultTheme := cond (and .IsPage (eq .Section "papers")) "light" "auto" }}
-<html lang="{{ site.LanguageCode }}" data-theme="{{ $defaultTheme }}" data-default-theme="{{ $defaultTheme }}">
+<html lang="{{ site.LanguageCode }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else with .Params.summary }}{{ . }}{{ else }}{{ site.Title }}{{ end }}">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-    <script>
-        document.documentElement.dataset.theme = localStorage.getItem('theme') || document.documentElement.dataset.defaultTheme || 'auto';
-    </script>
     {{ $style := resources.Get "css/site.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
     {{ if .Param "math" }}
@@ -57,24 +53,19 @@
     <div class="site-shell">
         {{ $isPaperPage := and .IsPage (eq .Section "papers") }}
         {{ $hideSiteHeader := and (.Param "hide_site_header") (not $isPaperPage) }}
-        {{ if not $hideSiteHeader }}
-            <header class="site-header{{ if $isPaperPage }} is-compact{{ end }}" aria-label="Site header">
-                {{ if not $isPaperPage }}
-                    <a class="site-mark" href="/">SB</a>
-                    <nav class="site-nav" aria-label="Primary navigation">
-                        <a href="/feed/">Feed</a>
-                        <a href="/papers/">Papers</a>
-                        {{/* Projects are hidden until the restored blurbs are rewritten as full pages. */}}
-                        {{/* <a href="/projects/">Projects</a> */}}
-                        <a href="/blog/">Blog</a>
-                    </nav>
-                {{ end }}
-                {{ if not $isPaperPage }}
-                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
-                        <span data-theme-toggle-label aria-hidden="true">☀︎☾</span>
-                    </button>
-                {{ end }}
+        {{ if and (not $hideSiteHeader) (not $isPaperPage) }}
+            <header class="site-header" aria-label="Site header">
+                <a class="site-mark" href="/">Home</a>
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="/feed/">Feed</a>
+                    <a href="/papers/">Papers</a>
+                    {{/* Projects are hidden until the restored blurbs are rewritten as full pages. */}}
+                    {{/* <a href="/projects/">Projects</a> */}}
+                    <a href="/blog/">Blog</a>
+                </nav>
             </header>
+        {{ else if $isPaperPage }}
+            <div class="site-header-spacer" aria-hidden="true"></div>
         {{ end }}
 
         <main id="content" class="site-main">
@@ -82,7 +73,7 @@
         </main>
 
         {{ if not (.Param "hide_footer") }}
-            <footer class="site-footer">
+            <footer class="site-footer pane">
                 <p>
                     &copy; 2026 Sean Brynjolfsson. All rights reserved. Feel free to copy the theme;
                     I'll eventually release it as a theme for Hugo after I finish the features I want.
@@ -91,8 +82,6 @@
         {{ end }}
     </div>
 
-    {{ $themeScript := resources.Get "js/theme.js" | minify | fingerprint }}
-    <script defer src="{{ $themeScript.RelPermalink }}" integrity="{{ $themeScript.Data.Integrity }}"></script>
     {{ $complexGridAsset := cond (gt (len $fieldVariants) 0) "js/complex-grid-static.js" "js/complex-grid.js" }}
     {{ $complexGridScript := resources.Get $complexGridAsset | minify | fingerprint }}
     <script defer src="{{ $complexGridScript.RelPermalink }}" integrity="{{ $complexGridScript.Data.Integrity }}"></script>
@@ -109,5 +98,6 @@
     {{ $desmosScript := resources.Get "js/desmos.js" | minify | fingerprint }}
     <script defer src="{{ $desmosScript.RelPermalink }}" integrity="{{ $desmosScript.Data.Integrity }}"></script>
     {{ end }}
+
 </body>
 </html>

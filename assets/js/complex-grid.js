@@ -159,13 +159,13 @@
     }
 
     function getRegions() {
-        const elements = document.querySelectorAll('.pane, .site-mark, .site-nav a, .theme-toggle, .button, pre, .table-scroll, .paper-figure-frame, .sidenote__content, .rb-sample-tabs button, .rb-doc, .rb-doc-frame, .rb-score-summary');
+        const elements = document.querySelectorAll('.pane, .site-mark, .site-nav a, .button, pre, .table-scroll, .paper-figure-frame, .sidenote__content, .rb-sample-tabs button, .rb-doc, .rb-doc-frame, .rb-score-summary');
         const regions = Array.from(elements, (element) => {
             const rect = getPageRect(element);
             const radius = parseFloat(getComputedStyle(element).borderTopLeftRadius) || 0;
             return {
                 ...rect,
-                isButton: element.matches('.site-mark, .site-nav a, .theme-toggle, .button, .rb-sample-tabs button'),
+                isButton: element.matches('.site-mark, .site-nav a, .button, .rb-sample-tabs button'),
                 radius: Math.min(radius, (rect.right - rect.left) / 2, (rect.bottom - rect.top) / 2)
             };
         }).filter((region) => region.right > region.left && region.bottom > region.top);
@@ -542,6 +542,49 @@
             return points;
         };
 
+        const tangentBoundary = (stable, slope, candidate, xDirection) => {
+            const magnitude = Math.hypot(1, slope);
+            const direction = {
+                x: xDirection / magnitude,
+                y: xDirection * slope / magnitude
+            };
+            const region = candidate.region;
+            const step = Math.max(mesh.spacing / 4, 0.5);
+            const maxTravel = Math.hypot(
+                region.right - region.left,
+                region.bottom - region.top
+            ) + mesh.spacing * 8;
+            let outsideTravel = 0;
+
+            for (let travel = step; travel <= maxTravel; travel += step) {
+                const point = {
+                    x: stable.x + direction.x * travel,
+                    y: stable.y + direction.y * travel
+                };
+                if (roundedRectDistance(point.x, point.y, region) > 0) {
+                    outsideTravel = travel;
+                    continue;
+                }
+
+                let outside = outsideTravel;
+                let inside = travel;
+                for (let iteration = 0; iteration < 28; iteration += 1) {
+                    const middle = (outside + inside) / 2;
+                    const sample = {
+                        x: stable.x + direction.x * middle,
+                        y: stable.y + direction.y * middle
+                    };
+                    if (roundedRectDistance(sample.x, sample.y, region) > 0) outside = middle;
+                    else inside = middle;
+                }
+                return {
+                    x: stable.x + direction.x * inside,
+                    y: stable.y + direction.y * inside
+                };
+            }
+            return null;
+        };
+
         const regularizeStart = (points, interval) => {
             if (!interval.startCandidate || points.length < 3) return points;
             const stableIndex = points.findIndex((point) => point.x - interval.start >= mesh.spacing * 2);
@@ -549,8 +592,12 @@
             const stable = points[stableIndex];
             const next = points[stableIndex + 1];
             const stableSlope = (next.y - stable.y) / Math.max(next.x - stable.x, 1e-9);
-            const boundary = { x: interval.start, y: centerY(interval.startCandidate) };
-            return [...hermite(boundary, stable, 0, stableSlope), ...points.slice(stableIndex + 1)];
+            const boundary = tangentBoundary(stable, stableSlope, interval.startCandidate, -1);
+            if (!boundary) return points;
+            return [
+                ...hermite(boundary, stable, stableSlope, stableSlope),
+                ...points.slice(stableIndex + 1)
+            ];
         };
 
         const regularizeEnd = (points, interval) => {
@@ -566,8 +613,12 @@
             const previous = points[stableIndex - 1];
             const stable = points[stableIndex];
             const stableSlope = (stable.y - previous.y) / Math.max(stable.x - previous.x, 1e-9);
-            const boundary = { x: interval.end, y: centerY(interval.endCandidate) };
-            return [...points.slice(0, stableIndex), ...hermite(stable, boundary, stableSlope, 0)];
+            const boundary = tangentBoundary(stable, stableSlope, interval.endCandidate, 1);
+            if (!boundary) return points;
+            return [
+                ...points.slice(0, stableIndex),
+                ...hermite(stable, boundary, stableSlope, stableSlope)
+            ];
         };
 
         for (const interval of intervals) {
@@ -629,6 +680,7 @@
 
     function drawContourFamily(mesh, regions, values, minimum, maximum, interval, snapValues = []) {
         const { columns, rows, xCoordinates, yCoordinates } = mesh;
+        const contactDistance = 3;
         const firstLevel = Math.floor(minimum / interval) * interval;
         const lastLevel = Math.ceil(maximum / interval) * interval;
 
@@ -692,32 +744,28 @@
             contours.push({ candidates: [], level, segments: traceConstantLevel(level) });
         }
 
-        snapValues.forEach((potential, regionIndex) => {
-            const region = regions[regionIndex];
-            let bestContour = null;
-            let bestDistance = Infinity;
-            let bestPotentialDifference = Infinity;
-            for (const contour of contours) {
-                let distance = Infinity;
-                for (const [start, end] of contour.segments) {
-                    const midpoint = { x: (start.x + end.x) / 2, y: (start.y + end.y) / 2 };
-                    distance = Math.min(
-                        distance,
-                        Math.abs(roundedRectDistance(start.x, start.y, region)),
-                        Math.abs(roundedRectDistance(midpoint.x, midpoint.y, region)),
-                        Math.abs(roundedRectDistance(end.x, end.y, region))
-                    );
-                }
-                const potentialDifference = Math.abs(contour.level - potential);
-                if (distance < bestDistance - 1e-6
-                    || (Math.abs(distance - bestDistance) <= 1e-6
-                        && potentialDifference < bestPotentialDifference)) {
-                    bestContour = contour;
-                    bestDistance = distance;
-                    bestPotentialDifference = potentialDifference;
+        const distanceToRegion = (contour, region) => {
+            let distance = Infinity;
+            for (const [start, end] of contour.segments) {
+                const length = Math.hypot(end.x - start.x, end.y - start.y);
+                const samples = Math.max(1, Math.ceil(length / (contactDistance / 2)));
+                for (let sample = 0; sample <= samples; sample += 1) {
+                    const t = sample / samples;
+                    const x = start.x + (end.x - start.x) * t;
+                    const y = start.y + (end.y - start.y) * t;
+                    distance = Math.min(distance, Math.abs(roundedRectDistance(x, y, region)));
+                    if (distance <= 1e-6) return 0;
                 }
             }
-            bestContour?.candidates.push({ potential, region, regionIndex });
+            return distance;
+        };
+
+        snapValues.forEach((potential, regionIndex) => {
+            const region = regions[regionIndex];
+            for (const contour of contours) {
+                if (distanceToRegion(contour, region) > contactDistance) continue;
+                contour.candidates.push({ potential, region, regionIndex });
+            }
         });
 
         for (const contour of contours) {
@@ -738,8 +786,53 @@
         drawContourFamily(mesh, regions, mesh.values, mesh.minimum, mesh.maximum, grid * 0.9, conductorPotentials);
     }
 
+    function boundaryStreamCompression(mesh, row, windowWidth) {
+        const offset = row * mesh.columns;
+        const cumulativeVariation = new Float64Array(mesh.columns);
+        for (let column = 1; column < mesh.columns; column += 1) {
+            cumulativeVariation[column] = cumulativeVariation[column - 1] + Math.abs(
+                mesh.streamValues[offset + column] - mesh.streamValues[offset + column - 1]
+            );
+        }
+
+        let maximumCompression = 0;
+        let end = 1;
+        for (let start = 0; start < mesh.columns - 1; start += 1) {
+            end = Math.max(end, start + 1);
+            while (
+                end < mesh.columns - 1
+                && mesh.xCoordinates[end] - mesh.xCoordinates[start] < windowWidth
+            ) end += 1;
+            const width = mesh.xCoordinates[end] - mesh.xCoordinates[start];
+            if (width <= 0) continue;
+            const variation = cumulativeVariation[end] - cumulativeVariation[start];
+            maximumCompression = Math.max(maximumCompression, variation / width);
+        }
+        return maximumCompression;
+    }
+
     function drawStreamlines(mesh, regions, grid) {
-        drawContourFamily(mesh, regions, mesh.streamValues, mesh.streamMinimum, mesh.streamMaximum, grid);
+        // Equal increments of the stream function represent equal flux, but
+        // their screen-space spacing contracts where conductors concentrate
+        // flux at a page boundary. Measure sustained local compression rather
+        // than a whole-edge average, which can hide a dense cluster among
+        // sparse margins. The broad window deliberately ignores corner-scale
+        // spikes. Only sampling changes: the solved field and its complete
+        // stream-function range (including off-screen levels) remain intact.
+        const compressionWindow = Math.max(grid * 8, mesh.width * 0.2);
+        const topCompression = boundaryStreamCompression(mesh, 0, compressionWindow);
+        const bottomCompression = boundaryStreamCompression(mesh, mesh.rows - 1, compressionWindow);
+        const boundaryCompression = Math.max(topCompression, bottomCompression);
+        const ordinaryCompression = 1.4;
+        const fluxPerLine = grid * Math.max(1, boundaryCompression / ordinaryCompression);
+        drawContourFamily(
+            mesh,
+            regions,
+            mesh.streamValues,
+            mesh.streamMinimum,
+            mesh.streamMaximum,
+            fluxPerLine
+        );
     }
 
     function roundedBoundarySamples(region, targetSpacing) {
@@ -792,9 +885,19 @@
     }
 
     function drawRegionContours(regions) {
+        const inset = 3;
         for (const region of regions) {
             context.beginPath();
             context.roundRect(region.left, region.top, region.right - region.left, region.bottom - region.top, region.radius);
+            if (region.right - region.left > inset * 2 && region.bottom - region.top > inset * 2) {
+                context.roundRect(
+                    region.left + inset,
+                    region.top + inset,
+                    region.right - region.left - inset * 2,
+                    region.bottom - region.top - inset * 2,
+                    Math.max(0, region.radius - inset)
+                );
+            }
             context.stroke();
         }
     }
@@ -856,7 +959,6 @@
     } else {
         const resizeObserver = new ResizeObserver(scheduleDraw);
         resizeObserver.observe(document.body);
-        new MutationObserver(scheduleDraw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
         window.addEventListener('resize', scheduleDraw, { passive: true });
         window.addEventListener('load', scheduleDraw, { once: true });
         document.fonts?.ready.then(scheduleDraw);

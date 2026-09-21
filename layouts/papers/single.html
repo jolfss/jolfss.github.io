@@ -4,30 +4,23 @@
     <header class="paper-header pane">
         <div class="paper-title-row">
             <h1>{{ .Title }}</h1>
-            <button class="theme-toggle paper-theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
-                <span data-theme-toggle-label aria-hidden="true">☀︎☾</span>
-            </button>
         </div>
         {{ with .Params.venue }}<p class="paper-venue">{{ . }}</p>{{ end }}
         {{ partial "authors.html" (dict "page" . "showAffiliations" true) }}
         {{ with .Params.sponsor }}
         {{ $mark := .mark | default .name }}
         {{ $name := .name | default $mark }}
-        {{ $lightSrc := "" }}
-        {{ $darkSrc := "" }}
-        {{ with .logo_light }}
-            {{ with $page.Resources.GetMatch . }}{{ $lightSrc = .RelPermalink }}{{ else }}{{ $lightSrc = . | relURL }}{{ end }}
-        {{ end }}
-        {{ with .logo_dark }}
-            {{ with $page.Resources.GetMatch . }}{{ $darkSrc = .RelPermalink }}{{ else }}{{ $darkSrc = . | relURL }}{{ end }}
+        {{ $logoSrc := "" }}
+        {{ with (.logo_light | default .logo_dark) }}
+            {{ with $page.Resources.GetMatch . }}{{ $logoSrc = .RelPermalink }}{{ else }}{{ $logoSrc = . | relURL }}{{ end }}
         {{ end }}
         {{ $logoStyle := "" }}
-        {{ if or $lightSrc $darkSrc }}
-            {{ $logoStyle = printf "--paper-sponsor-logo-light: url('%s'); --paper-sponsor-logo-dark: url('%s');" ($lightSrc | default $darkSrc) ($darkSrc | default $lightSrc) }}
+        {{ if $logoSrc }}
+            {{ $logoStyle = printf "--paper-sponsor-logo: url('%s');" $logoSrc }}
         {{ end }}
         {{ with .url }}
         <a class="paper-sponsor" href="{{ . }}" aria-label="{{ $name }}"{{ with $logoStyle }} style="{{ . | safeCSS }}"{{ end }}>
-            {{ if or $lightSrc $darkSrc }}
+            {{ if $logoSrc }}
                 <span class="paper-sponsor-logo" aria-hidden="true"></span>
             {{ else }}
                 <span aria-hidden="true">{{ $mark }}</span>
@@ -35,7 +28,7 @@
         </a>
         {{ else }}
         <div class="paper-sponsor" aria-label="{{ $name }}"{{ with $logoStyle }} style="{{ . | safeCSS }}"{{ end }}>
-            {{ if or $lightSrc $darkSrc }}
+            {{ if $logoSrc }}
                 <span class="paper-sponsor-logo" aria-hidden="true"></span>
             {{ else }}
                 <span aria-hidden="true">{{ $mark }}</span>
@@ -76,10 +69,12 @@
 
     {{ if .Param "redactionbench" }}
     <section class="paper-section pane">
-        <div class="prose">
+        <div class="prose rb-intro">
             <h2>Interactive R-Score</h2>
-            <p class="rb-help">Select text to redact it. Click a redaction to remove it.</p>
-            <p class="rb-mobile-note">Text selection in this interactive does not work on mobile. Use Randomize redactions to explore different combinations instead.</p>
+            <p class="rb-help">
+                Select text to redact it; click a redaction to remove it.
+                <span class="rb-mobile-note">On mobile, use Randomize redactions to explore different combinations.</span>
+            </p>
         </div>
         <div data-redactionbench-demo></div>
     </section>

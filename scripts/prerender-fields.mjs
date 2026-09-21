@@ -29,7 +29,8 @@ const mimeTypes = new Map([
 
 function fieldProfiles() {
     return [
-        { minWidth: 0, maxWidth: 865, renderWidth: 864 },
+        { minWidth: 0, maxWidth: 600, renderWidth: 599 },
+        { minWidth: 600, maxWidth: 865, renderWidth: 864 },
         { minWidth: 865, maxWidth: null, renderWidth: 3072 }
     ];
 }
@@ -115,11 +116,9 @@ try {
         const variants = [];
         console.log(`[${fileIndex + 1}/${files.length}] ${route}`);
 
-        for (const [profileIndex, profile] of profiles.entries()) {
+        for (const profile of profiles) {
             await page.setViewportSize({ width: profile.renderWidth, height: 900 });
-            if (profileIndex === 0) {
-                await page.goto(`${origin}${route}?field-export=1`, { waitUntil: 'load' });
-            }
+            await page.goto(`${origin}${route}?field-export=1`, { waitUntil: 'load' });
             const result = await page.evaluate(async () => {
                 if (typeof window.__renderComplexGridSvg !== 'function') {
                     throw new Error('Complex-grid SVG exporter did not initialize.');

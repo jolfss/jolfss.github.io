@@ -329,30 +329,28 @@
         function renderLabelView(mode, force = false) {
             if (!force && mode === activeLabelView) return;
             activeLabelView = mode;
-            let hard = demo.hard;
-            let soft = demo.displayContextual;
-            let combinators = demo.combinators;
-            let entities = mergeSpans([...demo.hard, ...demo.contextual]);
-            if (mode === 'mandatory-only') {
-                soft = [];
-                combinators = [];
-                entities = mergeSpans(demo.hard);
-            } else if (mode === 'all-required') {
-                hard = mergeSpans([...demo.hard, ...demo.contextual]);
-                soft = [];
-                combinators = [];
+            if (force || !editDoc.firstChild) {
+                editDoc.innerHTML = renderLabeledText(
+                    demo.text,
+                    demo.hard,
+                    demo.displayContextual,
+                    demo.combinators,
+                    [demo.hard, demo.contextual, demo.combinators],
+                    mergeSpans([...demo.hard, ...demo.contextual]),
+                    'contextual'
+                );
             }
-            legendNode.innerHTML = renderLegend(true, mode);
-            editDoc.innerHTML = renderLabeledText(
-                demo.text,
-                hard,
-                soft,
-                combinators,
-                [demo.hard, demo.contextual, demo.combinators],
-                entities,
-                mode
-            );
-            renderRedactionOverlays(editDoc, redactions);
+            editDoc.dataset.labelView = mode;
+            editDoc.querySelectorAll('.rb-label-entity').forEach((entity) => {
+                entity.dataset.labelMode = mode;
+            });
+            legendNode.dataset.labelView = mode;
+            if (force || !legendNode.firstChild) {
+                // Keep the legend's footprint fixed so metric previews cannot reflow
+                // the interactive card on narrow screens.
+                legendNode.innerHTML = renderLegend(true);
+            }
+            if (force) renderRedactionOverlays(editDoc, redactions);
         }
     }
 

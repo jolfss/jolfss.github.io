@@ -1,0 +1,12 @@
+{
+  "name": "jolfss-github-io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "prerender:fields": "node scripts/prerender-fields.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

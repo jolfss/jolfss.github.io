@@ -1,4 +1,22 @@
 <!doctype html>
+{{ $page := . }}
+{{ $fieldVariants := slice }}
+{{ if ne hugo.Environment "field-export" }}
+{{ with site.Data.generated_fields }}
+    {{ with index . $page.RelPermalink }}
+        {{ range .variants }}
+            {{ $fieldVariants = $fieldVariants | append (dict
+                "asset" (.asset | relURL)
+                "height" .height
+                "maxWidth" .maxWidth
+                "minWidth" .minWidth
+                "renderWidth" .renderWidth
+                "width" .width
+            ) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ end }}
 {{ $defaultTheme := cond (and .IsPage (eq .Section "papers")) "light" "auto" }}
 <html lang="{{ site.LanguageCode }}" data-theme="{{ $defaultTheme }}" data-default-theme="{{ $defaultTheme }}">
 <head>
@@ -29,6 +47,13 @@
 </head>
 <body class="{{ if .IsHome }}is-home{{ end }} section-{{ .Section }} kind-{{ .Kind }}">
     <a class="skip-link" href="#content">Skip to content</a>
+    {{ if $fieldVariants }}
+    <div class="complex-grid complex-grid--static" data-complex-grid-static data-variants="{{ $fieldVariants | jsonify }}" aria-hidden="true">
+        <div class="complex-grid__layer"></div>
+    </div>
+    {{ else }}
+    <canvas class="complex-grid" data-complex-grid aria-hidden="true"></canvas>
+    {{ end }}
     <div class="site-shell">
         {{ $isPaperPage := and .IsPage (eq .Section "papers") }}
         {{ $hideSiteHeader := and (.Param "hide_site_header") (not $isPaperPage) }}
@@ -56,16 +81,21 @@
             {{ block "main" . }}{{ end }}
         </main>
 
-        <footer class="site-footer">
-            <p>
-                &copy; 2026 Sean Brynjolfsson. All rights reserved. Feel free to copy the theme;
-                I'll eventually release it as a theme for Hugo after I finish the features I want.
-            </p>
-        </footer>
+        {{ if not (.Param "hide_footer") }}
+            <footer class="site-footer">
+                <p>
+                    &copy; 2026 Sean Brynjolfsson. All rights reserved. Feel free to copy the theme;
+                    I'll eventually release it as a theme for Hugo after I finish the features I want.
+                </p>
+            </footer>
+        {{ end }}
     </div>
 
     {{ $themeScript := resources.Get "js/theme.js" | minify | fingerprint }}
     <script defer src="{{ $themeScript.RelPermalink }}" integrity="{{ $themeScript.Data.Integrity }}"></script>
+    {{ $complexGridAsset := cond (gt (len $fieldVariants) 0) "js/complex-grid-static.js" "js/complex-grid.js" }}
+    {{ $complexGridScript := resources.Get $complexGridAsset | minify | fingerprint }}
+    <script defer src="{{ $complexGridScript.RelPermalink }}" integrity="{{ $complexGridScript.Data.Integrity }}"></script>
 
     {{ if .Param "redactionbench" }}
     {{ $redactionBenchData := resources.Get "js/redactionbench-data.js" | minify | fingerprint }}

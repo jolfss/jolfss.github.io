@@ -1,5 +1,9 @@
 .hugo_build.lock
+.field-stage/
+node_modules/
 public/
 resources/
+static/generated-fields/
+data/generated_fields.json
 .DS_Store
 *__pycache__

@@ -104,12 +104,6 @@ pre code {
     text-align: center;
 }
 
-.theme-toggle__light,
-.theme-toggle__dark {
-    font-size: var(--type-subheading);
-    line-height: 1;
-}
-
 .site-mark,
 .site-nav a,
 .button {
@@ -475,37 +469,6 @@ time {
     --green: #079672;
 }
 
-:root[data-theme='dark'] {
-    color-scheme: dark;
-    /* Jolly Dark uses the same token roles with its dark surface palette. */
-    --code-background: #0e1621;
-    --code-text: #dce8f7;
-    --jolly-dusk: #8997ab;
-    --jolly-gunmetal: #a4b2c6;
-    --jolly-indigo: #a58bff;
-    --jolly-zaffer: #917cff;
-    --jolly-magenta: #ec7bff;
-    --jolly-amethyst: #d592ed;
-    --jolly-amaranth: #ff7092;
-    --jolly-ruby: #ff83ad;
-    --jolly-tamarind: #f0a264;
-    --jolly-marigold: #e7bc61;
-    --jolly-brass: #d9a950;
-    --jolly-moss: #b6cf65;
-    --jolly-fern: #9fca75;
-    --jolly-glacial: #56d9b2;
-    --jolly-lagoon: #62d5ca;
-    --jolly-sky: #64b5f6;
-    --jolly-polar: #86c5ff;
-    --background: #000000;
-    --gridline: #282828;
-    --midtone: #b8b8b8;
-    --text: #f3f3f3;
-    --blue: #69b7ff;
-    --magenta: #ff4fd8;
-    --green: #52cfa4;
-}
-
 *,
 *::before,
 *::after {
@@ -533,10 +496,6 @@ body {
     width: 100%;
     max-width: none;
     pointer-events: none;
-}
-
-:root[data-theme='dark'] .complex-grid {
-    filter: invert(1);
 }
 
 .complex-grid--static {
@@ -776,16 +735,6 @@ pre code {
 
 .site-nav {
     display: contents;
-}
-
-.button.theme-toggle {
-    width: calc(var(--grid) * 2);
-    padding-inline: 0;
-}
-
-:root[data-theme='light'] .theme-toggle__light,
-:root[data-theme='dark'] .theme-toggle__dark {
-    display: none;
 }
 
 .site-header-spacer {

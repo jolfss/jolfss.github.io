@@ -17,20 +17,10 @@
     {{ end }}
 {{ end }}
 {{ end }}
-<html lang="{{ site.LanguageCode }}">
+<html lang="{{ site.LanguageCode }}" data-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-        (() => {
-            let theme = null;
-            try { theme = localStorage.getItem('theme'); } catch (_) {}
-            if (theme !== 'light' && theme !== 'dark') {
-                theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-            document.documentElement.dataset.theme = theme;
-        })();
-    </script>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else with .Params.summary }}{{ . }}{{ else }}{{ site.Title }}{{ end }}">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
     {{ $style := resources.Get "css/redactionbench-site.css" | minify | fingerprint }}
@@ -81,7 +71,7 @@
                 </nav>
             </header>
         {{ else if $isPaperPage }}
-            <div class="site-header-spacer">{{ partial "redactionbench-theme-toggle.html" . }}</div>
+            <div class="site-header-spacer" aria-hidden="true"></div>
         {{ end }}
 
         <main id="content" class="site-main">
@@ -101,9 +91,6 @@
     {{ $complexGridAsset := cond (gt (len $fieldVariants) 0) "js/redactionbench-grid-static.js" "js/redactionbench-grid.js" }}
     {{ $complexGridScript := resources.Get $complexGridAsset | minify | fingerprint }}
     <script defer src="{{ $complexGridScript.RelPermalink }}" integrity="{{ $complexGridScript.Data.Integrity }}"></script>
-
-    {{ $themeScript := resources.Get "js/redactionbench-theme.js" | minify | fingerprint }}
-    <script defer src="{{ $themeScript.RelPermalink }}" integrity="{{ $themeScript.Data.Integrity }}"></script>
 
     {{ if .Param "redactionbench" }}
     {{ $redactionBenchData := resources.Get .Params.redactionbench_data | minify | fingerprint }}

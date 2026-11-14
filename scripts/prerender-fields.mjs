@@ -111,6 +111,8 @@ try {
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(120000);
     for (const [fileIndex, filename] of files.entries()) {
+        // Hugo aliases are redirect documents, not pages with a field to render.
+        if (!(await readFile(filename, 'utf8')).includes('data-complex-grid')) continue;
         const route = routeForFile(filename);
         const key = routeKey(route);
         const variants = [];
@@ -123,6 +125,7 @@ try {
                 if (typeof window.__renderComplexGridSvg !== 'function') {
                     throw new Error('Complex-grid SVG exporter did not initialize.');
                 }
+                for (const image of document.images) image.loading = 'eager';
                 return window.__renderComplexGridSvg();
             });
             const contentKey = createHash('sha256').update(result.svg).digest('hex').slice(0, 12);

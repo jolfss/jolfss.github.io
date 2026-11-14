@@ -1,0 +1,122 @@
+<!doctype html>
+{{ $page := . }}
+{{ $fieldVariants := slice }}
+{{ if ne hugo.Environment "field-export" }}
+{{ with site.Data.generated_fields }}
+    {{ with index . $page.RelPermalink }}
+        {{ range .variants }}
+            {{ $fieldVariants = $fieldVariants | append (dict
+                "asset" (.asset | relURL)
+                "height" .height
+                "maxWidth" .maxWidth
+                "minWidth" .minWidth
+                "renderWidth" .renderWidth
+                "width" .width
+            ) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ end }}
+<html lang="{{ site.LanguageCode }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        (() => {
+            let theme = null;
+            try { theme = localStorage.getItem('theme'); } catch (_) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else with .Params.summary }}{{ . }}{{ else }}{{ site.Title }}{{ end }}">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+    {{ $style := resources.Get "css/redactionbench-site.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    {{ $rbCommonStyle := resources.Get "css/redactionbench-common.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $rbCommonStyle.RelPermalink }}" integrity="{{ $rbCommonStyle.Data.Integrity }}">
+    {{ if .Param "redactionbench_v2" }}
+    {{ $rbStyle := resources.Get "css/redactionbench-v2.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $rbStyle.RelPermalink }}" integrity="{{ $rbStyle.Data.Integrity }}">
+    {{ end }}
+    {{ if .Param "math" }}
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    {{ end }}
+</head>
+<body class="{{ if .IsHome }}is-home{{ end }} section-{{ .Section }} kind-{{ .Kind }}">
+    <a class="skip-link" href="#content">Skip to content</a>
+    {{ if $fieldVariants }}
+    <div class="complex-grid complex-grid--static" data-complex-grid-static data-variants="{{ $fieldVariants | jsonify }}" aria-hidden="true">
+        <div class="complex-grid__layer"></div>
+    </div>
+    {{ else }}
+    <canvas class="complex-grid" data-complex-grid aria-hidden="true"></canvas>
+    {{ end }}
+    <div class="site-shell">
+        {{ $isPaperPage := and .IsPage (eq .Section "papers") }}
+        {{ $hideSiteHeader := and (.Param "hide_site_header") (not $isPaperPage) }}
+        {{ if and (not $hideSiteHeader) (not $isPaperPage) }}
+            <header class="site-header" aria-label="Site header">
+                <a class="site-mark" href="/">Home</a>
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="/feed/">Feed</a>
+                    <a href="/papers/">Papers</a>
+                    {{/* Projects are hidden until the restored blurbs are rewritten as full pages. */}}
+                    {{/* <a href="/projects/">Projects</a> */}}
+                    <a href="/blog/">Blog</a>
+                </nav>
+            </header>
+        {{ else if $isPaperPage }}
+            <div class="site-header-spacer">{{ partial "redactionbench-theme-toggle.html" . }}</div>
+        {{ end }}
+
+        <main id="content" class="site-main">
+            {{ block "main" . }}{{ end }}
+        </main>
+
+        {{ if not (.Param "hide_footer") }}
+            <footer class="site-footer pane">
+                <p>
+                    &copy; 2026 Sean Brynjolfsson. All rights reserved. Feel free to copy the theme;
+                    I'll eventually release it as a theme for Hugo after I finish the features I want.
+                </p>
+            </footer>
+        {{ end }}
+    </div>
+
+    {{ $complexGridAsset := cond (gt (len $fieldVariants) 0) "js/redactionbench-grid-static.js" "js/redactionbench-grid.js" }}
+    {{ $complexGridScript := resources.Get $complexGridAsset | minify | fingerprint }}
+    <script defer src="{{ $complexGridScript.RelPermalink }}" integrity="{{ $complexGridScript.Data.Integrity }}"></script>
+
+    {{ $themeScript := resources.Get "js/redactionbench-theme.js" | minify | fingerprint }}
+    <script defer src="{{ $themeScript.RelPermalink }}" integrity="{{ $themeScript.Data.Integrity }}"></script>
+
+    {{ if .Param "redactionbench" }}
+    {{ $redactionBenchData := resources.Get .Params.redactionbench_data | minify | fingerprint }}
+    <script defer src="{{ $redactionBenchData.RelPermalink }}" integrity="{{ $redactionBenchData.Data.Integrity }}"></script>
+    {{ $redactionBenchScript := resources.Get .Params.redactionbench_script | minify | fingerprint }}
+    <script defer src="{{ $redactionBenchScript.RelPermalink }}" integrity="{{ $redactionBenchScript.Data.Integrity }}"></script>
+    {{ end }}
+
+    {{ if or (.Param "desmos") (.Store.Get "hasDesmos") }}
+    <script defer src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=ff93384857564241b9525db72216299b"></script>
+    {{ $desmosScript := resources.Get "js/desmos.js" | minify | fingerprint }}
+    <script defer src="{{ $desmosScript.RelPermalink }}" integrity="{{ $desmosScript.Data.Integrity }}"></script>
+    {{ end }}
+
+</body>
+</html>

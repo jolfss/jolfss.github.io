@@ -1,0 +1,116 @@
+{{ define "main" }}
+{{ $page := . }}
+<article class="paper-page">
+    <header class="paper-header pane">
+        <div class="paper-title-row">
+            <h1>{{ .Title }}</h1>
+        </div>
+        {{ with .Params.venue }}<p class="paper-venue">{{ . }}</p>{{ end }}
+        {{ partial "authors.html" (dict "page" . "showAffiliations" true) }}
+        {{ with .Params.sponsor }}
+        {{ $mark := .mark | default .name }}
+        {{ $name := .name | default $mark }}
+        {{ $logoSrc := "" }}
+        {{ with (.logo_light | default .logo_dark) }}
+            {{ with $page.Resources.GetMatch . }}{{ $logoSrc = .RelPermalink }}{{ else }}{{ $logoSrc = . | relURL }}{{ end }}
+        {{ end }}
+        {{ $logoStyle := "" }}
+        {{ if $logoSrc }}
+            {{ $logoStyle = printf "--paper-sponsor-logo: url('%s');" $logoSrc }}
+        {{ end }}
+        {{ with .url }}
+        <a class="paper-sponsor" href="{{ . }}" aria-label="{{ $name }}"{{ with $logoStyle }} style="{{ . | safeCSS }}"{{ end }}>
+            {{ if $logoSrc }}
+                <span class="paper-sponsor-logo" aria-hidden="true"></span>
+            {{ else }}
+                <span aria-hidden="true">{{ $mark }}</span>
+            {{ end }}
+        </a>
+        {{ else }}
+        <div class="paper-sponsor" aria-label="{{ $name }}"{{ with $logoStyle }} style="{{ . | safeCSS }}"{{ end }}>
+            {{ if $logoSrc }}
+                <span class="paper-sponsor-logo" aria-hidden="true"></span>
+            {{ else }}
+                <span aria-hidden="true">{{ $mark }}</span>
+            {{ end }}
+        </div>
+        {{ end }}
+        {{ end }}
+        {{ with .Params.links }}
+        <div class="action-row" aria-label="Paper links">
+            {{ range . }}
+            {{ if .url }}
+                <a class="button" href="{{ .url }}">{{ with .icon }}<span class="button-icon" aria-hidden="true">{{ . }}</span>{{ end }}<span>{{ .label }}</span></a>
+            {{ else }}
+                <span class="button is-disabled" aria-disabled="true">{{ with .icon }}<span class="button-icon" aria-hidden="true">{{ . }}</span>{{ end }}<span>{{ .label }}</span></span>
+            {{ end }}
+            {{ end }}
+            {{ with $page.Params.paper_version }}
+            <details class="paper-version-menu">
+                <summary class="button" aria-label="Paper version: {{ . }}">{{ . }} <span aria-hidden="true">▾</span></summary>
+                <nav aria-label="RedactionBench versions">
+                    <a href="/papers/redactionbench/v2/"{{ if eq . "v2" }} aria-current="page"{{ end }}>v2</a>
+                    <a href="/papers/redactionbench/v1/"{{ if eq . "v1" }} aria-current="page"{{ end }}>v1</a>
+                </nav>
+            </details>
+            {{ end }}
+        </div>
+        {{ end }}
+
+        {{ with .Params.abstract }}
+        <section class="paper-abstract" aria-labelledby="paper-abstract-heading">
+            <h2 id="paper-abstract-heading">Abstract</h2>
+            <div class="prose"><p>{{ . }}</p></div>
+        </section>
+        {{ end }}
+    </header>
+
+    {{ with .Params.hero }}
+    <figure class="planned-media pane" style="--media-rows: {{ .rows | default 18 | safeCSS }};">
+        {{ with .src }}
+            <img src="{{ . | relURL }}" alt="{{ $.Params.hero.alt | default $.Params.hero.label }}">
+        {{ else }}
+            <div class="media-placeholder">{{ $.Params.hero.label | default "Planned media" }}</div>
+        {{ end }}
+        {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+    </figure>
+    {{ end }}
+
+    {{ if .Param "redactionbench" }}
+    <section class="paper-section pane">
+        <div class="prose rb-intro">
+            <h2>Interactive R-Score</h2>
+            <p class="rb-help">
+                Select text to redact it; click a redaction to remove it.
+                <span class="rb-mobile-note">On mobile, use Randomize redactions to explore different combinations.</span>
+            </p>
+        </div>
+        <div data-redactionbench-demo></div>
+    </section>
+    {{ end }}
+
+    {{ with .Content }}
+    <section class="paper-section pane">
+        <div class="prose">
+            {{ . }}
+        </div>
+    </section>
+    {{ end }}
+
+    {{ if .Param "redactionbench" }}
+    <section class="paper-section pane">
+        <div class="prose">
+            <h2>Data Samples</h2>
+        </div>
+        <div data-redactionbench-gallery></div>
+    </section>
+    {{ end }}
+
+    {{ with .Params.bibtex }}
+    <section class="paper-section pane">
+        <h2>Citation</h2>
+        <pre><code>{{ . }}</code></pre>
+    </section>
+    {{ end }}
+</article>
+{{ end }}

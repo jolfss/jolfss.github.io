@@ -1,0 +1,41 @@
+.paper-version-menu { position: relative; flex: 0 0 auto; font-size: var(--type-body); }
+.paper-header .paper-version-menu > summary {
+    display: inline-flex;
+    width: auto;
+    align-items: center;
+    gap: .5em;
+    padding-inline: .8em;
+    cursor: pointer;
+    list-style: none;
+}
+.paper-version-menu > summary::-webkit-details-marker { display: none; }
+.paper-version-menu > nav {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + .4rem);
+    right: 0;
+    display: grid;
+    min-width: 5rem;
+    padding: .25rem;
+    border: 1px solid var(--text);
+    border-radius: .5rem;
+    background: var(--background);
+    text-align: center;
+}
+.paper-version-menu nav a { padding: .4rem .75rem; border-radius: .25rem; color: var(--text); text-decoration: none; }
+.paper-version-menu nav a[aria-current], .paper-version-menu nav a:hover, .paper-version-menu nav a:focus-visible { background: var(--text); color: var(--background); }
+/* Document surfaces use the site's monochrome palette, not the syntax theme. */
+.paper-page .rb-doc, .paper-page .rb-doc-frame { background: var(--background); color: var(--text); }
+
+.paper-header .paper-title-row h1 { text-align: center; }
+.paper-header .action-row[aria-label="Paper links"] { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; }
+.paper-header .action-row[aria-label="Paper links"] > .button { width: auto; }
+:root[data-theme='dark'] .redactionbench-demo,
+:root[data-theme='dark'] .rb-sample-browser {
+    --rb-combinator-bg: #6686a3;
+    --rb-combinator-bg-alt: #6686a3;
+    --rb-combinator-text: #0a1018;
+}
+.paper-page .prose table code { background: transparent; color: inherit; }
+.paper-header .action-row[aria-label="Paper links"] { gap: calc(var(--grid) * .35); }
+.paper-header .action-row[aria-label="Paper links"] > .button { padding-inline: calc(var(--grid) * .6); }

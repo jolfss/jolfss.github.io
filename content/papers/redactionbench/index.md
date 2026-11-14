@@ -2,33 +2,20 @@
 title: "RedactionBench"
 date: 2026-06-17
 slug: "redactionbench"
+url: "/papers/redactionbench/v2/"
+aliases:
+  - /papers/redactionbench/
+paper_version: "v2"
+redactionbench_v2: true
+redactionbench_script: "js/redactionbench-v2.js"
+redactionbench_data: "js/redactionbench-v2-examples.js"
+layout: "redactionbench"
 entry_type: "paper"
 draft: false
 redactionbench: true
-summary: "An evaluation-only benchmark for character-level redaction across eleven document categories, with 200 manually annotated documents and mandatory/contextual span labels."
+summary: "As we integrate intelligent systems beside sensitive and private data, we need the ability to redact information to balance utility and safety."
 abstract: >-
-  LLMs are increasingly being applied to sensitive domains that require redacting personally-identifiable
-  information (PII) before processing. While redacting PII has become a de facto data-cleaning
-  prerequisite, existing benchmarks conflate the mechanics of extraction with the semantics of privacy.
-  A phone number in a public directory is not equivalent to one in a medical record. Whether a given
-  piece of information constitutes a violation depends heavily on who holds it, why, and in what
-  context—fundamentally differentiating the redaction task from simple entity recognition. Grounded
-  in this principle of contextual integrity, we introduce RedactionBench, a manually annotated benchmark
-  comprising 200 diverse documents across 11 domains, with a majority seeded from real-world sources.
-  RedactionBench also introduces a novel character-level redaction metric called R-Score that treats
-  semantically similar redactions equally and nullifies the impact of shallow formatting choices
-  (e.g., redacting a phone_number as: "(***) ***-****" vs. "**************"). Extensive evaluations
-  across Named-Entity Recognition (NER) models, entity-extraction Small Language Models (SLM), and
-  frontier LLMs equipped with agentic tools (Claude Opus, OpenAI GPT) demonstrate that contextual
-  redaction remains an unsolved problem. Results from our human evaluation (85 participants) on
-  RedactionBench reveal a stark dichotomy in privacy perception: annotators show consensus with our
-  target labels for mandatory redactions (89.4%) and safe text preservations (94.1%), but fail to
-  agree with contextual redactions (47.7%). This variance demonstrates the subjective nature of
-  contextual privacy and motivates our evaluation metric R-Score, which decouples contextual ambiguity
-  from strict redaction precision. We compare 35 models using RedactionBench across model families
-  and report their performance for PII redaction. Finally, we release RedactionBench publicly to
-  establish a baseline for future privacy-preserving redaction systems. We hope this benchmark inspires
-  a shift towards efficient model design and standardized evaluations for text redaction.
+  As we integrate intelligent systems beside sensitive and private data, we need the ability to redact information to balance utility and safety. In RedactionBench, we pose redaction as a property detection task, thereby transcending any particular taxonomy to discuss frameworks of machine privacy directly. We introduce RedactionBench, a challenging set of 200 diverse documents which have been exhaustively manually annotated for sensitive content, and the R-Score, our metric designed to nullify shallow formatting decisions. In our user study, we demonstrate users have differing privacy expectations and that these differences are concentrated in our contextual units: mean pairwise agreement of mandatory (81.7%), benign (84.1%), and background units (88.7%), are significantly higher than our contextual units (63.8%). We provide comprehensive evaluations of 44 models across a wide range of architectures. While Claude Opus 5.5 scores the highest at 0.832, we demonstrate that a simple base Qwen3.8-27B in the mini-swe-agent harness achieves 0.740, outperforming the strongest PII-specific model, PII-Tracer, by +13.83%.
 authors:
   - name: "Sean Brynjólfsson"
     url: "/"
@@ -83,49 +70,58 @@ bibtex: |
 
 <figure class="paper-figure">
     <div class="paper-figure-frame">
-        <img src="assets/model_performance_over_size.png" alt="Pareto plot of RedactionBench mean R-Score against model size." width="1320" height="593" loading="lazy" decoding="async">
+        <img src="assets/v2/params_rscore_pareto.png" alt="Pareto plot of RedactionBench mean R-Score against model size." loading="lazy" decoding="async">
     </div>
-    <figcaption>Mean R-Score over Model Size</figcaption>
+    <figcaption>Total checkpoint parameter count versus R-Score.</figcaption>
 </figure>
 
 ### Overall Model Leaderboard
 
 | Rank | Model | Family | R-Score mean |
 |---:|---|---|---:|
-| 1 | `claude-opus-4-6` | Frontier LLMs | 0.714 |
-| 2 | `gpt-5.4` | Frontier LLMs | 0.659 |
-| 3 | `Qwen/Qwen3.5-397B-A17B` | Frontier LLMs | 0.592 |
-| 4 | `openai/privacy-filter` | OpenAI Privacy Filter | 0.578 |
-| 5 | `zai-org/GLM-5.1` | Frontier LLMs | 0.562 |
-| 6 | `gretel_gliner_bi_large_v1_0` | GLiNER | 0.472 |
-| 7 | `OpenMed/OpenMed-PII-SuperClinical-Large-434M-v1` | DeBERTa-v3 | 0.459 |
-| 8 | `B2NER-InternLM2.5` | B2NER | 0.447 |
-| 9 | `nvidia_gliner_pii` | GLiNER | 0.421 |
-| 10 | `B2NER-InternLM2.5-7B` | B2NER | 0.402 |
-| 11 | `jakobhuss/pii-extractor-gemma-3-270m-it` | SLMs / Extractors | 0.401 |
-| 12 | `hydroxai_pii_masker` | DeBERTa-v3 | 0.382 |
-| 13 | `eternisai/Anonymizer-4B` | SLMs / Extractors | 0.362 |
-| 14 | `E3-JSI/gliner-multi-pii-domains-v1` | GLiNER | 0.350 |
-| 15 | `iiiorg/piiranha-v1-detect-personal-information` | RoBERTa / Other | 0.343 |
-| 16 | `distil-labs/Distil-PII-Llama-3.2-3B-Instruct` | SLMs / Extractors | 0.337 |
-| 17 | `urchade/gliner_multi_pii-v1` | GLiNER | 0.329 |
-| 18 | `numind/NuExtract-2.0-2B` | SLMs / Extractors | 0.317 |
-| 19 | `Universal-NER/UniNER-7B-all` | SLMs / Extractors | 0.316 |
-| 20 | `numind/NuExtract-1.5-tiny` | SLMs / Extractors | 0.308 |
-| 21 | `knowledgator/gliner-pii-base-v1.0` | GLiNER | 0.304 |
-| 22 | `numind/NuExtract-2.0-4B` | SLMs / Extractors | 0.293 |
-| 23 | `ai4privacy/llama-english-anonymiser-openpii` | ModernBERT (BIO) | 0.270 |
-| 24 | `h2oai/deberta_finetuned_pii` † | DeBERTa-v3 | 0.250 |
-| 25 | `lakshyakh93/deberta_finetuned_pii` † | DeBERTa-v3 | 0.250 |
-| 26 | `hivetrace/gliner-guard-uniencoder` | GLiNER | 0.235 |
-| 27 | `hivetrace/gliner-guard-biencoder` | GLiNER | 0.221 |
-| 28 | `Isotonic/distilbert_finetuned_ai4privacy_v2` | DistilBERT (BIO) | 0.216 |
-| 29 | `ai4privacy/llama-multilingual-categorical-anonymiser-openpii` | ModernBERT (BIO) | 0.213 |
-| 30 | `urchade/gliner_multi-v2.1` | GLiNER | 0.209 |
-| 31 | `tanaos/tanaos-text-anonymizer-v1` | RoBERTa / Other | 0.202 |
-| 32 | `deepaksiloka/PII-Detection-V2.1` | DistilBERT (BIO) | 0.196 |
-| 33 | `distil-labs/Distil-PII-Llama-3.2-1B-Instruct` | SLMs / Extractors | 0.175 |
-| 34 | `OpenPipe/PII-Redact-General` | SLMs / Extractors | 0.113 |
-| 35 | `distil-labs/Distil-PII-gemma-3-270m-it` | SLMs / Extractors | 0.095 |
+| 1 | `Claude Opus 5.5` | General-purpose agent | 0.832 |
+| 2 | `Claude Haiku 5.5` | General-purpose agent | 0.812 |
+| 3 | `GPT-6.1 Sol` | General-purpose agent | 0.750 |
+| 4 | `Qwen3.8-27B agent` | General-purpose agent | 0.740 |
+| 5 | `GPT-6 Luna` | General-purpose agent | 0.686 |
+| 6 | `Perplexity PII-Tracer` | Token-level | 0.601 |
+| 7 | `CobuildX 17M` | Token-level | 0.536 |
+| 8 | `CobuildX 32M` | Token-level | 0.535 |
+| 9 | `OpenAI Privacy Filter` | Token-level | 0.533 |
+| 10 | `CobuildX 68M` | Token-level | 0.532 |
+| 11 | `Qwen3.5-9B agent` | General-purpose agent | 0.469 |
+| 12 | `Fastino GLiNER2 PII` | Span-level | 0.445 |
+| 13 | `Gretel GLiNER bi-large` | Span-level | 0.427 |
+| 14 | `LiquidAI LFM2.5 PII` | Token-level | 0.404 |
+| 15 | `Qwen3.5-4B agent` | General-purpose agent | 0.393 |
+| 16 | `Bards PII v3` | Token-level | 0.390 |
+| 17 | `HydroxAI PII Masker` | Token-level | 0.387 |
+| 18 | `OpenMed SuperClinical PII` | Token-level | 0.381 |
+| 19 | `Jakobhuss Gemma 270M` | Specialized generator | 0.370 |
+| 20 | `HiveTrace GLiNER Guard uni` | Span-level | 0.341 |
+| 21 | `B2NER InternLM2.5 7B` | Specialized generator | 0.339 |
+| 22 | `NVIDIA GLiNER PII` | Span-level | 0.339 |
+| 23 | `Distil-PII Llama 3B` | Specialized generator | 0.332 |
+| 24 | `Piiranha v1` | Token-level | 0.321 |
+| 25 | `Knowledgator GLiNER PII` | Span-level | 0.320 |
+| 26 | `HiveTrace GLiNER Guard bi` | Span-level | 0.313 |
+| 27 | `GLiNER multi-PII` | Span-level | 0.309 |
+| 28 | `E3-JSI GLiNER PII` | Span-level | 0.302 |
+| 29 | `Eternis Anonymizer 4B` | Specialized generator | 0.281 |
+| 30 | `NuExtract 1.5 tiny` | Specialized generator | 0.277 |
+| 31 | `UniNER 7B all` | Specialized generator | 0.270 |
+| 32 | `DeepakSiloka PII v2.1` | Token-level | 0.263 |
+| 33 | `h2oai DeBERTa PII` | Token-level | 0.238 |
+| 34 | `Lakshyakh93 DeBERTa PII` | Token-level | 0.238 |
+| 35 | `NuExtract 2.0 2B` | Specialized generator | 0.238 |
+| 36 | `Isotonic DistilBERT v2` | Token-level | 0.232 |
+| 37 | `ai4privacy English` | Token-level | 0.221 |
+| 38 | `NuExtract 2.0 4B` | Specialized generator | 0.206 |
+| 39 | `Tanaos anonymizer` | Token-level | 0.201 |
+| 40 | `GLiNER multi v2.1` | Span-level | 0.194 |
+| 41 | `Distil-PII Llama 1B` | Specialized generator | 0.192 |
+| 42 | `ai4privacy multilingual` | Token-level | 0.180 |
+| 43 | `Distil-PII Gemma 270M` | Specialized generator | 0.092 |
+| 44 | `OpenPipe PII-Redact` | Specialized generator | 0.092 |
 
 † `h2oai/deberta_finetuned_pii` and `lakshyakh93/deberta_finetuned_pii` are mirrored uploads of the same checkpoint and produce identical scores.

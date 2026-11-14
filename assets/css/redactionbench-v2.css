@@ -1,0 +1,39 @@
+/* Preserve the existing figure layout while respecting this figure's own aspect ratio. */
+.paper-figure-frame { height: auto; min-height: 0; }
+.prose .paper-figure-frame img { position: static; width: 100%; height: auto; object-fit: contain; }
+.rb-benign { background: #b4dba5; color: #151515; border-radius: .18rem; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.rb-benign.rb-alt-b { background: #a0cc8d; }
+.legend-benign::before { background: #b4dba5; }
+.rb-label-entity.rb-entity-benign[data-label-mode] { background: transparent; color: inherit; }
+.rb-label-entity.rb-entity-benign > .rb-benign { background: #b4dba5; color: #151515; }
+.rb-label-entity.rb-entity-benign > .rb-combinator { background: var(--rb-combinator-bg); color: var(--rb-combinator-text); }
+.redactionbench-demo.is-redaction-preview .rb-benign,
+.redactionbench-demo.is-redaction-preview .rb-entity-benign > .rb-benign,
+.redactionbench-demo.is-redaction-preview .rb-entity-benign > .rb-combinator { background: transparent; color: inherit; }
+/* Each metric has one optional-target comparison. */
+.rb-score-group { height: calc(var(--grid) * 2); }
+@media (max-width: 54rem) {
+    .rb-score-group { grid-template-rows: var(--grid) auto; }
+    .rb-score-series-list { height: auto; grid-row: 2; }
+}
+/* Give the leaderboard equal insets and keep the rank column compact. */
+.paper-page .prose table th,
+.paper-page .prose table td {
+    padding: calc(var(--grid) * .25) var(--grid);
+    vertical-align: middle;
+}
+.paper-page .prose table th:first-child,
+.paper-page .prose table th:last-child { width: 0; }
+.paper-page .prose table code {
+    height: auto;
+    padding: 0;
+    vertical-align: baseline;
+}
+/* Single-series metrics do not need a separate treatment-label column. */
+.rb-score-series-label { display: none; }
+.rb-score-series { grid-template-columns: minmax(0, 1fr) 3.75rem; }
+.rb-score-scale { grid-template-columns: 10rem minmax(0, 1fr) 3.75rem; }
+@media (max-width: 54rem) {
+    .rb-score-series, .rb-score-scale { grid-template-columns: minmax(0, 1fr) 2.8rem; }
+    .rb-score-scale > span:first-child { display: none; }
+}
